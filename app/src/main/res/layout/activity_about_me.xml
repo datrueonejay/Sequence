@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_about_me"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    android:padding="5dp"
+    android:layout_marginTop="5dp"
+    android:background="#80FFFFFF"
+    tools:context="com.datrueonejay.canyouescape.AboutMe">
+
+    <com.datrueonejay.canyouescape.MyCustomButton
+        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X"
+        android:textAlignment="textStart"
+        android:gravity="start"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/close"
+        android:textSize="24sp"
+        android:textColor="#000"/>
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:padding="3dp"
+        android:layout_below="@+id/close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0032EC"
+        android:textColor="#FFF"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:text="@string/jayden"
+        />
+
+</RelativeLayout>

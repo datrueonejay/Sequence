@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.datrueonejay.canyouescape.MyCustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/half"
+        android:text="@string/half"
+        android:textAlignment="center"
+        android:padding="3dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        />
+
+    <com.datrueonejay.canyouescape.MyCustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/one"
+        android:text="@string/one"
+        android:textAlignment="center"
+        android:padding="3dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_below="@+id/half"
+        />
+
+    <com.datrueonejay.canyouescape.MyCustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/one_half"
+        android:text="@string/one_half"
+        android:textAlignment="center"
+        android:padding="3dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_below="@+id/one"
+        />
+
+    <com.datrueonejay.canyouescape.MyCustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/two"
+        android:text="@string/two"
+        android:textAlignment="center"
+        android:padding="3dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_below="@+id/one_half"
+        />
+
+    <com.datrueonejay.canyouescape.MyCustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/two_half"
+        android:text="@string/two_half"
+        android:textAlignment="center"
+        android:padding="3dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_below="@+id/two"
+        />
+
+    <com.datrueonejay.canyouescape.MyCustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/three"
+        android:text="@string/three"
+        android:textAlignment="center"
+        android:padding="3dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_below="@+id/two_half"
+        />
+</RelativeLayout>

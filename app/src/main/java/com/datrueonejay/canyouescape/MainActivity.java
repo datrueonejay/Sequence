@@ -1,19 +1,22 @@
 package com.datrueonejay.canyouescape;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,40 +27,111 @@ public class MainActivity extends AppCompatActivity {
      * 4 as right
      */
 
-    ImageButton move_up;
-    ImageButton move_left;
-    ImageButton move_down;
-    ImageButton move_right;
-    //ImageView a;
-    //ImageView b;
-    //ImageView c;
-    //ImageView d;
-    ImageView rightOrWrong;
-    //Button reset;
-    Button next_level;
-    TextView level;
-    //TextView sequence;
-    TextView move_counter;
-    LevelSequence current_sequence;
-    int level_number = 1;
-    // timer to flash green if correct
-    Timer timer;
-    final Handler handler = new Handler();
+    public static ImageButton move_up;
+    public static ImageButton move_left;
+    public static ImageButton move_down;
+    public static ImageButton move_right;
+    public static ImageButton settings;
+    public static ImageButton[] moves = new ImageButton[4];
+
+    public static ImageView rightOrWrong;
+    public static Button next_level;
+
+    public static TextView level;
+    public static TextView move_counter;
+    public static TextView highscore;
+    public static TextView time;
+
+    public static LevelSequence current_sequence;
+    public static int level_number = 1;
+
+
+    public static CountDownTimer timer;
+
+    public static final Handler handler = new Handler();
+
+    public static RelativeLayout layout;
+
+    public static SoundPool sounds;
+    public static int correct_sound;
+    public static int incorrect_sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        time = (TextView) findViewById(R.id.timer);
+
+        // checks if it is timed mode
+            if (MainMenu.timed_game){
+                // set the countdown as visible
+                time.setVisibility(View.VISIBLE);
+                timer = new CountDownTimer((long)(MainMenu.time*60000) + 2000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        time.setText("Seconds remaining: " + ((millisUntilFinished/1000)-1));
+                        if ((millisUntilFinished/1000)==1){
+                            Buttons.DisableButtons();
+                            time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+                            if (current_sequence.check_sequence()){
+                                time.setText("YOUR SCORE: " + level_number);
+                            }
+                            else {
+                                time.setText("YOUR SCORE: " + (level_number - 1));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+                }.start();
+            }
+
+        // create the correct and incorrect sounds of the game
+        sounds = new SoundPool(50, AudioManager.STREAM_MUSIC, 0);
+        correct_sound = sounds.load(this, R.raw.correct, 1);
+        incorrect_sound = sounds.load(this, R.raw.incorrect, 1);
+
+        // checks if the sounds are on
+        MainMenu.sounds_on = MainMenu.sp.getBoolean("sounds_on", true);
+
+        // checks if the indicator should be set to a box
+        MainMenu.indicator_box = MainMenu.sp.getBoolean("indicator_box", true);
+
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         // timer to time between green flash and reset
-        timer = new Timer();
+        //timer = new Timer();
+
         // create the buttons upon opening the app
         move_up = (ImageButton) findViewById(R.id.upButton);
         move_left = (ImageButton) findViewById(R.id.leftButton);
         move_down = (ImageButton) findViewById(R.id.downButton);
         move_right = (ImageButton) findViewById(R.id.rightButton);
-        final ImageButton [] moves = {move_up, move_left, move_down, move_right};
+
+        // create the layout
+        layout = (RelativeLayout) findViewById(R.id.activity_main);
+
+        // create settings button
+        settings = (ImageButton) findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent activity = new Intent(MainActivity.this, Settings.class);
+                startActivity(activity);
+            }
+        });
+
+        // create an array holding the buttons
+        moves[0] = move_up;
+        moves[1] = move_left;
+        moves[2] = move_down;
+        moves[3] = move_right;
 
         // create the next level button
         next_level = (Button) findViewById(R.id.nextLevel);
@@ -66,109 +140,29 @@ public class MainActivity extends AppCompatActivity {
 
         // create the level 1 sequence
         current_sequence = new LevelSequence(level_number);
+        //current_sequence = new LevelSequence(100000);
+
 
         // create the text for the move counter
         move_counter = (TextView) findViewById(R.id.moveCounter);
         move_counter.setText("Move " + Integer.toString(current_sequence.move_counter() + 1));
 
-        // shows answer
-        //sequence = (TextView) findViewById(R.id.sequence);
-        //sequence.setText(Arrays.toString(current_sequence.level_sequence()));
+        // create the text for the highscore
+        highscore = (TextView) findViewById(R.id.highscore);
+        // finds the current high score
+        long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
+        highscore.setText("High Score: " + Long.toString(highScore));
 
-        // create the rights and wrongs
-        //a = (ImageView) findViewById(R.id.a);
-        //b = (ImageView) findViewById(R.id.b);
-        //c = (ImageView) findViewById(R.id.c);
-        //d = (ImageView) findViewById(R.id.d);
-        //final ImageView [] tries = {a, b, c, d};
+        // create the right or wrong image (green or red rectangle)
         rightOrWrong = (ImageView) findViewById(R.id.rightOrWrong);
 
         // create level text
         level = (TextView) findViewById(R.id.level);
         level.setText(("Level " + Integer.toString(level_number)));
 
-        // create the four buttons
+        // create the four buttons from
         for (int button_counter = 1; button_counter < 5; button_counter++){
-            // creates a copy of the button_counter
-            final int copy_counter = button_counter;
-            // creates the button for current direction
-            moves[button_counter - 1].setOnClickListener(new View.OnClickListener(){
-                @Override
-                // create the listener
-                public void onClick(View view){
-                    // tries to input the move
-                    current_sequence.input_move(copy_counter);
-                    try{
-                        // tries to check if the move is correct or wrong
-                        boolean correct = current_sequence.check_move();
-                        if (correct && current_sequence.can_move()) {
-                            for (int a_counter = 0; a_counter < 4; a_counter ++){
-                                   moves[a_counter].setEnabled(false);
-                            }
-                            // sets to green
-                            rightOrWrong.setImageResource(R.drawable.green);
-                            // waits 0.01 seconds
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    // sets it back to white
-                                    rightOrWrong.setImageResource(R.drawable.white);
-                                    // re enables all the buttons
-                                    for (int b_counter = 0; b_counter < 4; b_counter ++)
-                                        moves[b_counter].setEnabled(true);
-                                }
-                                }, 100);
-                            // increases the move
-                            current_sequence.increase_move();
-                            // checks if the user sequence matches the level sequence
-                            if (current_sequence.check_sequence()){
-                                // create the text for the move counter
-                                move_counter.setText("PROCEED");
-                                // sets the next level text as visible
-                                next_level.setTextColor(Color.BLACK);
-                                // sets the background of the button to grey
-                                next_level.setBackgroundColor(Color.LTGRAY);
-                                // disables the arrow buttons
-                                for (int d_counter = 0; d_counter < 4; d_counter ++){
-                                        moves[d_counter].setEnabled(false);
-                                // enables the next level button
-                                    next_level.setEnabled(true);
-                                }
-                            }
-                            else if (!current_sequence.check_sequence()){
-                                // create the text for the move counter
-                                move_counter.setText("Move " + Integer.toString(current_sequence.move_counter() + 1));
-                            }
-
-                        }
-                        else if (!correct && current_sequence.can_move()){
-                            for (int c_counter = 0; c_counter < 4; c_counter ++) {
-                                    moves[c_counter].setEnabled(false);
-                            }
-                                rightOrWrong.setImageResource(R.drawable.red);
-                                current_sequence.incorrect();
-                                // resets the square to white
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        // sets it back to white
-                                        rightOrWrong.setImageResource(R.drawable.white);
-                                        // re enables all the arrow buttons
-                                        for (int d_counter = 0; d_counter < 4; d_counter++)
-                                            moves[d_counter].setEnabled(true);
-                                    }
-                                }, 100);
-                            // resets the users inputs
-                            current_sequence.reset();
-                            // create the text for the move counter
-                            move_counter.setText("Move " + Integer.toString(current_sequence.move_counter() + 1));
-                        }
-                    }
-                    catch(ArrayIndexOutOfBoundsException e) {
-                    }
-
-                }
-            });
+            Buttons.create_button(button_counter);
         }
 
         // create the next level button
@@ -177,9 +171,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 // ensures that the users sequence matches the level sequence
                 if (current_sequence.check_sequence()){
-                    // set the next_level text and background as white again
-                    next_level.setTextColor(Color.WHITE);
-                    next_level.setBackgroundColor(Color.WHITE);
+                    // set the next_level button as not visible
+                    next_level.setVisibility(View.INVISIBLE);
                     // increase the level
                     level_number++;
                     // set the new level text
@@ -189,118 +182,77 @@ public class MainActivity extends AppCompatActivity {
                     // create the text for the move counter
                     move_counter = (TextView) findViewById(R.id.moveCounter);
                     move_counter.setText("Move " + Integer.toString(current_sequence.move_counter() + 1));
-                    // shows the answer
-                    //sequence = (TextView) findViewById(R.id.sequence);
-                    //sequence.setText(Arrays.toString(current_sequence.level_sequence()));
                     // disables the next level button for new level
                     next_level.setEnabled(false);
                 }
-
             }
         });
 
 
     }
-}
 
-class LevelSequence{
-    private int[] level_sequence;
-    private int[] user_sequence;
-    private int current_move;
-    private boolean can_move;
+    @Override
+    protected void onStop(){
+        super.onStop();
 
-    LevelSequence(int level_num) {
-        // variable to hold level_num
-        int lvl_num = level_num;
-        // variable to hold the sequence of correct moves
-        level_sequence = new int[lvl_num];
-        // variable to hold the users guesses at the sequence
-        user_sequence = new int[lvl_num];
-        // variable to hold the current move number
-        current_move = 0;
-        // assigns can_move as true
-        can_move = true;
+    }
 
-        // loops through each move in the array, creating a new value for the current number
-        for (int move_counter = 0; move_counter < level_sequence.length; move_counter ++) {
-            // create a random number between 1-4
-            Random random_number = new Random();
-            int move = random_number.nextInt(100) % 4;
-            //int move = (int) (Math.random()*(3) + 1);
-            // assigns the move number to the sequence of moves
-            level_sequence[move_counter] = move + 1;
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SoundManager.stopPlayingDelayed();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SoundManager.continueMusic();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sounds.release();
+        if (MainMenu.timed_game){
+            timer.cancel();
+
         }
     }
 
-    void incorrect() {
-        // a method to signal an incorrect move, allowing no more moves
-        can_move = false;
-    }
+    @Override
+    public void onBackPressed() {
 
-    private void does_not_exceed_length() {
-        // method to ensure that a new move will not exceed the length of the current sequence
-        if (current_move >= level_sequence.length)
-            can_move = false;
-    }
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.back_window);
+        dialog.show();
 
-    void input_move(int move) {
-        /** (int) -> bool
-         * REQ: move must be either 0, 1, 2, or 3
-         * Given an integer representing a move, if the integers matches the current integer of the
-         * move sequence, the method returns True. Other wise False.
-         */
-        // ensures that the move does not exceed the length of the level sequence
-        does_not_exceed_length();
-        if (can_move)
-            user_sequence[current_move] = move;
-    }
+        // create the yes button
+        Button yes;
+        yes = (Button) dialog.findViewById(R.id.yes);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                MainActivity.this.finish();
+                MainActivity.level_number = 1;
+                if (MainMenu.timed_game) {
+                    timer.cancel();
+                }
+            }
 
-    void increase_move() {
-        // method used to move to the next move
-        current_move++;
-        // ensures a move can still be made
-        does_not_exceed_length();
-    }
+        });
 
-    int move_counter() {
-        // method to return the integer of the move in the sequence
-        return current_move;
-    }
+        // create the no button
+        Button no;
+        no = (Button) dialog.findViewById(R.id.no);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
 
-    boolean check_move() {
-        //checks if the users move matches the sequence
-        boolean matches = false;
-        if (user_sequence[current_move] == level_sequence[current_move])
-            matches = true;
-        return matches;
     }
-
-    boolean check_sequence() {
-        // checks if all the users moves matches the level sequence
-        boolean matches = false;
-        if (Arrays.equals(user_sequence, level_sequence))
-            matches = true;
-        return matches;
-    }
-
-    boolean can_move() {
-        // a method to check to ensure a move can be made
-        return can_move;
-    }
-
-    int [] level_sequence(){
-        return level_sequence;
-    }
-
-    void reset() {
-        /** (Null) -> Null
-         * This method resets the users moves.
-         */
-        // resets the users move
-        current_move = 0;
-        // ensures that moves can be made again
-        can_move = true;
-    }
-
 
 }

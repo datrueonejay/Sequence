@@ -18,7 +18,7 @@
         android:src="@drawable/arrow"
         android:scaleType="fitCenter"
         android:rotation="180"
-        android:background="@drawable/white"
+        android:background="@null"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 
@@ -28,7 +28,7 @@
         android:id="@+id/upButton"
         android:src="@drawable/arrow"
         android:scaleType="fitCenter"
-        android:background="@drawable/white"
+        android:background="@null"
         android:layout_above="@+id/downButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="31dp" />
@@ -40,7 +40,7 @@
         android:src="@drawable/arrow"
         android:scaleType="fitCenter"
         android:rotation="90"
-        android:background="@drawable/white"
+        android:background="@null"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -54,25 +54,34 @@
         android:src="@drawable/arrow"
         android:scaleType="fitCenter"
         android:rotation="270"
-        android:background="@drawable/white"
+        android:background="@null"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="65dp" />
 
-    <TextView
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/settings"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/settings"/>
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Level"
         android:id="@+id/level"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_marginBottom="15dp"/>
 
     <!--move counter-->
-    <TextView
+    <com.datrueonejay.canyouescape.MyCustomTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Move: "
@@ -81,29 +90,42 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_marginBottom="15dp"/>
 
     <!--next level button-->
-    <Button
+    <com.datrueonejay.canyouescape.MyCustomButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next Level"
         android:id="@+id/nextLevel"
-        android:background="@drawable/white"
-        android:layout_marginTop="5dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:padding="7dp"
         android:textSize="30sp"
-        android:layout_below="@+id/moveCounter"
-        android:textColor="#FFFFFF"
+        android:layout_below="@+id/highscore"
         android:layout_centerHorizontal="true"
-        android:elevation="0dp" />
+        android:layout_marginBottom="15dp"
+        android:visibility="invisible"/>
 
-    <!-- An image tile representing whether the input is right or wrong-->
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:padding="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High Score:"
+        android:id="@+id/highscore"
+        android:layout_below="@+id/moveCounter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:textSize="30sp" />
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:id="@+id/timer"
+        android:layout_below="@+id/nextLevel"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"/>
+
     <ImageView
         android:layout_width="75dp"
         android:layout_height="75dp"
@@ -111,19 +133,5 @@
         android:id="@+id/rightOrWrong"
         android:layout_above="@+id/upButton"
         android:layout_centerHorizontal="true"/>
-    <!-- SHows the answer
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/upButton"
-        android:layout_above="@+id/leftButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="34dp"
-        android:id="@+id/sequence"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-        -->
 
 </RelativeLayout>

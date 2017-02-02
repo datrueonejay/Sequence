@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_count_down"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.datrueonejay.canyouescape.CountDown">
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/title"
+        android:text="@string/begins"
+        android:textColor="@color/blue"
+        android:textSize="30sp"
+        android:textAlignment="center"/>
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/counter"
+        android:textColor="@color/blue"
+        android:textSize="70sp"
+        android:textAlignment="center"/>
+
+</RelativeLayout>

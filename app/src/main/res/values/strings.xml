@@ -1,3 +1,58 @@
 <resources>
-    <string name="app_name">CanYouEscape</string>
+    <string name="app_name">Sequence</string>
+    <string name="welcome">Welcome to Sequence!</string>
+    <string name="tap">(Tap anywhere to continue)</string>
+    <string name="back">Back</string>
+    <string name="help">How To Play</string>
+    <string name="instruct">Each level will have a number of moves (same as the level)
+            which you must determine.</string>
+    <string name="right">If you tap the correct direction, a green light will appear, a ding will
+        sound and you can make the next move.
+    </string>
+    <string name="wrong">If it is incorrect, a red light will appear, an buzz will sound and your
+        sequence will reset. (You can change the box to the background in the settings)</string>
+    <string name="next">You may proceed to the next level if you find the correct sequence.</string>
+    <string name="next_more">You may proceed to the next level if you find the correct sequence.
+        (Tap anywhere to continue)</string>
+    <string name="me">About the Developer</string>
+    <string name="jayden">I am a first year student at U of T Scarborough, studying Computer
+        Science. This app is my first app, and I will continue to develop more in the future. I
+        hope you enjoy the app. Special thanks to dmf444 for helping me in the development of this
+        app, and to ThatGuy for trying to break the app.
+    </string>
+    <string name="music_on">In Game Music: On</string>
+    <string name="music_off">In Game Music: Off</string>
+    <string name="title_activity_typeface_util">TypefaceUtil</string>
+    <string name="sounds_on">In Game Sounds: On</string>
+    <string name="sounds_off">In Game Sounds: Off</string>
+    <string name="indicator_background">Indicator: Background</string>
+    <string name="indicator_box">Indicator: Box</string>
+    <string name="title">Sequence</string>
+    <string name="main">Classic</string>
+    <string name="time">Time Attack</string>
+    <string name="settings">Settings</string>
+    <string name="back_title">Are you sure?</string>
+    <string name="confirm">Are you sure you want to leave? Your progress will not be saved (Your
+        highscore will be saved)</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="begins">Game Begins In</string>
+    <string name="half">30 Seconds</string>
+    <string name="one">1 Minute</string>
+    <string name="one_half">1 Minute 30 Seconds</string>
+    <string name="two">2 Minutes</string>
+    <string name="two_half">2 Minutes 30 Seconds</string>
+    <string name="three">3 Minutes</string>
+    <string name="highscores">Highscores</string>
+    <string name="main_score">Classic: </string>
+    <string name="timed">Time Attack</string>
+    <string name="timed_half_score">30 Seconds: </string>
+    <string name="timed_one_score">1 Minute: </string>
+    <string name="timed_one_half_score">1 Minute 30 Seconds: </string>
+    <string name="timed_two_score">2 Minutes: </string>
+    <string name="timed_two_half_score">2 Minutes 30 Seconds: </string>
+    <string name="timed_three_score">3 Minutes: </string>
+    <string name="warning">WARNING! DO NOT USE BACKGROUND SETTING IF YOU HAVE A HISTORY OF HAVING
+    SEIZURES OR IF YOU SUFFER FROM EPILEPSY. KEEP THE SETTING ON INDICATOR: BOX</string>
+
 </resources>

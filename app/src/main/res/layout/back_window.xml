@@ -35,7 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/confirmation"
         android:text="@string/yes"
-        android:id="@+id/yes" />
+        android:id="@+id/yes"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"/>
 
     <com.datrueonejay.canyouescape.MyCustomButton
         android:layout_width="match_parent"
@@ -43,6 +46,8 @@
         android:layout_below="@id/yes"
         android:text="@string/no"
         android:id="@+id/no"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"/>
 
 </RelativeLayout>

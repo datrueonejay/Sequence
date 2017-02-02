@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CountDown" />
+        <activity android:name=".Unlockables"></activity>
     </application>
 
 </manifest>

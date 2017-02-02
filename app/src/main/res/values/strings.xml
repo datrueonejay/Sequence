@@ -38,20 +38,20 @@
     <string name="no">No</string>
     <string name="begins">Game Begins In</string>
     <string name="half">30 Seconds</string>
-    <string name="one">1 Minute</string>
-    <string name="one_half">1 Minute 30 Seconds</string>
-    <string name="two">2 Minutes</string>
-    <string name="two_half">2 Minutes 30 Seconds</string>
-    <string name="three">3 Minutes</string>
+    <string name="one">60 Seconds</string>
+    <string name="one_half">90 Seconds</string>
+    <string name="two">120 Seconds</string>
+    <string name="two_half">150 Seconds</string>
+    <string name="three">180 Seconds</string>
     <string name="highscores">Highscores</string>
     <string name="main_score">Classic: </string>
     <string name="timed">Time Attack</string>
     <string name="timed_half_score">30 Seconds: </string>
-    <string name="timed_one_score">1 Minute: </string>
-    <string name="timed_one_half_score">1 Minute 30 Seconds: </string>
-    <string name="timed_two_score">2 Minutes: </string>
-    <string name="timed_two_half_score">2 Minutes 30 Seconds: </string>
-    <string name="timed_three_score">3 Minutes: </string>
+    <string name="timed_one_score">60 Seconds: </string>
+    <string name="timed_one_half_score">90 Seconds: </string>
+    <string name="timed_two_score">120 Seconds: </string>
+    <string name="timed_two_half_score">150 Seconds: </string>
+    <string name="timed_three_score">180 Seconds: </string>
     <string name="warning">WARNING! DO NOT USE BACKGROUND SETTING IF YOU HAVE A HISTORY OF HAVING
     SEIZURES OR IF YOU SUFFER FROM EPILEPSY. KEEP THE SETTING ON INDICATOR: BOX</string>
 

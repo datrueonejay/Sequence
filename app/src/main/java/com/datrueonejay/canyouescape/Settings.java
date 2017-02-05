@@ -16,52 +16,20 @@ public class Settings extends AppCompatActivity {
     Button me;
     Button music_toggle;
     Button sounds_toggle;
-    Button indicator_toggle;
+    Button size_toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
-        back = (Button) findViewById(R.id.back);
-        help = (Button) findViewById(R.id.help);
-        me = (Button) findViewById(R.id.me);
-        music_toggle = (Button) findViewById(R.id.music);
-        sounds_toggle = (Button) findViewById(R.id.sounds);
-        indicator_toggle = (Button) findViewById(R.id.indicator);
-
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-
-        // set the music text upon entering the settings menu
-        if (MainMenu.music_on){
-            music_toggle.setText(R.string.music_on);
-        }
-        else if (!MainMenu.music_on){
-            music_toggle.setText(R.string.music_off);
-        }
-
-        // set the sounds text
-        if (MainMenu.sounds_on){
-            sounds_toggle.setText(R.string.sounds_on);
-        }
-        else if (!MainMenu.sounds_on) {
-            sounds_toggle.setText(R.string.sounds_off);
-        }
-
-        // set the indicator text
-        if (MainMenu.indicator_box){
-            indicator_toggle.setText(R.string.indicator_box);
-        }
-        else if (!MainMenu.indicator_box) {
-            indicator_toggle.setText(R.string.indicator_background);
-        }
-
 
         // resumes music
         MainMenu.music.start();
 
+        back = (Button) findViewById(R.id.back);
+        back.setText(R.string.back);
         // go back to the game
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +38,8 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        help = (Button) findViewById(R.id.help);
+        help.setText(R.string.help);
         // opens instructions
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +49,25 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        me = (Button) findViewById(R.id.me);
+        me.setText(R.string.me);
+        // opens screen about me
+        me.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent activity = new Intent(Settings.this, AboutMe.class);
+                startActivity(activity);
+            }
+        });
+
+        music_toggle = (Button) findViewById(R.id.music);
+        // set the music text upon entering the settings menu
+        if (MainMenu.music_on){
+            music_toggle.setText(R.string.music_on);
+        }
+        else if (!MainMenu.music_on){
+            music_toggle.setText(R.string.music_off);
+        }
         // turns music volume to 0
         music_toggle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,17 +89,27 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        sounds_toggle = (Button) findViewById(R.id.sounds);
+        // set the sounds text
+        if (MainMenu.sounds_on){
+            sounds_toggle.setText(R.string.sounds_on);
+        }
+        else if (!MainMenu.sounds_on) {
+            sounds_toggle.setText(R.string.sounds_off);
+        }
         // sets if sounds volume is on or off
         sounds_toggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (MainMenu.sounds_on){
+                    // turns the music off
                     MainMenu.editor.putBoolean("sounds_on", false);
                     MainMenu.editor.commit();
                     MainMenu.sounds_on = MainMenu.sp.getBoolean("sounds_on", true);
                     sounds_toggle.setText(R.string.sounds_off);
                 }
                 else if (!MainMenu.sounds_on){
+                    // turns the music on
                     MainMenu.editor.putBoolean("sounds_on", true);
                     MainMenu.editor.commit();
                     MainMenu.sounds_on = MainMenu.sp.getBoolean("sounds_on", true);
@@ -119,36 +118,38 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        // sets if indicator is a box or the background
-        indicator_toggle.setOnClickListener(new View.OnClickListener() {
+        size_toggle = (Button) findViewById(R.id.size);
+        // checks what the size is
+        String size = MainMenu.sp.getString("size", "medium");
+        switch (size){
+            case "small": size_toggle.setText(R.string.indicator_small);
+                break;
+            case "medium": size_toggle.setText(R.string.indicator_medium);
+                break;
+            case "large": size_toggle.setText(R.string.indicator_large);
+                break;
+        }
+        size_toggle.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if (MainMenu.indicator_box){
-                    MainMenu.editor.putBoolean("indicator_box", false);
-                    MainMenu.editor.commit();
-                    MainMenu.indicator_box = MainMenu.sp.getBoolean("indicator_box", false);
-                    Dialog dialog = new Dialog(Settings.this);
-                    dialog.setContentView(R.layout.warning);
-                    dialog.show();
-                    indicator_toggle.setText(R.string.indicator_background);
-                }
-                else if (!MainMenu.indicator_box){
-                    MainMenu.editor.putBoolean("indicator_box", true);
-                    MainMenu.editor.commit();
-                    MainMenu.indicator_box = MainMenu.sp.getBoolean("indicator_box", true);
-                    indicator_toggle.setText(R.string.indicator_box);
+            public void onClick(View v) {
+                String size = MainMenu.sp.getString("size", "medium");
+                switch (size) {
+                    case "small": size_toggle.setText(R.string.indicator_medium);
+                        MainMenu.editor.putString("size", "medium");
+                        MainMenu.editor.commit();
+                        break;
+                    case "medium": size_toggle.setText(R.string.indicator_large);
+                        MainMenu.editor.putString("size", "large");
+                        MainMenu.editor.commit();
+                        break;
+                    case "large": size_toggle.setText(R.string.indicator_small);
+                        MainMenu.editor.putString("size", "small");
+                        MainMenu.editor.commit();
+                        break;
                 }
             }
         });
 
-        // opens screen about me
-        me.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent activity = new Intent(Settings.this, AboutMe.class);
-                startActivity(activity);
-            }
-        });
 
 
     }

@@ -25,8 +25,9 @@
     <string name="title_activity_typeface_util">TypefaceUtil</string>
     <string name="sounds_on">In Game Sounds: On</string>
     <string name="sounds_off">In Game Sounds: Off</string>
-    <string name="indicator_background">Indicator: Background</string>
-    <string name="indicator_box">Indicator: Box</string>
+    <string name="indicator_small">Indicator Size: Small</string>
+    <string name="indicator_medium">Indicator Size: Medium</string>
+    <string name="indicator_large">Indicator Size: Large</string>
     <string name="title">Sequence</string>
     <string name="main">Classic</string>
     <string name="time">Time Attack</string>

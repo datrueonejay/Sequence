@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class MainMenu extends AppCompatActivity {
 
-
+    public static Context context;
     Boolean first_time;
 
 
@@ -25,7 +25,6 @@ public class MainMenu extends AppCompatActivity {
 
     public static boolean music_on;
     public static boolean sounds_on;
-    public static String indicator;
     public static boolean timed_game;
 
     public static String game_mode;
@@ -45,6 +44,8 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        context = this;
+
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -53,9 +54,6 @@ public class MainMenu extends AppCompatActivity {
 
         // create the editor for shared preferences
         editor = sp.edit();
-
-        // set indicator as box
-        indicator = sp.getString("indicator", "box");
 
         // find the background music track
         music = MediaPlayer.create(getApplicationContext(), R.raw.airport_lounge);

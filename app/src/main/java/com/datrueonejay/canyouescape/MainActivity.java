@@ -2,6 +2,7 @@ package com.datrueonejay.canyouescape;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
      * 3 as down
      * 4 as right
      */
-
+    public static Context cont;
     public static ImageButton move_up;
     public static ImageButton move_left;
     public static ImageButton move_down;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        cont = this;
 
 
         time = (TextView) findViewById(R.id.timer);
@@ -99,9 +101,6 @@ public class MainActivity extends AppCompatActivity {
         // checks if the sounds are on
         MainMenu.sounds_on = MainMenu.sp.getBoolean("sounds_on", true);
 
-        // checks if the indicator should be set to a box
-        MainMenu.indicator_box = MainMenu.sp.getBoolean("indicator_box", true);
-
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -137,8 +136,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         // create the next level button
         next_level = (Button) findViewById(R.id.nextLevel);
         // disables the next level button at first
@@ -161,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
         // create the right or wrong image (green or red rectangle)
         rightOrWrong = (ImageView) findViewById(R.id.rightOrWrong);
+        rightOrWrong.setAdjustViewBounds(true);
 
         // create level text
         level = (TextView) findViewById(R.id.level);

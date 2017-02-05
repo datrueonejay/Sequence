@@ -15,7 +15,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/back"
-        android:text="@string/back"
         android:textSize="24sp"
         android:layout_marginBottom="15dp"/>
 
@@ -25,7 +24,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/help"
         android:layout_below="@+id/back"
-        android:text="@string/help"
         android:textSize="24sp"
         android:layout_marginBottom="15dp"/>
 
@@ -34,7 +32,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/me"
         android:layout_below="@+id/help"
-        android:text="@string/me"
         android:textSize="24sp"
         android:layout_marginBottom="15dp"/>
 
@@ -55,17 +52,15 @@
         android:layout_below="@+id/music"
         android:padding="3dp"
         android:textSize="24sp"
-        android:text="@string/sounds_on"
         android:layout_marginBottom="15dp"/>
 
     <com.datrueonejay.canyouescape.MyCustomButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/indicator"
-        android:layout_below="@id/sounds"
+        android:id="@+id/size"
+        android:layout_below="@+id/sounds"
         android:padding="3dp"
         android:textSize="24sp"
-        android:text="@string/indicator_box"
         android:layout_marginBottom="15dp"/>
 
 </RelativeLayout>

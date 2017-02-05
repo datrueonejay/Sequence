@@ -14,7 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title"
-        android:text="@string/title"
         android:layout_centerHorizontal="true"
         android:textColor="@color/blue"
         android:textSize="50sp"
@@ -26,7 +25,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/main"
         android:layout_below="@+id/title"
-        android:text="@string/main"
         android:textSize="24sp"
         android:padding="3dp"
         android:layout_marginBottom="15dp"/>
@@ -36,7 +34,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/time"
         android:layout_below="@+id/main"
-        android:text="@string/time"
         android:textSize="24sp"
         android:padding="3dp"
         android:layout_marginBottom="15dp"/>
@@ -46,7 +43,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/settings"
         android:layout_below="@+id/time"
-        android:text="@string/settings"
         android:textSize="24sp"
         android:padding="3dp"
         android:layout_marginBottom="15dp"/>
@@ -56,7 +52,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/highscores"
         android:layout_below="@+id/settings"
-        android:text="@string/highscores"
+        android:textSize="24sp"
+        android:padding="3dp"
+        android:layout_marginBottom="15dp"/>
+
+    <com.datrueonejay.canyouescape.MyCustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/unlockables"
+        android:layout_below="@+id/highscores"
         android:textSize="24sp"
         android:padding="3dp"
         android:layout_marginBottom="15dp"/>

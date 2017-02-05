@@ -31,6 +31,7 @@
     <string name="main">Classic</string>
     <string name="time">Time Attack</string>
     <string name="settings">Settings</string>
+    <string name="unlockables">Unlockables</string>
     <string name="back_title">Are you sure?</string>
     <string name="confirm">Are you sure you want to leave? Your progress will not be saved (Your
         highscore will be saved)</string>
@@ -54,5 +55,26 @@
     <string name="timed_three_score">180 Seconds: </string>
     <string name="warning">WARNING! DO NOT USE BACKGROUND SETTING IF YOU HAVE A HISTORY OF HAVING
     SEIZURES OR IF YOU SUFFER FROM EPILEPSY. KEEP THE SETTING ON INDICATOR: BOX</string>
+
+    <string name="use">Use</string>
+
+    <string name="classic">\"The classic . If you\'re using this you\'ve probably unlocked
+        nothing.\"</string>
+    <string name="pc">\"The PC gamer. WASD you know it. \"</string>
+    <string name="xbox">\"The X-Box gamer. 360, One, Halo, all that. \"</string>
+    <string name="ps3">\"The Playstation gamer. PS1, PS2, PS3, PS4, Little Big Planet ye. \"</string>
+
+    <string-array name="arrows">
+        <item>@string/classic</item>
+        <item>@string/pc</item>
+        <item>@string/xbox</item>
+        <item>@string/ps3</item>
+    </string-array>
+
+    <string name="how1">Score at least 1 in any game mode.</string>
+    <string name="how2">Score at least 10 in any game mode.</string>
+    <string name="how3">Score at least 10 in 30 seconds game mode.</string>
+    <string name="how4">Score at least 15 in any game mode.</string>
+
 
 </resources>

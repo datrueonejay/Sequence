@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="400dp"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
+
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/unlockables"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:id="@+id/title"
+            android:layout_marginBottom="15dp"/>
+
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/how1"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:id="@+id/how"
+            android:layout_below="@+id/title"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/how"
+            android:layout_above="@+id/use"
+            android:id="@+id/pic"
+            android:layout_centerHorizontal="true"/>
+
+
+
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:text="@string/classic"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:id="@+id/description"
+            android:layout_marginBottom="15dp"/>
+
+        <com.datrueonejay.canyouescape.MyCustomButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/use"
+            android:text="@string/use"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/description"
+            android:layout_marginBottom="15dp"/>
+
+</RelativeLayout>

@@ -14,14 +14,19 @@ import android.widget.TextView;
 public class Buttons {
 
     public static void create_button(int button_counter) {
-        final int copy_counter = button_counter;
+        final int direction = button_counter - 1;
+        // finds the key set
+        String key = MainMenu.sp.getString("skin", "classic");
+        // set the picture of the button
+        setPic(key, direction);
+
         // creates the button for current direction
-        MainActivity.moves[button_counter - 1].setOnClickListener(new View.OnClickListener() {
+        MainActivity.moves[direction].setOnClickListener(new View.OnClickListener() {
             @Override
             // create the listener
             public void onClick(View view) {
                 // tries to input the move
-                MainActivity.current_sequence.input_move(copy_counter);
+                MainActivity.current_sequence.input_move(direction);
                 try {
                     // tries to check if the move is correct or wrong
                     boolean correct = MainActivity.current_sequence.check_move();
@@ -45,6 +50,7 @@ public class Buttons {
                             // sets box to green
                             MainActivity.rightOrWrong.setImageResource(R.drawable.green);
                         }
+
                         else if (!MainMenu.indicator_box){
                             // ensures the box is not visible
                             MainActivity.rightOrWrong.setVisibility(View.GONE);
@@ -159,4 +165,23 @@ public class Buttons {
             MainActivity.next_level.setEnabled(false);
         }
     }
+
+    private static void setPic(String keys, int direction){
+        // sets classic keys
+        if (keys == "classic"){
+            switch (direction){
+                case 0: MainActivity.moves[direction].setBackgroundResource(R.drawable.uparrow);
+                        break;
+                case 1: MainActivity.moves[direction].setBackgroundResource(R.drawable.leftarrow);
+                        break;
+                case 2: MainActivity.moves[direction].setBackgroundResource(R.drawable.downarrow);
+                        break;
+                case 3: MainActivity.moves[direction].setBackgroundResource(R.drawable.rightarrow);
+
+            }
+        }
+
+
+    }
+
 }

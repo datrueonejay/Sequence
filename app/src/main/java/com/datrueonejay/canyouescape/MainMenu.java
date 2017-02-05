@@ -25,17 +25,20 @@ public class MainMenu extends AppCompatActivity {
 
     public static boolean music_on;
     public static boolean sounds_on;
-    public static boolean indicator_box;
+    public static String indicator;
     public static boolean timed_game;
 
     public static String game_mode;
 
     public static double time;
 
+    TextView title;
+
     Button main;
     Button time_attack;
     Button settings;
     Button highscores;
+    Button unlockables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,9 @@ public class MainMenu extends AppCompatActivity {
 
         // create the editor for shared preferences
         editor = sp.edit();
+
+        // set indicator as box
+        indicator = sp.getString("indicator", "box");
 
         // find the background music track
         music = MediaPlayer.create(getApplicationContext(), R.raw.airport_lounge);
@@ -79,10 +85,27 @@ public class MainMenu extends AppCompatActivity {
             startActivity(activity);
         }
 
+        // sets the title
+        title = (TextView) findViewById(R.id.title);
+        title.setText(getResources().getString(R.string.title));
+
+        // finds and sets the text buttons of the menu
         main = (Button) findViewById(R.id.main);
+        main.setText(getResources().getString(R.string.main));
+
         time_attack = (Button) findViewById(R.id.time);
+        time_attack.setText(getResources().getString(R.string.time));
+
         settings = (Button) findViewById(R.id.settings);
+        settings.setText(getResources().getString(R.string.settings));
+
         highscores = (Button) findViewById(R.id.highscores);
+        highscores.setText(getResources().getString(R.string.highscores));
+
+        unlockables = (Button) findViewById(R.id.unlockables);
+        unlockables.setText(getResources().getString(R.string.unlockables));
+
+        //
 
         // button to start the non timed game mode
         main.setOnClickListener(new View.OnClickListener() {
@@ -233,6 +256,15 @@ public class MainMenu extends AppCompatActivity {
                 dialog.show();
             }
 
+        });
+
+        // set the unlockables button
+        unlockables.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, Unlockables.class);
+                startActivity(intent);
+            }
         });
     }
 

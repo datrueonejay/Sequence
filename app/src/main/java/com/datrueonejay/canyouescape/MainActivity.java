@@ -105,20 +105,30 @@ public class MainActivity extends AppCompatActivity {
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // timer to time between green flash and reset
-        //timer = new Timer();
-
         // create the buttons upon opening the app
         move_up = (ImageButton) findViewById(R.id.upButton);
         move_left = (ImageButton) findViewById(R.id.leftButton);
         move_down = (ImageButton) findViewById(R.id.downButton);
         move_right = (ImageButton) findViewById(R.id.rightButton);
 
+        // create an array holding the buttons
+        moves[0] = move_up;
+        moves[1] = move_left;
+        moves[2] = move_down;
+        moves[3] = move_right;
+
+        // create the four buttons from
+        for (int button_counter = 1; button_counter < 5; button_counter++){
+            Buttons.create_button(button_counter);
+        }
+
         // create the layout
         layout = (RelativeLayout) findViewById(R.id.activity_main);
 
         // create settings button
         settings = (ImageButton) findViewById(R.id.settings);
+        // set the picture
+        settings.setBackgroundResource(R.drawable.settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,11 +137,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // create an array holding the buttons
-        moves[0] = move_up;
-        moves[1] = move_left;
-        moves[2] = move_down;
-        moves[3] = move_right;
+
 
         // create the next level button
         next_level = (Button) findViewById(R.id.nextLevel);
@@ -160,10 +166,7 @@ public class MainActivity extends AppCompatActivity {
         level = (TextView) findViewById(R.id.level);
         level.setText(("Level " + Integer.toString(level_number)));
 
-        // create the four buttons from
-        for (int button_counter = 1; button_counter < 5; button_counter++){
-            Buttons.create_button(button_counter);
-        }
+
 
         // create the next level button
         next_level.setOnClickListener(new View.OnClickListener(){

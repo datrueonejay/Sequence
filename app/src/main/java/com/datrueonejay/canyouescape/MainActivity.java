@@ -48,14 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static CountDownTimer timer;
-
-    public static final Handler handler = new Handler();
-
     public static RelativeLayout layout;
 
     public static SoundPool sounds;
     public static int correct_sound;
     public static int incorrect_sound;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // create the layout
+        layout = (RelativeLayout) findViewById(R.id.activity_main);
 
         // create the buttons upon opening the app
         move_up = (ImageButton) findViewById(R.id.upButton);
@@ -118,11 +118,10 @@ public class MainActivity extends AppCompatActivity {
 
         // create the four buttons from
         for (int button_counter = 1; button_counter < 5; button_counter++){
-            Buttons.create_button(button_counter);
+            Buttons.CreateButton(button_counter);
         }
 
-        // create the layout
-        layout = (RelativeLayout) findViewById(R.id.activity_main);
+
 
         // create settings button
         settings = (ImageButton) findViewById(R.id.settings);
@@ -158,13 +157,11 @@ public class MainActivity extends AppCompatActivity {
 
         // create the right or wrong image (green or red rectangle)
         rightOrWrong = (ImageView) findViewById(R.id.rightOrWrong);
-        rightOrWrong.setAdjustViewBounds(true);
+        //rightOrWrong.setAdjustViewBounds(true);
 
         // create level text
         level = (TextView) findViewById(R.id.level);
         level.setText(("Level " + Integer.toString(level_number)));
-
-
 
         // create the next level button
         next_level.setOnClickListener(new View.OnClickListener(){
@@ -185,6 +182,8 @@ public class MainActivity extends AppCompatActivity {
                     move_counter.setText("Move " + Integer.toString(current_sequence.move_counter() + 1));
                     // disables the next level button for new level
                     next_level.setEnabled(false);
+                    // enables the direction buttons again
+                    Buttons.EnableButtons();
                 }
             }
         });

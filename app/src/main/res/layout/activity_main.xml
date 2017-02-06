@@ -11,6 +11,8 @@
     android:background="@drawable/white"
     tools:context="com.datrueonejay.canyouescape.MainActivity">
 
+
+
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -118,26 +120,17 @@
         android:textSize="30sp"
         android:id="@+id/timer"
         android:layout_below="@+id/nextLevel"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:layout_centerHorizontal="true"
         android:textColor="@color/blue"/>
 
     <ImageView
         android:adjustViewBounds="true"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_marginBottom="20dp"
         android:id="@+id/rightOrWrong"
         android:layout_above="@+id/upButton"
-        android:layout_centerHorizontal="true"/>
-
-    <!--
-    <shape xmlns:android="http://schemas.android.com/apk/res/android"
-        android:shape="oval"
-        android:layout_above="@+id/upButton">
-        <solid
-            android:color="@color/red"/>
-    </shape>
-    -->
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

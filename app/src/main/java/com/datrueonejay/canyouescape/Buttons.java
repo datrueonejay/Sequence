@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class Buttons {
 
-    public static void create_button(final int button_counter) {
+    public static void CreateButton(final int button_counter) {
         final int direction = button_counter - 1;
         // finds the key set
         String key_set = MainMenu.sp.getString("skin", "classic");
@@ -38,16 +38,16 @@ public class Buttons {
                 // find the size of the background
                 switch (size){
                     case "small":
-                        MainActivity.rightOrWrong.setMaxHeight(1);
-                        MainActivity.rightOrWrong.setMaxWidth(1);
+                        MainActivity.rightOrWrong.getLayoutParams().height = 250;
+                        MainActivity.rightOrWrong.getLayoutParams().width = 250;
                         break;
                     case "medium":
-                        MainActivity.rightOrWrong.setMaxHeight(150);
-                        MainActivity.rightOrWrong.setMaxWidth(150);
+                        MainActivity.rightOrWrong.getLayoutParams().height = 400;
+                        MainActivity.rightOrWrong.getLayoutParams().width = 400;
                         break;
                     case "large":
-                        MainActivity.rightOrWrong.setMaxHeight(200);
-                        MainActivity.rightOrWrong.setMaxWidth(200);
+                        MainActivity.rightOrWrong.getLayoutParams().height = 600;
+                        MainActivity.rightOrWrong.getLayoutParams().width = 600;
                         break;
                 }
 
@@ -57,6 +57,8 @@ public class Buttons {
                     MainActivity.current_sequence.input_move(button_counter);
                     // tries to check if the move is correct or wrong
                     boolean correct = MainActivity.current_sequence.check_move();
+                    // sets the indicator as visible
+                    MainActivity.rightOrWrong.setVisibility(View.VISIBLE);
                     // disables all the other buttons
                     for (int a_counter = 0; a_counter < 4; a_counter++) {
                         if (a_counter != (button_counter - 1))
@@ -122,136 +124,21 @@ public class Buttons {
 
                 // sets when button is released
                 else if (event.getAction() == MotionEvent.ACTION_UP){
-                    // sets box back to white
-                    MainActivity.rightOrWrong.setBackgroundColor(MainMenu.context.getResources().getColor(R.color.white));
-                    // re enables all the buttons
-                    for (int b_counter = 0; b_counter < 4; b_counter++)
-                        MainActivity.moves[b_counter].setEnabled(true);
-                    // enables the next level button
-                    MainActivity.next_level.setEnabled(true);
+                    // sets box back to invisible
+                    MainActivity.rightOrWrong.setVisibility(View.INVISIBLE);
+                    // re enables all the buttons if sequence is not finished yet
+                    if (!MainActivity.current_sequence.check_sequence()){
+                       EnableButtons();
+                    }
+                    else{
+                        DisableButtons();
+                        // enables the next level button
+                        MainActivity.next_level.setEnabled(true);
+                    }
                 }
-
-
                 return false;
             }
         });
-
-
-        /**
-        // creates the button for current direction
-        MainActivity.moves[button_counter - 1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            // create the listener
-            public void onClick(View view) {
-                // sets the size of the indicator box
-                String size = MainMenu.sp.getString("size", "medium");
-                // find the size of the background
-                switch (size){
-                    case "small":
-                        MainActivity.rightOrWrong.setMaxHeight(1);
-                        MainActivity.rightOrWrong.setMaxWidth(1);
-                        break;
-                    case "medium":
-                        MainActivity.rightOrWrong.setMaxHeight(150);
-                        MainActivity.rightOrWrong.setMaxWidth(150);
-                        break;
-                    case "large":
-                        MainActivity.rightOrWrong.setMaxHeight(200);
-                        MainActivity.rightOrWrong.setMaxWidth(200);
-                        break;
-                }
-                // tries to input the move
-                MainActivity.current_sequence.input_move(button_counter);
-                try {
-                    // tries to check if the move is correct or wrong
-                    boolean correct = MainActivity.current_sequence.check_move();
-                    // if correct
-                    if (correct && MainActivity.current_sequence.can_move()) {
-                        // disables the four buttons
-                        DisableButtons();
-                        // checks if the sound should be played
-                        if (MainMenu.sounds_on) {
-                            // creates a new thread to play the sound
-                            MainActivity.sounds.play(MainActivity.correct_sound, 1, 1, 0, 0, 1);
-                        }
-                        // sets the background as green
-                        MainActivity.rightOrWrong.setBackground(yup);
-                        // waits 0.01 seconds
-                        MainActivity.handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                // sets box back to white
-                                MainActivity.rightOrWrong.setBackgroundColor(MainMenu.context.getResources().getColor(R.color.white));
-                                // re enables all the buttons
-                                for (int b_counter = 0; b_counter < 4; b_counter++)
-                                    MainActivity.moves[b_counter].setEnabled(true);
-                            }
-                        }, 100);
-                        // increases the move
-                        MainActivity.current_sequence.increase_move();
-                        // checks if the user sequence matches the level sequence
-                        if (MainActivity.current_sequence.check_sequence()) {
-                            // create the text for the move counter
-                            MainActivity.move_counter.setText("PROCEED");
-                            // sets the next level button as visible
-                            MainActivity.next_level.setVisibility(View.VISIBLE);
-                            // disables the arrow buttons
-                            DisableButtons();
-                            // enables the next level button
-                            MainActivity.next_level.setEnabled(true);
-                            // finds the current high score
-                            long score = MainMenu.sp.getInt(MainMenu.game_mode, 0);
-                            // checks if the new score is higher than the old high score
-                            if (MainActivity.level_number > score) {
-                                // save the new highscore
-                                SharedPreferences.Editor editor = MainMenu.sp.edit();
-                                editor.putInt(MainMenu.game_mode, MainActivity.level_number);
-                                editor.commit();
-                                // set the new highscore
-                                long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
-                                MainActivity.highscore.setText("High Score: " + Long.toString(highScore));
-                            }
-                        } else if (!MainActivity.current_sequence.check_sequence()) {
-                            // create the text for the move counter
-                            MainActivity.move_counter.setText("Move " + Integer.toString(MainActivity.current_sequence.move_counter() + 1));
-                        }
-
-                    // if the move is incorrect
-                    } else if (!correct && MainActivity.current_sequence.can_move()) {
-                        for (int c_counter = 0; c_counter < 4; c_counter++) {
-                            MainActivity.moves[c_counter].setEnabled(false);
-                        }
-                        if (MainMenu.sounds_on) {
-                            // create a new thread to play the incorrect sound
-                            MainActivity.sounds.play(MainActivity.incorrect_sound, 1, 1, 0, 0, 1);
-                        }
-                        // set red
-                        MainActivity.rightOrWrong.setBackground(nope);
-
-                        MainActivity.current_sequence.incorrect();
-                        // resets the square to white
-                        MainActivity.handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                // sets it white
-                                MainActivity.rightOrWrong.setBackgroundColor(MainMenu.context.getResources().getColor(R.color.white));
-                                // re enables all the arrow buttons
-                                for (int d_counter = 0; d_counter < 4; d_counter++)
-                                    MainActivity.moves[d_counter].setEnabled(true);
-
-                            }
-                        }, 100);
-                        // resets the users inputs
-                        MainActivity.current_sequence.reset();
-                        // create the text for the move counter
-                        MainActivity.move_counter.setText("Move " + Integer.toString(MainActivity.current_sequence.move_counter() + 1));
-                    }
-                } catch (ArrayIndexOutOfBoundsException e) {
-                }
-
-            }
-        });
-         **/
     }
 
 
@@ -260,6 +147,12 @@ public class Buttons {
         for (int a_counter = 0; a_counter < 4; a_counter++) {
             MainActivity.moves[a_counter].setEnabled(false);
             MainActivity.next_level.setEnabled(false);
+        }
+    }
+
+    public static void EnableButtons(){
+        for (int a_counter = 0; a_counter < 4; a_counter++) {
+            MainActivity.moves[a_counter].setEnabled(true);
         }
     }
 
@@ -305,7 +198,8 @@ public class Buttons {
     }
 
     private static DoubleDrawable FindRightPics(String key_set){
-        // create a DoubleDrawable to hold the right and wrong picture
+        // create a DoubleDrawable to hold the right and wrong picture and sets the correct and
+        // incorrect sound
         DoubleDrawable pics;
         pics = new DoubleDrawable(MainActivity.cont.getResources().getDrawable(R.drawable.green), MainActivity.cont.getResources().getDrawable(R.drawable.red));
 

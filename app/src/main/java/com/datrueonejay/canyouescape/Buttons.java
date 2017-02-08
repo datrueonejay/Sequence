@@ -18,15 +18,9 @@ public class Buttons {
 
     public static void CreateButton(final int button_counter) {
         final int direction = button_counter - 1;
-        // finds the key set
-        String key_set = MainMenu.sp.getString("skin", "classic");
-        // set the picture of the buttons
-        setPic("pc", direction);
-        // finds the pics for right and wrong
-        DoubleDrawable pics = FindRightPics("pc");
         // finds drawables for correct and incorrect
-        final Drawable yup = pics.GetFirst();
-        final Drawable nope = pics.GetSecond();
+        final Drawable yup = MainActivity.skin.GetCorrect();
+        final Drawable nope = MainActivity.skin.GetIncorrect();
 
         // set the listener when a button is pressed and held
         MainActivity.moves[button_counter - 1].setOnTouchListener(new View.OnTouchListener() {
@@ -156,62 +150,4 @@ public class Buttons {
         }
     }
 
-
-    // method to set the pictures of the keys being used
-    private static void setPic(String key_set, int direction){
-        // sets classic keys
-        if (key_set == "classic") {
-            switch (direction) {
-                case 0: MainActivity.moves[direction].setBackgroundResource(R.drawable.uparrow);
-                        break;
-                case 1: MainActivity.moves[direction].setBackgroundResource(R.drawable.leftarrow);
-                        break;
-                case 2: MainActivity.moves[direction].setBackgroundResource(R.drawable.downarrow);
-                        break;
-                case 3: MainActivity.moves[direction].setBackgroundResource(R.drawable.rightarrow);
-            }
-        }
-        else if (key_set == "pc") {
-            switch (direction) {
-                case 0: MainActivity.moves[direction].setBackgroundResource(R.drawable.w);
-                    break;
-                case 1: MainActivity.moves[direction].setBackgroundResource(R.drawable.a);
-                    break;
-                case 2: MainActivity.moves[direction].setBackgroundResource(R.drawable.s);
-                    break;
-                case 3: MainActivity.moves[direction].setBackgroundResource(R.drawable.d);
-
-            }
-        }
-        else if (key_set == "xbox") {
-            switch (direction) {
-                case 0: MainActivity.moves[direction].setBackgroundResource(R.drawable.xboxy);
-                    break;
-                case 1: MainActivity.moves[direction].setBackgroundResource(R.drawable.xboxx);
-                    break;
-                case 2: MainActivity.moves[direction].setBackgroundResource(R.drawable.xboxa);
-                    break;
-                case 3: MainActivity.moves[direction].setBackgroundResource(R.drawable.xboxb);
-
-            }
-        }
-    }
-
-    private static DoubleDrawable FindRightPics(String key_set){
-        // create a DoubleDrawable to hold the right and wrong picture and sets the correct and
-        // incorrect sound
-        DoubleDrawable pics;
-        pics = new DoubleDrawable(MainActivity.cont.getResources().getDrawable(R.drawable.green), MainActivity.cont.getResources().getDrawable(R.drawable.red));
-
-        switch (key_set){
-            case "classic":
-                pics = new DoubleDrawable(MainActivity.cont.getResources().getDrawable(R.drawable.green), MainActivity.cont.getResources().getDrawable(R.drawable.red));
-                break;
-            case "pc":
-                pics = new DoubleDrawable(MainActivity.cont.getResources().getDrawable(R.drawable.greencircle), MainActivity.cont.getResources().getDrawable(R.drawable.redx));
-                break;
-        }
-        return pics;
-
-    }
 }

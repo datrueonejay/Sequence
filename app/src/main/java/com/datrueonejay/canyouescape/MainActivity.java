@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     public static LevelSequence current_sequence;
     public static int level_number = 1;
 
-
     public static CountDownTimer timer;
     public static RelativeLayout layout;
 
@@ -54,13 +53,14 @@ public class MainActivity extends AppCompatActivity {
     public static int correct_sound;
     public static int incorrect_sound;
 
+    public static Skin skin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cont = this;
-
 
         time = (TextView) findViewById(R.id.timer);
 
@@ -115,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
         moves[1] = move_left;
         moves[2] = move_down;
         moves[3] = move_right;
+
+        String skin_name = MainMenu.sp.getString("skin", "classic");
+        skin = new Skin();
+        Skin.LoadSkin(skin_name, cont);
+        Skin.SetSkin(moves[0], moves[1], moves[2], moves[3]);
 
         // create the four buttons from
         for (int button_counter = 1; button_counter < 5; button_counter++){

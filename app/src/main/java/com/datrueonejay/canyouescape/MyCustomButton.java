@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 
 
@@ -40,4 +42,5 @@ public class MyCustomButton extends Button {
         }
 
     }
+
 }

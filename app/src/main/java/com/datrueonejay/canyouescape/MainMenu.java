@@ -56,7 +56,7 @@ public class MainMenu extends AppCompatActivity {
         editor = sp.edit();
 
         // find the background music track
-        music = MediaPlayer.create(getApplicationContext(), R.raw.airport_lounge);
+        music = MediaPlayer.create(getApplicationContext(), R.raw.airport_lounge_1);
 
         // checks if volume is on
         music_on = sp.getBoolean("music_on", true);

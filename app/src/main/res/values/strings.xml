@@ -59,23 +59,39 @@
 
     <string name="use">Use</string>
 
-    <string name="classic">\"The classic . If you\'re using this you\'ve probably unlocked
+    <string name="classic">\"The classic. If you\'re using this you\'ve probably unlocked
         nothing.\"</string>
+    <string name="invert">\" The inverted set. Keys are the wrong way yknow. Green is bad, and red
+    is good. Simple. \"</string>
     <string name="pc">\"The PC gamer. WASD you know it. \"</string>
-    <string name="xbox">\"The X-Box gamer. 360, One, Halo, all that. \"</string>
-    <string name="ps3">\"The Playstation gamer. PS1, PS2, PS3, PS4, Little Big Planet ye. \"</string>
+    <string name="xbox">\"The O-Box gamer. Like B-Box 359, O-Box Two, the game Hay Low, all that. \"</string>
+    <string name="ps3">\"The Praystation gamer. PRS1, PRS2, PRS3, PRS4, Big Little Planet yknow. \"</string>
+    <string name="ddr">\"The Dance Pants Revolution guy. That dude who holds the back bar and goes
+        ham on the dance pants. \"</string>
 
     <string-array name="arrows">
         <item>@string/classic</item>
+        <item>@string/invert</item>
         <item>@string/pc</item>
         <item>@string/xbox</item>
         <item>@string/ps3</item>
+        <item>@string/ddr</item>
     </string-array>
 
-    <string name="how1">Score at least 1 in any game mode.</string>
-    <string name="how2">Score at least 10 in any game mode.</string>
-    <string name="how3">Score at least 10 in 30 seconds game mode.</string>
-    <string name="how4">Score at least 15 in any game mode.</string>
+    <string name="how1">Have this skin as a gift, it\'s on the house.</string>
+    <string name="how2">Score at least 1 in any game mode.</string>
+    <string name="how3">Score at least 10 in any game mode.</string>
+    <string name="how4">Score at least 15 in 30 seconds game mode.</string>
+    <string name="how5">Score at least 20 in any game mode.</string>
+    <string name="how6">Score at least 15 in any game mode.</string>
 
+    <string-array name="howto">
+        <item>@string/how1</item>
+        <item>@string/how2</item>
+        <item>@string/how3</item>
+        <item>@string/how4</item>
+        <item>@string/how5</item>
+        <item>@string/how6</item>
+    </string-array>
 
 </resources>

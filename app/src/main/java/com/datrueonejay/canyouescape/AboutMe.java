@@ -8,7 +8,6 @@ import android.widget.Button;
 
 public class AboutMe extends AppCompatActivity {
 
-    Button close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,15 +16,6 @@ public class AboutMe extends AppCompatActivity {
 
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        close = (Button) findViewById(R.id.close);
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            // create the listener
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
     }
 
     @Override

@@ -10,8 +10,6 @@ import android.widget.Button;
 
 public class SettingsInstructions extends AppCompatActivity {
 
-    //WebView right;
-    Button close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +21,6 @@ public class SettingsInstructions extends AppCompatActivity {
 
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        close = (Button) findViewById(R.id.close);
-
-        // button to close the instructions
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            // create the listener
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
 }
 
     @Override

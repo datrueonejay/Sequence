@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class AboutMe extends AppCompatActivity {
 
@@ -16,6 +19,9 @@ public class AboutMe extends AppCompatActivity {
 
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // set the text
+        TextView test = (TextView) findViewById(R.id.me);
+        test.setText(getResources().getString(R.string.jayden));
     }
 
     @Override

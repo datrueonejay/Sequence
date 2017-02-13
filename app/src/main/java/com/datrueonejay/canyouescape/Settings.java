@@ -30,6 +30,8 @@ public class Settings extends AppCompatActivity {
 
         back = (Button) findViewById(R.id.back);
         back.setText(R.string.back);
+        back.getLayoutParams().height = MainMenu.screen_height/15;
+
         // go back to the game
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +42,7 @@ public class Settings extends AppCompatActivity {
 
         help = (Button) findViewById(R.id.help);
         help.setText(R.string.help);
+        help.getLayoutParams().height = MainMenu.screen_height/15;
         // opens instructions
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +54,7 @@ public class Settings extends AppCompatActivity {
 
         me = (Button) findViewById(R.id.me);
         me.setText(R.string.me);
+        me.getLayoutParams().height = MainMenu.screen_height/15;
         // opens screen about me
         me.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +65,8 @@ public class Settings extends AppCompatActivity {
         });
 
         music_toggle = (Button) findViewById(R.id.music);
+        music_toggle.getLayoutParams().height = MainMenu.screen_height/15;
+
         // set the music text upon entering the settings menu
         if (MainMenu.music_on){
             music_toggle.setText(R.string.music_on);
@@ -90,6 +96,8 @@ public class Settings extends AppCompatActivity {
         });
 
         sounds_toggle = (Button) findViewById(R.id.sounds);
+        sounds_toggle.getLayoutParams().height = MainMenu.screen_height/15;
+
         // set the sounds text
         if (MainMenu.sounds_on){
             sounds_toggle.setText(R.string.sounds_on);
@@ -119,6 +127,8 @@ public class Settings extends AppCompatActivity {
         });
 
         size_toggle = (Button) findViewById(R.id.size);
+        size_toggle.getLayoutParams().height = MainMenu.screen_height/15;
+
         // checks what the size is
         String size = MainMenu.sp.getString("size", "medium");
         switch (size){

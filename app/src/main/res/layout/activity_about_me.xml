@@ -12,13 +12,14 @@
 
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:padding="3dp"
+        android:id="@+id/me"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0032EC"
         android:textColor="#FFF"
         android:textSize="24sp"
         android:textAlignment="center"
-        android:text="@string/jayden"
+        android:layout_centerInParent="true"
         />
 
 </RelativeLayout>

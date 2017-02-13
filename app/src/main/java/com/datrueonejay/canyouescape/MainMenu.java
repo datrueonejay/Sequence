@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,6 +18,13 @@ public class MainMenu extends AppCompatActivity {
     public static Context context;
     Boolean first_time;
 
+    public final static DisplayMetrics dimensions = new DisplayMetrics();
+    public static int screen_width;
+    public static int screen_height;
+    //DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+    public static float dpHeight;
+    public static float dpWidth;
+    public static float multiplier;
 
     public static MediaPlayer music;
 
@@ -46,6 +54,13 @@ public class MainMenu extends AppCompatActivity {
 
         context = this;
 
+        // find the dimensions of the screen
+        this.getWindowManager().getDefaultDisplay().getMetrics(dimensions);
+        // find the width of the screen
+        screen_width = dimensions.widthPixels;
+        // find the length of the screen
+        screen_height = dimensions.heightPixels;
+
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -56,7 +71,7 @@ public class MainMenu extends AppCompatActivity {
         editor = sp.edit();
 
         // find the background music track
-        music = MediaPlayer.create(getApplicationContext(), R.raw.airport_lounge_1);
+        music = MediaPlayer.create(getApplicationContext(), R.raw.airport_lounge_4);
 
         // checks if volume is on
         music_on = sp.getBoolean("music_on", true);
@@ -70,6 +85,9 @@ public class MainMenu extends AppCompatActivity {
         // loops the music
         music.setLooping(true);
         music.start();
+
+        // check if the in game sounds are on
+        sounds_on = sp.getBoolean("sounds_on", true);
 
         // checks if this is the first time the app has been opened up
         first_time = sp.getBoolean("first_time", true);
@@ -90,18 +108,23 @@ public class MainMenu extends AppCompatActivity {
         // finds and sets the text buttons of the menu
         main = (Button) findViewById(R.id.main);
         main.setText(getResources().getString(R.string.main));
+        main.getLayoutParams().height = screen_height/15;
 
         time_attack = (Button) findViewById(R.id.time);
         time_attack.setText(getResources().getString(R.string.time));
+        time_attack.getLayoutParams().height = screen_height/15;
 
         settings = (Button) findViewById(R.id.settings);
         settings.setText(getResources().getString(R.string.settings));
+        settings.getLayoutParams().height = screen_height/15;
 
         highscores = (Button) findViewById(R.id.highscores);
         highscores.setText(getResources().getString(R.string.highscores));
+        highscores.getLayoutParams().height = screen_height/15;
 
         unlockables = (Button) findViewById(R.id.unlockables);
         unlockables.setText(getResources().getString(R.string.unlockables));
+        unlockables.getLayoutParams().height = screen_height/15;
 
         //
 

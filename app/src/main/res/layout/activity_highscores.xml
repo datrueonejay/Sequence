@@ -6,6 +6,7 @@
     android:background="#80FFFFFF">
 
     <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_alignParentTop="true"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title"

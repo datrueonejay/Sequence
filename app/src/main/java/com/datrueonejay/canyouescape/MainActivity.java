@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     public static int correct_sound;
     public static int incorrect_sound;
 
+    static long time_left;
+
     public static Skin skin;
 
 
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         cont = this;
 
         time = (TextView) findViewById(R.id.timer);
+        time.getLayoutParams().height = MainMenu.screen_height/20;
+
 
         // checks if it is timed mode
             if (MainMenu.timed_game){
@@ -73,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onTick(long millisUntilFinished) {
                         time.setText("Seconds remaining: " + ((millisUntilFinished/1000)-1));
                         if ((millisUntilFinished/1000)==1){
+                            time_left = millisUntilFinished;
                             Buttons.DisableButtons();
                             time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
                             if (current_sequence.check_sequence()){
@@ -116,17 +121,25 @@ public class MainActivity extends AppCompatActivity {
         moves[2] = move_down;
         moves[3] = move_right;
 
+        // set the height and width of each button
+        for (int counter = 0; counter < 4; counter++){
+            moves[counter].getLayoutParams().width = MainMenu.screen_width/4;
+            moves[counter].getLayoutParams().height = MainMenu.screen_width/4;
+        }
+
         String skin_name = MainMenu.sp.getString("skin", "classic");
         skin = new Skin();
+        // find the skin
         Skin.LoadSkin(skin_name, cont);
+        // set it as the current skin to the buttons and right or wrong
         Skin.SetSkin(moves[0], moves[1], moves[2], moves[3]);
+        // set the appropriate sounds
+        skin.SetSounds(skin_name);
 
         // create the four buttons from
         for (int button_counter = 1; button_counter < 5; button_counter++){
             Buttons.CreateButton(button_counter);
         }
-
-
 
         // create settings button
         settings = (ImageButton) findViewById(R.id.settings);
@@ -152,10 +165,15 @@ public class MainActivity extends AppCompatActivity {
 
         // create the text for the move counter
         move_counter = (TextView) findViewById(R.id.moveCounter);
-        move_counter.setText("Move " + Integer.toString(current_sequence.move_counter() + 1));
+        move_counter.getLayoutParams().width = MainMenu.screen_width/2 - 75;
+        move_counter.getLayoutParams().height = MainMenu.screen_height/25;
+        move_counter.setText("Move  " + Integer.toString(current_sequence.move_counter() + 1));
+
 
         // create the text for the highscore
         highscore = (TextView) findViewById(R.id.highscore);
+        highscore.getLayoutParams().width = MainMenu.screen_width;
+        highscore.getLayoutParams().height = MainMenu.screen_height/20;
         // finds the current high score
         long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
         highscore.setText("High Score: " + Long.toString(highScore));
@@ -166,7 +184,10 @@ public class MainActivity extends AppCompatActivity {
 
         // create level text
         level = (TextView) findViewById(R.id.level);
+        level.getLayoutParams().width = MainMenu.screen_width/2 - 75;
+        level.getLayoutParams().height = MainMenu.screen_height/25;
         level.setText(("Level " + Integer.toString(level_number)));
+
 
         // create the next level button
         next_level.setOnClickListener(new View.OnClickListener(){
@@ -184,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                     current_sequence = new LevelSequence(level_number);
                     // create the text for the move counter
                     move_counter = (TextView) findViewById(R.id.moveCounter);
-                    move_counter.setText("Move " + Integer.toString(current_sequence.move_counter() + 1));
+                    move_counter.setText("Move  " + Integer.toString(current_sequence.move_counter() + 1));
                     // disables the next level button for new level
                     next_level.setEnabled(false);
                     // enables the direction buttons again

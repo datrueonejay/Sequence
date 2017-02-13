@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Handler;
+import android.support.annotation.Dimension;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -17,10 +19,11 @@ import android.widget.TextView;
 public class Buttons {
 
     public static void CreateButton(final int button_counter) {
-        final int direction = button_counter - 1;
-        // finds drawables for correct and incorrect
         final Drawable yup = MainActivity.skin.GetCorrect();
         final Drawable nope = MainActivity.skin.GetIncorrect();
+        // finds the max dimensions the picture can be to avoid overlap
+        final int len = MainMenu.screen_width;
+        final int max_length = MainMenu.screen_width/3;
 
         // set the listener when a button is pressed and held
         MainActivity.moves[button_counter - 1].setOnTouchListener(new View.OnTouchListener() {
@@ -29,24 +32,26 @@ public class Buttons {
 
                 // sets the size of the indicator box
                 String size = MainMenu.sp.getString("size", "medium");
+
                 // find the size of the background
                 switch (size){
                     case "small":
-                        MainActivity.rightOrWrong.getLayoutParams().height = 250;
-                        MainActivity.rightOrWrong.getLayoutParams().width = 250;
+                        MainActivity.rightOrWrong.getLayoutParams().height = max_length - 200;
+                        MainActivity.rightOrWrong.getLayoutParams().width = max_length - 200;
                         break;
                     case "medium":
-                        MainActivity.rightOrWrong.getLayoutParams().height = 400;
-                        MainActivity.rightOrWrong.getLayoutParams().width = 400;
+                        MainActivity.rightOrWrong.getLayoutParams().height = max_length - 100;
+                        MainActivity.rightOrWrong.getLayoutParams().width = max_length - 100;
                         break;
                     case "large":
-                        MainActivity.rightOrWrong.getLayoutParams().height = 600;
-                        MainActivity.rightOrWrong.getLayoutParams().width = 600;
+                        MainActivity.rightOrWrong.getLayoutParams().height = max_length;
+                        MainActivity.rightOrWrong.getLayoutParams().width = max_length;
                         break;
                 }
 
                 // sets right or wrong when a button is pressed
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
+
                     // tries to input the move
                     MainActivity.current_sequence.input_move(button_counter);
                     // tries to check if the move is correct or wrong
@@ -98,7 +103,7 @@ public class Buttons {
                             }
                         } else if (!MainActivity.current_sequence.check_sequence()) {
                             // create the text for the move counter
-                            MainActivity.move_counter.setText("Move " + Integer.toString(MainActivity.current_sequence.move_counter() + 1));
+                            MainActivity.move_counter.setText("Move  " + Integer.toString(MainActivity.current_sequence.move_counter() + 1));
                         }
                     }
                     else {
@@ -112,7 +117,7 @@ public class Buttons {
                         // resets the users inputs
                         MainActivity.current_sequence.reset();
                         // create the text for the move counter
-                        MainActivity.move_counter.setText("Move " + Integer.toString(MainActivity.current_sequence.move_counter() + 1));
+                        MainActivity.move_counter.setText("Move  " + Integer.toString(MainActivity.current_sequence.move_counter() + 1));
                     }
                 }
 

@@ -73,6 +73,30 @@ public class Skin {
 
     }
 
+    public static void SetSounds(String skin){
+        switch (skin){
+            case("classic"):
+                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
+                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
+                break;
+            case("invert"):
+                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
+                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
+                break;
+            case("pc"):
+                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.windows_incorrect, 1);
+                break;
+            case("xbox"):
+                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_correct, 1);
+                break;
+            case("playstation"):
+                break;
+            case("ddr"):
+
+                break;
+        }
+    }
+
     public static void SetSkin(ImageView up, ImageView left, ImageView down, ImageView right){
         up.setBackground(objects[0]);
         left.setBackground(objects[1]);

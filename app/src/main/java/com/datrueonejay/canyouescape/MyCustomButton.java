@@ -15,6 +15,7 @@ public class MyCustomButton extends Button {
     public MyCustomButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
+        this.setOnTouchListener(new ButtonTouchEvent());
     }
 
     public MyCustomButton(Context context, AttributeSet attrs) {
@@ -42,5 +43,16 @@ public class MyCustomButton extends Button {
         }
 
     }
+
+    public static class ButtonTouchEvent implements OnTouchListener{
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            v.setBackgroundColor(Color.parseColor("#0C1171"));
+            return false;
+        }
+
+    }
+
 
 }

@@ -160,8 +160,6 @@ public class MainActivity extends AppCompatActivity {
 
         // create the level 1 sequence
         current_sequence = new LevelSequence(level_number);
-        //current_sequence = new LevelSequence(100000);
-
 
         // create the text for the move counter
         move_counter = (TextView) findViewById(R.id.moveCounter);
@@ -169,18 +167,16 @@ public class MainActivity extends AppCompatActivity {
         move_counter.getLayoutParams().height = MainMenu.screen_height/25;
         move_counter.setText("Move  " + Integer.toString(current_sequence.move_counter() + 1));
 
-
         // create the text for the highscore
         highscore = (TextView) findViewById(R.id.highscore);
-        highscore.getLayoutParams().width = MainMenu.screen_width;
         highscore.getLayoutParams().height = MainMenu.screen_height/20;
+
         // finds the current high score
         long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
         highscore.setText("High Score: " + Long.toString(highScore));
 
         // create the right or wrong image (green or red rectangle)
         rightOrWrong = (ImageView) findViewById(R.id.rightOrWrong);
-        //rightOrWrong.setAdjustViewBounds(true);
 
         // create level text
         level = (TextView) findViewById(R.id.level);
@@ -242,7 +238,6 @@ public class MainActivity extends AppCompatActivity {
         sounds.release();
         if (MainMenu.timed_game){
             timer.cancel();
-
         }
     }
 

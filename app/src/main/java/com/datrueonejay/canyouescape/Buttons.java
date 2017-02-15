@@ -2,28 +2,19 @@ package com.datrueonejay.canyouescape;
 
 
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
-import android.os.Handler;
-import android.support.annotation.Dimension;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class Buttons {
-
     public static void CreateButton(final int button_counter) {
-        final Drawable yup = MainActivity.skin.GetCorrect();
-        final Drawable nope = MainActivity.skin.GetIncorrect();
+  //      final Drawable yup = MainActivity.skin.GetCorrect();
+//        final Drawable nope = MainActivity.skin.GetIncorrect();
+
+        final Drawable yup = MainActivity.cont.getResources().getDrawable(R.drawable.green);
+        final Drawable nope = MainActivity.cont.getResources().getDrawable(R.drawable.red);
         // finds the max dimensions the picture can be to avoid overlap
-        final int len = MainMenu.screen_width;
-        final int max_length = MainMenu.screen_width/3;
 
         // set the listener when a button is pressed and held
         MainActivity.moves[button_counter - 1].setOnTouchListener(new View.OnTouchListener() {
@@ -36,22 +27,27 @@ public class Buttons {
                 // find the size of the background
                 switch (size){
                     case "small":
-                        MainActivity.rightOrWrong.getLayoutParams().height = max_length - 200;
-                        MainActivity.rightOrWrong.getLayoutParams().width = max_length - 200;
+                        MainActivity.rightOrWrong.getLayoutParams().height = 250;
+                        MainActivity.rightOrWrong.getLayoutParams().width = 250;
+                        MainActivity.rightOrWrong.setScaleType(ImageView.ScaleType.FIT_XY);
                         break;
                     case "medium":
-                        MainActivity.rightOrWrong.getLayoutParams().height = max_length - 100;
-                        MainActivity.rightOrWrong.getLayoutParams().width = max_length - 100;
+                        MainActivity.rightOrWrong.getLayoutParams().height = 400;
+                        MainActivity.rightOrWrong.getLayoutParams().width = 400;
+                        MainActivity.rightOrWrong.setScaleType(ImageView.ScaleType.FIT_XY);
+
                         break;
                     case "large":
-                        MainActivity.rightOrWrong.getLayoutParams().height = max_length;
-                        MainActivity.rightOrWrong.getLayoutParams().width = max_length;
+                        MainActivity.rightOrWrong.getLayoutParams().height = 600;
+                        MainActivity.rightOrWrong.getLayoutParams().width = 600;
+                        MainActivity.rightOrWrong.setScaleType(ImageView.ScaleType.FIT_XY);
+
                         break;
                 }
 
+                //updateButton(MainActivity.rightOrWrong);
                 // sets right or wrong when a button is pressed
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
-
                     // tries to input the move
                     MainActivity.current_sequence.input_move(button_counter);
                     // tries to check if the move is correct or wrong
@@ -124,7 +120,7 @@ public class Buttons {
                 // sets when button is released
                 else if (event.getAction() == MotionEvent.ACTION_UP){
                     // sets box back to invisible
-                    MainActivity.rightOrWrong.setVisibility(View.INVISIBLE);
+                    //MainActivity.rightOrWrong.setVisibility(View.INVISIBLE);
                     // re enables all the buttons if sequence is not finished yet
                     if (!MainActivity.current_sequence.check_sequence()){
                        EnableButtons();
@@ -153,6 +149,14 @@ public class Buttons {
         for (int a_counter = 0; a_counter < 4; a_counter++) {
             MainActivity.moves[a_counter].setEnabled(true);
         }
+    }
+
+    public static void updateButton(ImageView view){
+        new Thread(new Runnable() {
+            public void run() {
+                MainActivity.rightOrWrong.invalidate();
+            }
+        }).start();
     }
 
 }

@@ -9,8 +9,8 @@
     <string name="right">If you tap the correct direction, a green light will appear, a ding will
         sound and you can make the next move.
     </string>
-    <string name="wrong">If it is incorrect, a red light will appear, an buzz will sound and your
-        sequence will reset. (You can change the box to the background in the settings)</string>
+    <string name="wrong">If it is incorrect, a red light will appear, a buzz will sound and your
+        sequence will reset.</string>
     <string name="next">You may proceed to the next level if you find the correct sequence.</string>
     <string name="next_more">You may proceed to the next level if you find the correct sequence.
         (Tap anywhere to continue)</string>

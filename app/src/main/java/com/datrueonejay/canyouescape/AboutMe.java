@@ -20,8 +20,9 @@ public class AboutMe extends AppCompatActivity {
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // set the text
-        TextView test = (TextView) findViewById(R.id.me);
-        test.setText(getResources().getString(R.string.jayden));
+        TextView me = (TextView) findViewById(R.id.me);
+        me.getLayoutParams().height = MainMenu.screen_height/3;
+        me.setText(getResources().getString(R.string.jayden));
     }
 
     @Override

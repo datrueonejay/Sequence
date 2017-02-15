@@ -107,11 +107,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/highscore"
+        android:textSize="50sp"
         android:textAlignment="center"
         android:layout_below="@+id/settings"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
-        android:textSize="30sp"
         android:textColor="@color/blue"/>
 
     <com.datrueonejay.canyouescape.MyCustomTextView

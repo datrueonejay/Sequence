@@ -17,6 +17,7 @@ package com.datrueonejay.canyouescape;
  */
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -72,16 +73,19 @@ public class AutoResizeTextView extends TextView {
     // Default constructor override
     public AutoResizeTextView(Context context) {
         this(context, null);
+        init();
     }
 
     // Default constructor when inflating from XML file
     public AutoResizeTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        init();
     }
 
     // Default constructor override
     public AutoResizeTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init();
         mTextSize = getTextSize();
     }
 
@@ -316,6 +320,20 @@ public class AutoResizeTextView extends TextView {
         // Measure using a static layout
         StaticLayout layout = new StaticLayout(source, paintCopy, width, Alignment.ALIGN_NORMAL, mSpacingMult, mSpacingAdd, true);
         return layout.getHeight();
+    }
+
+    private void init() {
+        try{
+            if (!isInEditMode()) {
+
+                Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Cornerstone.ttf");
+                setTypeface(tf);
+                //this.setTextSize(TypedValue.COMPLEX_UNIT_FRACTION_PARENT, 10);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }

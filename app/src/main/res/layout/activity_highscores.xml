@@ -10,7 +10,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title"
-        android:text="@string/highscores"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:background="@color/blue"
@@ -33,7 +32,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timed"
-        android:text="@string/timed"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/main_score"
         android:textSize="20sp"
@@ -45,7 +43,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timed_half_score"
-        android:text="@string/timed_half_score"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/timed"
         android:textSize="20sp"
@@ -57,7 +54,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timed_one_score"
-        android:text="@string/timed_one_score"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/timed_half_score"
         android:textSize="20sp"
@@ -69,7 +65,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timed_one_half_score"
-        android:text="@string/timed_one_half_score"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/timed_one_score"
         android:textSize="20sp"
@@ -81,7 +76,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timed_two_score"
-        android:text="@string/timed_two_score"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/timed_one_half_score"
         android:textSize="20sp"
@@ -89,6 +83,62 @@
         android:layout_marginBottom="15dp"
         android:textAlignment="center"/>
 
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/levels"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/timed_two_score"
+        android:textSize="20sp"
+        android:textColor="@color/blue"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center"/>
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/five_score"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/levels"
+        android:textSize="20sp"
+        android:textColor="@color/blue"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center"/>
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seven_score"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/five_score"
+        android:textSize="20sp"
+        android:textColor="@color/blue"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center"/>
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ten_score"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/seven_score"
+        android:textSize="20sp"
+        android:textColor="@color/blue"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center"/>
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fifteen_score"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ten_score"
+        android:textSize="20sp"
+        android:textColor="@color/blue"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center"/>
+
+    <!--
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,5 +162,6 @@
         android:textColor="@color/blue"
         android:layout_marginBottom="15dp"
         android:textAlignment="center"/>
+    -->
 
 </RelativeLayout>

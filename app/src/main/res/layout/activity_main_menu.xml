@@ -41,8 +41,17 @@
     <com.datrueonejay.canyouescape.MyCustomButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/settings"
+        android:id="@+id/levels"
         android:layout_below="@+id/time"
+        android:textSize="24sp"
+        android:padding="3dp"
+        android:layout_marginBottom="15dp"/>
+
+    <com.datrueonejay.canyouescape.MyCustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/settings"
+        android:layout_below="@+id/levels"
         android:textSize="24sp"
         android:padding="3dp"
         android:layout_marginBottom="15dp"/>

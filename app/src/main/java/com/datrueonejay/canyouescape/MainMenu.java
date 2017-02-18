@@ -21,11 +21,6 @@ public class MainMenu extends AppCompatActivity {
     public final static DisplayMetrics dimensions = new DisplayMetrics();
     public static int screen_width;
     public static int screen_height;
-    //DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-    public static float dpHeight;
-    public static float dpWidth;
-    public static float multiplier;
-
     public static MediaPlayer music;
 
     public static SharedPreferences sp;
@@ -34,15 +29,18 @@ public class MainMenu extends AppCompatActivity {
     public static boolean music_on;
     public static boolean sounds_on;
     public static boolean timed_game;
+    public static boolean timed_up_game;
 
     public static String game_mode;
 
     public static double time;
+    public static int level;
 
     TextView title;
 
     Button main;
     Button time_attack;
+    Button levels;
     Button settings;
     Button highscores;
     Button unlockables;
@@ -114,6 +112,10 @@ public class MainMenu extends AppCompatActivity {
         time_attack.setText(getResources().getString(R.string.time));
         time_attack.getLayoutParams().height = screen_height/15;
 
+        levels = (Button) findViewById(R.id.levels);
+        levels.setText(getString(R.string.levels));
+        levels.getLayoutParams().height = screen_height/15;
+
         settings = (Button) findViewById(R.id.settings);
         settings.setText(getResources().getString(R.string.settings));
         settings.getLayoutParams().height = screen_height/15;
@@ -136,6 +138,7 @@ public class MainMenu extends AppCompatActivity {
                 Intent intent = new Intent(MainMenu.this, MainActivity.class);
                 // makes the game a regular game
                 timed_game = false;
+                timed_up_game= false;
                 game_mode = "main";
                 startActivity(intent);
             }
@@ -148,12 +151,22 @@ public class MainMenu extends AppCompatActivity {
                 // create a pop up box to choose how long they would like to play
                 final Dialog dialog = new Dialog(MainMenu.this);
                 dialog.setContentView(R.layout.pick_time);
+                TextView instruction = (TextView) dialog.findViewById(R.id.instructions);
+                instruction.setText(getString(R.string.time_instructions));
                 Button half = (Button) dialog.findViewById(R.id.half);
+                half.setText(getString(R.string.half));
                 Button one = (Button) dialog.findViewById(R.id.one);
+                one.setText(getString(R.string.one));
                 Button one_half = (Button) dialog.findViewById(R.id.one_half);
+                one_half.setText(getString(R.string.one_half));
                 Button two = (Button) dialog.findViewById(R.id.two);
-                Button two_half = (Button) dialog.findViewById(R.id.two_half);
-                Button three = (Button) dialog.findViewById(R.id.three);
+                two.setText(getString(R.string.two));
+
+                // makes the game a timed game mode
+                timed_game = true;
+                timed_up_game= false;
+//                Button two_half = (Button) dialog.findViewById(R.id.two_half);
+//                Button three = (Button) dialog.findViewById(R.id.three);
                 dialog.show();
 
                 half.setOnClickListener(new View.OnClickListener() {
@@ -163,8 +176,6 @@ public class MainMenu extends AppCompatActivity {
                         game_mode = "half";
                         // create the timed game
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        // makes the game a timed game mode
-                        timed_game = true;
                         startActivity(intent);
 
                     }
@@ -177,8 +188,6 @@ public class MainMenu extends AppCompatActivity {
                         game_mode = "one_minute";
                         // create the timed game
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        // makes the game a timed game mode
-                        timed_game = true;
                         startActivity(intent);
 
                     }
@@ -191,8 +200,6 @@ public class MainMenu extends AppCompatActivity {
                         game_mode = "one_half";
                         // create the timed game
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        // makes the game a timed game mode
-                        timed_game = true;
                         startActivity(intent);
 
                     }
@@ -205,35 +212,101 @@ public class MainMenu extends AppCompatActivity {
                         game_mode = "two_minutes";
                         // create the timed game
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        // makes the game a timed game mode
-                        timed_game = true;
                         startActivity(intent);
 
                     }
                 });
-                three.setOnClickListener(new View.OnClickListener() {
+//                three.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        time = 3;
+//                        game_mode = "three_minutes";
+//                        // create the timed game
+//                        Intent intent = new Intent(MainMenu.this, CountDown.class);
+//                        // makes the game a timed game mode
+//                        timed_game = true;
+//                        startActivity(intent);
+//
+//                    }
+//                });
+//
+//                two_half.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        time = 2.5;
+//                        game_mode = "two_half";
+//                        // create the timed game
+//                        Intent intent = new Intent(MainMenu.this, CountDown.class);
+//                        // makes the game a timed game mode
+//                        timed_game = true;
+//                        startActivity(intent);
+//
+//                    }
+//                });
+
+            }
+        });
+
+        levels.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Dialog dialog = new Dialog(MainMenu.this);
+                dialog.setContentView(R.layout.pick_time);
+                TextView instruction = (TextView) dialog.findViewById(R.id.instructions);
+                instruction.setText(getString(R.string.level_instructions));
+                Button five = (Button) dialog.findViewById(R.id.half);
+                five.setText(getString(R.string.five));
+                Button seven = (Button) dialog.findViewById(R.id.one);
+                seven.setText(getString(R.string.seven));
+                Button ten = (Button) dialog.findViewById(R.id.one_half);
+                ten.setText(getString(R.string.ten));
+                Button fifteen = (Button) dialog.findViewById(R.id.two);
+                fifteen.setText(getString(R.string.fifteen));
+
+                dialog.show();
+                timed_up_game = true;
+                timed_game = false;
+
+                five.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        time = 3;
-                        game_mode = "three_minutes";
-                        // create the timed game
+                        game_mode = "five";
+                        level = 1;
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        // makes the game a timed game mode
-                        timed_game = true;
                         startActivity(intent);
 
                     }
                 });
 
-                two_half.setOnClickListener(new View.OnClickListener() {
+                seven.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        time = 2.5;
-                        game_mode = "two_half";
-                        // create the timed game
+                        game_mode = "seven";
+                        level = 7;
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        // makes the game a timed game mode
-                        timed_game = true;
+                        startActivity(intent);
+
+                    }
+                });
+
+                ten.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        game_mode = "ten";
+                        level = 10;
+                        Intent intent = new Intent(MainMenu.this, CountDown.class);
+                        startActivity(intent);
+
+                    }
+                });
+
+                fifteen.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v){
+                        game_mode = "fifteen";
+                        level = 15;
+                        Intent intent = new Intent(MainMenu.this, CountDown.class);
                         startActivity(intent);
 
                     }
@@ -258,21 +331,37 @@ public class MainMenu extends AppCompatActivity {
                 Dialog dialog = new Dialog(MainMenu.this);
                 dialog.setContentView(R.layout.activity_highscores);
 
+                TextView title = (TextView) dialog.findViewById(R.id.title);
                 TextView main_score = (TextView) dialog.findViewById(R.id.main_score);
+                TextView timed = (TextView) dialog.findViewById(R.id.timed);
                 TextView timed_half_score = (TextView) dialog.findViewById(R.id.timed_half_score);
                 TextView timed_one_score = (TextView) dialog.findViewById(R.id.timed_one_score);
                 TextView timed_one_half_score = (TextView) dialog.findViewById(R.id.timed_one_half_score);
                 TextView timed_two_score = (TextView) dialog.findViewById(R.id.timed_two_score);
-                TextView timed_two_half_score = (TextView) dialog.findViewById(R.id.timed_two_half_score);
-                TextView timed_three_score = (TextView) dialog.findViewById(R.id.timed_three_score);
+                TextView levels = (TextView) dialog.findViewById(R.id.levels);
+                TextView five_score = (TextView) dialog.findViewById(R.id.five_score);
+                TextView seven_score = (TextView) dialog.findViewById(R.id.seven_score);
+                TextView ten_score = (TextView) dialog.findViewById(R.id.ten_score);
+                TextView fifteen_score = (TextView) dialog.findViewById(R.id.fifteen_score);
+//                TextView timed_two_half_score = (TextView) dialog.findViewById(R.id.timed_two_half_score);
+//                TextView timed_three_score = (TextView) dialog.findViewById(R.id.timed_three_score);
 
+                title.setText(getString(R.string.highscores));
                 main_score.setText(getString(R.string.main_score) + " " + (Integer.toString(MainMenu.sp.getInt("main", 0))));
-                timed_half_score.setText(getString(R.string.timed_half_score) +  " " + (Integer.toString(MainMenu.sp.getInt("half", 0))));
-                timed_one_score.setText(getString(R.string.timed_one_score) +  " " + (Integer.toString(MainMenu.sp.getInt("one_minute", 0))));
-                timed_one_half_score.setText(getString(R.string.timed_one_half_score) +  " " + (Integer.toString(MainMenu.sp.getInt("one_half", 0))));
-                timed_two_score.setText(getString(R.string.timed_two_score) +  " " + (Integer.toString(MainMenu.sp.getInt("two_minutes", 0))));
-                timed_two_half_score.setText(getString(R.string.timed_two_half_score) +  " " + (Integer.toString(MainMenu.sp.getInt("two_half", 0))));
-                timed_three_score.setText(getString(R.string.timed_three_score) +  " " + (Integer.toString(MainMenu.sp.getInt("three_minutes", 0))));
+                timed.setText(getString(R.string.timed));
+                timed_half_score.setText(getString(R.string.half) +  ": " + (Integer.toString(MainMenu.sp.getInt("half", 0))));
+                timed_one_score.setText(getString(R.string.one) +  ": " + (Integer.toString(MainMenu.sp.getInt("one_minute", 0))));
+                timed_one_half_score.setText(getString(R.string.one_half) +  ": " + (Integer.toString(MainMenu.sp.getInt("one_half", 0))));
+                timed_two_score.setText(getString(R.string.two) +  ": " + (Integer.toString(MainMenu.sp.getInt("two_minutes", 0))));
+                levels.setText(getString(R.string.levels));
+                five_score.setText(getString(R.string.five) + ": " + Integer.toString(MainMenu.sp.getInt("five", 0)) + " seconds");
+                seven_score.setText(getString(R.string.seven) + ": " + Integer.toString(MainMenu.sp.getInt("seven", 0)) + " seconds");
+                ten_score.setText(getString(R.string.ten) + ": " + Integer.toString(MainMenu.sp.getInt("ten", 0)) + " seconds");
+                fifteen_score.setText(getString(R.string.fifteen) + ": " + Integer.toString(MainMenu.sp.getInt("fifteen", 0)) + " seconds");
+
+
+//                timed_two_half_score.setText(getString(R.string.timed_two_half_score) +  " " + (Integer.toString(MainMenu.sp.getInt("two_half", 0))));
+//                timed_three_score.setText(getString(R.string.timed_three_score) +  " " + (Integer.toString(MainMenu.sp.getInt("three_minutes", 0))));
 
                 dialog.show();
             }

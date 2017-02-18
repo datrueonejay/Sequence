@@ -82,8 +82,7 @@
         android:id="@+id/moveCounter"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:textAlignment="viewEnd"
-        android:gravity="end"
+        android:textAlignment="center"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:textSize="30sp"
@@ -124,6 +123,19 @@
         android:visibility="invisible"
         android:layout_centerHorizontal="true"
         android:textColor="@color/blue"/>
+
+    <!--
+    <Chronometer
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:textSize="20sp"
+        android:id="@+id/chronometer"
+        android:layout_below="@+id/nextLevel"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/blue"
+        android:textAlignment="center"
+        />
+-->
 
     <ImageView
         android:adjustViewBounds="true"

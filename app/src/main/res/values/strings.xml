@@ -28,16 +28,22 @@
     <string name="indicator_small">Indicator Size: Small</string>
     <string name="indicator_medium">Indicator Size: Medium</string>
     <string name="indicator_large">Indicator Size: Large</string>
+
     <string name="title">Sequence</string>
     <string name="main">Classic</string>
     <string name="time">Time Attack</string>
+    <string name="time_instructions">Finish as many levels as you can in the given time</string>
+    <string name="levels">Beat the Clock</string>
+    <string name="level_instructions">Finish the given levels as fast as you can</string>
     <string name="settings">Settings</string>
     <string name="unlockables">Unlockables</string>
     <string name="back_title">Are you sure?</string>
+
     <string name="confirm">Are you sure you want to leave? Your progress will not be saved (Your
         highscore will be saved)</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
     <string name="begins">Game Begins In</string>
     <string name="half">30 Seconds</string>
     <string name="one">60 Seconds</string>
@@ -45,17 +51,23 @@
     <string name="two">120 Seconds</string>
     <string name="two_half">150 Seconds</string>
     <string name="three">180 Seconds</string>
+
+    <string name="five">Level 5</string>
+    <string name="seven">Level 7</string>
+    <string name="ten">Level 10</string>
+    <string name="fifteen">Level 15</string>
+
     <string name="highscores">Highscores</string>
     <string name="main_score">Classic: </string>
     <string name="timed">Time Attack</string>
+    <!--
     <string name="timed_half_score">30 Seconds: </string>
     <string name="timed_one_score">60 Seconds: </string>
     <string name="timed_one_half_score">90 Seconds: </string>
     <string name="timed_two_score">120 Seconds: </string>
     <string name="timed_two_half_score">150 Seconds: </string>
     <string name="timed_three_score">180 Seconds: </string>
-    <string name="warning">WARNING! DO NOT USE BACKGROUND SETTING IF YOU HAVE A HISTORY OF HAVING
-    SEIZURES OR IF YOU SUFFER FROM EPILEPSY. KEEP THE SETTING ON INDICATOR: BOX</string>
+    -->
 
     <string name="use">Use</string>
 

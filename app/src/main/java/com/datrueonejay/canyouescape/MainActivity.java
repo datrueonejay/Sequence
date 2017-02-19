@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         mHandler = new Handler() {
             public void handleMessage(Message msg) {
-                time.setText(Integer.toString(curr_time)); //this is the textview
+                time.setText("Time elapsed: " + Integer.toString(curr_time) + " seconds");
             }
         };
 
@@ -127,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
                     mHandler.obtainMessage(1).sendToTarget();
                 }
             }, 0, 1000);
+        }
+        else {
+            Buttons.setMaxLevel(-1);
         }
 
 
@@ -215,8 +218,13 @@ public class MainActivity extends AppCompatActivity {
         highscore.getLayoutParams().height = MainMenu.screen_height/20;
 
         // finds the current high score
-        long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
-        highscore.setText("Highscore: " + Long.toString(highScore));
+        long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 9999);
+        if (MainMenu.timed_up_game) {
+            highscore.setText("Highscore: " + Long.toString(highScore) + " seconds");
+        }
+        else{
+            highscore.setText("Highscore: " + Long.toString(highScore));
+        }
 
         // create the right or wrong image (green or red rectangle)
         rightOrWrong = (ImageView) findViewById(R.id.rightOrWrong);

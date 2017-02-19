@@ -272,7 +272,7 @@ public class MainMenu extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         game_mode = "five";
-                        level = 1;
+                        level = 5;
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
                         startActivity(intent);
 
@@ -354,10 +354,10 @@ public class MainMenu extends AppCompatActivity {
                 timed_one_half_score.setText(getString(R.string.one_half) +  ": " + (Integer.toString(MainMenu.sp.getInt("one_half", 0))));
                 timed_two_score.setText(getString(R.string.two) +  ": " + (Integer.toString(MainMenu.sp.getInt("two_minutes", 0))));
                 levels.setText(getString(R.string.levels));
-                five_score.setText(getString(R.string.five) + ": " + Integer.toString(MainMenu.sp.getInt("five", 0)) + " seconds");
-                seven_score.setText(getString(R.string.seven) + ": " + Integer.toString(MainMenu.sp.getInt("seven", 0)) + " seconds");
-                ten_score.setText(getString(R.string.ten) + ": " + Integer.toString(MainMenu.sp.getInt("ten", 0)) + " seconds");
-                fifteen_score.setText(getString(R.string.fifteen) + ": " + Integer.toString(MainMenu.sp.getInt("fifteen", 0)) + " seconds");
+                five_score.setText(getString(R.string.five) + ": " + Integer.toString(MainMenu.sp.getInt("five", 9999)) + " seconds");
+                seven_score.setText(getString(R.string.seven) + ": " + Integer.toString(MainMenu.sp.getInt("seven", 9999)) + " seconds");
+                ten_score.setText(getString(R.string.ten) + ": " + Integer.toString(MainMenu.sp.getInt("ten", 9999)) + " seconds");
+                fifteen_score.setText(getString(R.string.fifteen) + ": " + Integer.toString(MainMenu.sp.getInt("fifteen", 9999)) + " seconds");
 
 
 //                timed_two_half_score.setText(getString(R.string.timed_two_half_score) +  " " + (Integer.toString(MainMenu.sp.getInt("two_half", 0))));

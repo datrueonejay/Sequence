@@ -1,6 +1,7 @@
 package com.datrueonejay.canyouescape;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 
 public class Buttons {
 
-    private static int maxLevel = 2;
+    private static int maxLevel;
 
     public static void CreateButton(final int button_counter) {
         final Drawable yup = MainActivity.skin.GetCorrect();
@@ -159,10 +160,13 @@ public class Buttons {
             MainActivity.upTimer.cancel();
             MainActivity.time.setVisibility(View.VISIBLE);
             MainActivity.move_counter.setText("FINISHED");
-            MainActivity.time.setText("You took " + Integer.toString(MainActivity.curr_time) + " seconds.");
-            if (MainActivity.curr_time < MainMenu.sp.getInt(MainMenu.game_mode, 1000)){
+            MainActivity.time.setText("You took " + Integer.toString(MainActivity.curr_time) + " seconds");
+            if (MainActivity.curr_time < MainMenu.sp.getInt(MainMenu.game_mode, 9999)){
                 MainMenu.editor.putInt(MainMenu.game_mode, MainActivity.curr_time);
                 MainMenu.editor.commit();
+                // set the new highscore
+                long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
+                MainActivity.highscore.setText("High Score: " + Long.toString(highScore) + " seconds");
             }
         }
     }

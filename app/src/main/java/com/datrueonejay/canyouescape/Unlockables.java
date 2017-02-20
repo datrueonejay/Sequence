@@ -31,7 +31,7 @@ public class Unlockables extends AppCompatActivity {
     String[] descriptions;
     Button use;
     String[] skin = new String[9];
-    Boolean[] conditions = new Boolean[9];
+    public static Boolean[] conditions = new Boolean[9];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +55,24 @@ public class Unlockables extends AppCompatActivity {
         int i = MainMenu.sp.getInt("ten", 9999);
         int k = MainMenu.sp.getInt("fifteen", 9999);
 
+        if (MainMenu.sp.getBoolean("dev", false)){
+            for (int count = 0; count < 9; count++){
+                conditions[count] = true;
+            }
+        }
+        else{
+            // sets condition to unlock
+            conditions[0] = true;
+            conditions[1] = a > 0 || b > 0 || c > 0 || d > 0 || e > 0 || f > 0;
+            conditions[2] = a > 5 || b > 5 || c > 5 || d > 5 || e > 5 || f > 5;
+            conditions[3] = a > 10;
+            conditions[4] = a > 15;
+            conditions[5] = b > 10 || c > 10 || d > 10 || e > 10 || f > 10;
+            conditions[6] = b > 10 || c > 10 || d > 10 || e > 10 || f > 10;
+            conditions[7] = g < 20;
+            conditions[8] = h < 40;
+        }
 
-        // sets condition to unlock
-        conditions[0] = true;
-        conditions[1] = a > 0 || b > 0 || c > 0 || d > 0 || e > 0 || f > 0;
-        conditions[2] = a > 5 || b > 5 || c > 5 || d > 5 || e > 5 || f > 5;
-        conditions[3] = a > 10;
-        conditions[4] = a > 15;
-        conditions[5] = b > 10 || c > 10 || d > 10 || e > 10 || f > 10;
-        conditions[6] = b > 10 || c > 10 || d > 10 || e > 10 || f > 10;
-        conditions[7] = g < 20;
-        conditions[8] = h < 40;
 
         // finds the strings for descriptions
         descriptions = getResources().getStringArray(R.array.arrows);

@@ -101,12 +101,12 @@
     <string name="how1">Have this skin as a gift, it\'s on the house.</string>
     <string name="how2">Score at least 1 in classic or time attack.</string>
     <string name="how3">Score at least 5 in classic or time attack.</string>
-    <string name="how4">Score at least 10 in classic or time attack.</string>
-    <string name="how5">Score at least 15 in classic or time attack.</string>
-    <string name="how6">Score at least 20 in any game mode.</string>
-    <string name="how7">Score at least 15 in any game mode.</string>
-    <string name="how8">Score at least 25 in any game mode.</string>
-    <string name="how9">SOmething</string>
+    <string name="how4">Score at least 10 in classic.</string>
+    <string name="how5">Score at least 15 in classic.</string>
+    <string name="how6">Score at least 10 in time attack.</string>
+    <string name="how7">Score at least 10 in time attack.</string>
+    <string name="how8">Achieve a time of under 20 seconds for beat the clock level 5.</string>
+    <string name="how9">Achieve a time of under 40 seconds for beat the clock level 7.</string>
 
 
     <string-array name="howto">

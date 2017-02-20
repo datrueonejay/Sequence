@@ -31,7 +31,7 @@ public class Unlockables extends AppCompatActivity {
     String[] descriptions;
     Button use;
     String[] skin = new String[9];
-    Boolean[] conditions = new Boolean[6];
+    Boolean[] conditions = new Boolean[9];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +44,28 @@ public class Unlockables extends AppCompatActivity {
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // finds all the scores to check conditions
-//        int a = MainMenu.sp.getInt("main", 0);
-//        int b = MainMenu.sp.getInt("half", 0);
-//        int c = MainMenu.sp.getInt("one_minute", 0);
-//        int d = MainMenu.sp.getInt("one_half", 0);
-//        int e = MainMenu.sp.getInt("two_minutes", 0);
-//        int f = MainMenu.sp.getInt("two_half", 0);
-//        int g = MainMenu.sp.getInt("three_minutes", 0);
-//
-//        // sets condition to unlock
-//        conditions[0] = true;
-//        conditions[1] = a > 0 || b > 0 || c > 0 || d > 0 || e > 0 || f > 0 || g > 0;
-//        conditions[2] =
+        int a = MainMenu.sp.getInt("main", 0);
+        int b = MainMenu.sp.getInt("half", 0);
+        int c = MainMenu.sp.getInt("one_minute", 0);
+        int d = MainMenu.sp.getInt("one_half", 0);
+        int e = MainMenu.sp.getInt("two_minutes", 0);
+        int f = MainMenu.sp.getInt("three_minutes", 0);
+        int g = MainMenu.sp.getInt("five", 9999);
+        int h = MainMenu.sp.getInt("seven", 9999);
+        int i = MainMenu.sp.getInt("ten", 9999);
+        int k = MainMenu.sp.getInt("fifteen", 9999);
+
+
+        // sets condition to unlock
+        conditions[0] = true;
+        conditions[1] = a > 0 || b > 0 || c > 0 || d > 0 || e > 0 || f > 0;
+        conditions[2] = a > 5 || b > 5 || c > 5 || d > 5 || e > 5 || f > 5;
+        conditions[3] = a > 10;
+        conditions[4] = a > 15;
+        conditions[5] = b > 10 || c > 10 || d > 10 || e > 10 || f > 10;
+        conditions[6] = b > 10 || c > 10 || d > 10 || e > 10 || f > 10;
+        conditions[7] = g < 20;
+        conditions[8] = h < 40;
 
         // finds the strings for descriptions
         descriptions = getResources().getStringArray(R.array.arrows);
@@ -85,81 +95,90 @@ public class Unlockables extends AppCompatActivity {
             page.getLayoutParams().width = MainMenu.screen_width;
             TextView title = (TextView) page.findViewById(R.id.title);
             title.setText(this.getString(R.string.unlockables));
-            // finds description and sets it for current one
-            final TextView description = (TextView) page.findViewById(R.id.description);
-            description.getLayoutParams().height = MainMenu.screen_height/8;
-            description.setText(descriptions[counter]);
-
-            // sets the locked button if it is locked
-            ImageView lock = (ImageView) page.findViewById(R.id.lock);
-            lock.setBackground(this.getResources().getDrawable(R.drawable.locked));
-
-            // sets the picture for the up button
-            ImageView up = (ImageView) page.findViewById(R.id.upButton);
-            up.setBackground(skins.GetUp());
-            up.getLayoutParams().width = MainMenu.screen_width/4;
-            up.getLayoutParams().height = MainMenu.screen_width/4;
-            // sets the picture for the up button
-            ImageView left = (ImageView) page.findViewById(R.id.leftButton);
-            left.setBackground(skins.GetLeft());
-            left.getLayoutParams().width = MainMenu.screen_width/4;
-            left.getLayoutParams().height = MainMenu.screen_width/4;
-            // sets the picture for the up button
-            ImageView down = (ImageView) page.findViewById(R.id.downButton);
-            down.setBackground(skins.GetDown());
-            down.getLayoutParams().width = MainMenu.screen_width/4;
-            down.getLayoutParams().height = MainMenu.screen_width/4;
-            // sets the picture for the up button
-            ImageView right = (ImageView) page.findViewById(R.id.rightButton);
-            right.setBackground(skins.GetRight());
-            right.getLayoutParams().width = MainMenu.screen_width/4;
-            right.getLayoutParams().height = MainMenu.screen_width/4;
-            // sets the picture for the up button
-            ImageView correct = (ImageView) page.findViewById(R.id.correct);
-            correct.setBackground(skins.GetCorrect());
-            correct.getLayoutParams().width = MainMenu.screen_width/6;
-            correct.getLayoutParams().height = MainMenu.screen_width/6;
-            // sets the picture for the up button
-            ImageView incorrect = (ImageView) page.findViewById(R.id.incorrect);
-            incorrect.setBackground(skins.GetIncorrect());
-            incorrect.getLayoutParams().width = MainMenu.screen_width/6;
-            incorrect.getLayoutParams().height = MainMenu.screen_width/6;
 
             // finds how to unlock and sets it for current one
             TextView how = (TextView) page.findViewById(R.id.how);
             how.setText(how_to[counter]);
-            // find the use button for the current page
-            use = (Button) page.findViewById(R.id.use);
-            if (MainMenu.sp.getString("skin", "classic").equals(skin[copy])){
-                use.setEnabled(false);
-                use.setVisibility(View.INVISIBLE);
+
+            // sets the locked button if it is locked
+            if (!conditions[counter]){
+                ImageView lock = (ImageView) page.findViewById(R.id.lock);
+                lock.setBackground(this.getResources().getDrawable(R.drawable.locked));
             }
-            // set what happens when the button is clicked
-            use.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // says the new skin to be used
-                    MainMenu.editor.putString("skin", skin[copy]);
-                    MainMenu.editor.commit();
-                    // loop through all the pages, enabling and showing their button if it is not
-                    // used, otherwise disable and hide the button
-                    for (int counter = 0; counter < 9; counter++){
-                        RelativeLayout change = (RelativeLayout) layout.getChildAt(counter);
-                        // find the use button
-                        Button btn = (Button) change.findViewById(R.id.use);
-                        // disables and hides the button if it is the one being used
-                        if (MainMenu.sp.getString("skin", "classic").equals(skin[counter])){
-                            btn.setEnabled(false);
-                            btn.setVisibility(View.INVISIBLE);
-                        }
-                        // enables and shows the button
-                        else{
-                            btn.setEnabled(true);
-                            btn.setVisibility(View.VISIBLE);
+            else {
+                // sets the picture for the up button
+                ImageView up = (ImageView) page.findViewById(R.id.upButton);
+                up.setBackground(skins.GetUp());
+                up.getLayoutParams().width = MainMenu.screen_width / 4;
+                up.getLayoutParams().height = MainMenu.screen_width / 4;
+                // sets the picture for the up button
+                ImageView left = (ImageView) page.findViewById(R.id.leftButton);
+                left.setBackground(skins.GetLeft());
+                left.getLayoutParams().width = MainMenu.screen_width / 4;
+                left.getLayoutParams().height = MainMenu.screen_width / 4;
+                // sets the picture for the up button
+                ImageView down = (ImageView) page.findViewById(R.id.downButton);
+                down.setBackground(skins.GetDown());
+                down.getLayoutParams().width = MainMenu.screen_width / 4;
+                down.getLayoutParams().height = MainMenu.screen_width / 4;
+                // sets the picture for the up button
+                ImageView right = (ImageView) page.findViewById(R.id.rightButton);
+                right.setBackground(skins.GetRight());
+                right.getLayoutParams().width = MainMenu.screen_width / 4;
+                right.getLayoutParams().height = MainMenu.screen_width / 4;
+                // sets the picture for the up button
+                ImageView correct = (ImageView) page.findViewById(R.id.correct);
+                correct.setBackground(skins.GetCorrect());
+                correct.getLayoutParams().width = MainMenu.screen_width / 6;
+                correct.getLayoutParams().height = MainMenu.screen_width / 6;
+                // sets the picture for the up button
+                ImageView incorrect = (ImageView) page.findViewById(R.id.incorrect);
+                incorrect.setBackground(skins.GetIncorrect());
+                incorrect.getLayoutParams().width = MainMenu.screen_width / 6;
+                incorrect.getLayoutParams().height = MainMenu.screen_width / 6;
+
+                // find the use button for the current page
+                use = (Button) page.findViewById(R.id.use);
+                use.setText(getString(R.string.use));
+                use.setVisibility(View.VISIBLE);
+                if (MainMenu.sp.getString("skin", "classic").equals(skin[copy])){
+                    use.setEnabled(false);
+                    use.setVisibility(View.INVISIBLE);
+                }
+
+                // finds description and sets it for current one
+                final TextView description = (TextView) page.findViewById(R.id.description);
+                description.getLayoutParams().height = MainMenu.screen_height/8;
+                description.setText(descriptions[counter]);
+
+                // set what happens when the button is clicked
+                use.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // says the new skin to be used
+                        MainMenu.editor.putString("skin", skin[copy]);
+                        MainMenu.editor.commit();
+                        // loop through all the pages, enabling and showing their button if it is not
+                        // used, otherwise disable and hide the button
+                        for (int counter = 0; counter < 9; counter++){
+                            RelativeLayout change = (RelativeLayout) layout.getChildAt(counter);
+                            // find the use button
+                            Button btn = (Button) change.findViewById(R.id.use);
+                            // disables and hides the button if it is the one being used
+                            if (MainMenu.sp.getString("skin", "classic").equals(skin[counter])){
+                                btn.setEnabled(false);
+                                btn.setVisibility(View.INVISIBLE);
+                            }
+                            // enables and shows the button
+                            else{
+                                btn.setEnabled(true);
+                                btn.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
+
 
         }
     }

@@ -30,9 +30,8 @@ public class Unlockables extends AppCompatActivity {
     String[] how_to;
     String[] descriptions;
     Button use;
-    String[] skin = new String[6];
+    String[] skin = new String[9];
     Boolean[] conditions = new Boolean[6];
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +64,18 @@ public class Unlockables extends AppCompatActivity {
         // the skins in the game
         skin[0] = "classic";
         skin[1] = "invert";
-        skin[2] = "pc";
-        skin[3] = "xbox";
-        skin[4] = "playstation";
-        skin[5] = "ddr";
+        skin[2] = "invisible";
+        skin[3] = "simon";
+        skin[4] = "pc";
+        skin[5] = "xbox";
+        skin[6] = "playstation";
+        skin[7] = "cards";
+        skin[8] = "ddr";
 
         scroller = (HorizontalScrollView) findViewById(R.id.activity_unlockables);
         layout = (LinearLayout) scroller.findViewById(R.id.linear_part);
         // create and set each page
-        for (int counter = 0; counter < 6; counter++){
+        for (int counter = 0; counter < 9; counter++){
             // copies counter
             final int copy = counter;
             Skin skins = new Skin();
@@ -81,14 +83,17 @@ public class Unlockables extends AppCompatActivity {
             // find the current page
             RelativeLayout page = (RelativeLayout) layout.getChildAt(counter);
             page.getLayoutParams().width = MainMenu.screen_width;
+            TextView title = (TextView) page.findViewById(R.id.title);
+            title.setText(this.getString(R.string.unlockables));
             // finds description and sets it for current one
             final TextView description = (TextView) page.findViewById(R.id.description);
             description.getLayoutParams().height = MainMenu.screen_height/8;
             description.setText(descriptions[counter]);
-            //correctHeight(description, MainMenu.screen_height/8);
 
-            //int hi = MainMenu.screen_height/8;
-            //description.setTextSize(hi*MainMenu.multiplier);
+            // sets the locked button if it is locked
+            ImageView lock = (ImageView) page.findViewById(R.id.lock);
+            lock.setBackground(this.getResources().getDrawable(R.drawable.locked));
+
             // sets the picture for the up button
             ImageView up = (ImageView) page.findViewById(R.id.upButton);
             up.setBackground(skins.GetUp());
@@ -138,7 +143,7 @@ public class Unlockables extends AppCompatActivity {
                     MainMenu.editor.commit();
                     // loop through all the pages, enabling and showing their button if it is not
                     // used, otherwise disable and hide the button
-                    for (int counter = 0; counter <6; counter++){
+                    for (int counter = 0; counter < 9; counter++){
                         RelativeLayout change = (RelativeLayout) layout.getChildAt(counter);
                         // find the use button
                         Button btn = (Button) change.findViewById(R.id.use);
@@ -157,27 +162,6 @@ public class Unlockables extends AppCompatActivity {
             });
 
         }
-
-
-
-
     }
 
-    public void correctHeight(final TextView textView, final int desiredHeight)
-    {
-        textView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                textView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                int height = textView.getHeight(); //height is ready
-                while (height > desiredHeight){
-                    float test = textView.getTextSize();
-                    float ha = test - 1;
-                    textView.setTextSize(COMPLEX_UNIT_PX, ha);
-                    height = height - 10;
-                }
-            }
-        });
-
-    }
 }

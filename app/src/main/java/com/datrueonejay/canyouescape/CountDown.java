@@ -2,6 +2,8 @@ package com.datrueonejay.canyouescape;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +13,8 @@ public class CountDown extends AppCompatActivity {
 
     CountDownTimer countdown;
     TextView time;
-
+    SoundPool sounds;
+    int beep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,8 @@ public class CountDown extends AppCompatActivity {
 
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        sounds = new SoundPool(50, AudioManager.STREAM_MUSIC, 0);
+        beep = sounds.load(this, R.raw.beep, 1);
 
         time = (TextView) findViewById(R.id.counter);
 
@@ -31,8 +36,12 @@ public class CountDown extends AppCompatActivity {
                     Intent intent = new Intent(CountDown.this, MainActivity.class);
                     startActivity(intent);
                 }
-                else
+                else{
                     time.setText(String.valueOf((millisUntilFinished/1000)-1));
+                    if (MainMenu.sounds_on){
+                        sounds.play(beep, 1, 1, 0, 0, 1);
+                    }
+                }
             }
 
             @Override

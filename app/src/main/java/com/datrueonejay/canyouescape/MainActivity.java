@@ -218,11 +218,12 @@ public class MainActivity extends AppCompatActivity {
         highscore.getLayoutParams().height = MainMenu.screen_height/20;
 
         // finds the current high score
-        long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 9999);
         if (MainMenu.timed_up_game) {
+            long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 9999);
             highscore.setText("Highscore: " + Long.toString(highScore) + " seconds");
         }
         else{
+            long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
             highscore.setText("Highscore: " + Long.toString(highScore));
         }
 

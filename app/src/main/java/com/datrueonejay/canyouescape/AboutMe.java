@@ -23,6 +23,8 @@ public class AboutMe extends AppCompatActivity {
         TextView me = (TextView) findViewById(R.id.me);
         me.getLayoutParams().height = MainMenu.screen_height/3;
         me.setText(getResources().getString(R.string.jayden));
+        // sets the button
+
     }
 
     @Override

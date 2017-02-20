@@ -2,6 +2,7 @@ package com.datrueonejay.canyouescape;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
@@ -69,6 +70,30 @@ public class Skin {
                 objects[4] = cont.getResources().getDrawable(R.drawable.greencircle);
                 objects[5] = cont.getResources().getDrawable(R.drawable.redx);
                 break;
+            case("invisible"):
+                objects[0] = cont.getResources().getDrawable(R.drawable.nothing);
+                objects[1] = cont.getResources().getDrawable(R.drawable.nothing);
+                objects[2] = cont.getResources().getDrawable(R.drawable.nothing);
+                objects[3] = cont.getResources().getDrawable(R.drawable.nothing);
+                objects[4] = cont.getResources().getDrawable(R.drawable.nothing);
+                objects[5] = cont.getResources().getDrawable(R.drawable.nothing);
+                break;
+            case("cards"):
+                objects[0] = cont.getResources().getDrawable(R.drawable.spade);
+                objects[1] = cont.getResources().getDrawable(R.drawable.diamond);
+                objects[2] = cont.getResources().getDrawable(R.drawable.heart);
+                objects[3] = cont.getResources().getDrawable(R.drawable.club);
+                objects[4] = cont.getResources().getDrawable(R.drawable.ace);
+                objects[5] = cont.getResources().getDrawable(R.drawable.joker);
+                break;
+            case("simon"):
+                objects[0] = cont.getResources().getDrawable(R.drawable.simongreen);
+                objects[1] = cont.getResources().getDrawable(R.drawable.simonyellow);
+                objects[2] = cont.getResources().getDrawable(R.drawable.simonblue);
+                objects[3] = cont.getResources().getDrawable(R.drawable.simonred);
+                objects[4] = cont.getResources().getDrawable(R.drawable.greencircle);
+                objects[5] = cont.getResources().getDrawable(R.drawable.redx);
+                break;
         }
 
     }
@@ -93,6 +118,10 @@ public class Skin {
                 break;
             case("ddr"):
 
+                break;
+            case("invisible"):
+                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
+                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
                 break;
         }
     }

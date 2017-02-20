@@ -35,7 +35,19 @@
 
         <include layout="@layout/unlockables_page"
             android:id="@+id/page5"
-            android:padding="6dp"/>
+            android:padding="5dp"/>
+
+        <include layout="@layout/unlockables_page"
+            android:id="@+id/page6"
+            android:padding="5dp"/>
+
+        <include layout="@layout/unlockables_page"
+            android:id="@+id/page7"
+            android:padding="5dp"/>
+
+        <include layout="@layout/unlockables_page"
+            android:id="@+id/page8"
+            android:padding="5dp"/>
 
     </LinearLayout>
 

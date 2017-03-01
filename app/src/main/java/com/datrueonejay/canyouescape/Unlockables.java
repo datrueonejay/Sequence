@@ -64,13 +64,13 @@ public class Unlockables extends AppCompatActivity {
             // sets condition to unlock
             conditions[0] = true;
             conditions[1] = a > 0 || b > 0 || c > 0 || d > 0 || e > 0 || f > 0;
-            conditions[2] = a > 5 || b > 5 || c > 5 || d > 5 || e > 5 || f > 5;
-            conditions[3] = a > 10;
-            conditions[4] = a > 15;
-            conditions[5] = b > 10 || c > 10 || d > 10 || e > 10 || f > 10;
-            conditions[6] = b > 10 || c > 10 || d > 10 || e > 10 || f > 10;
-            conditions[7] = g < 20;
-            conditions[8] = h < 40;
+            conditions[2] = a > 4 || b > 4 || c > 4 || d > 4 || e > 4 || f > 4;
+            conditions[3] = a > 9;
+            conditions[4] = a > 14;
+            conditions[5] = b > 9 || c > 9 || d > 9 || e > 9 || f > 9;
+            conditions[6] = b > 9 || c > 9 || d > 9 || e > 9 || f > 9;
+            conditions[7] = g <= 20;
+            conditions[8] = h <= 40;
         }
 
 
@@ -180,6 +180,11 @@ public class Unlockables extends AppCompatActivity {
                             else{
                                 btn.setEnabled(true);
                                 btn.setVisibility(View.VISIBLE);
+                            }
+                            // check if the condition is false and if so hide the button
+                            if (conditions[counter] != true) {
+                                btn.setEnabled(false);
+                                btn.setVisibility(View.INVISIBLE);
                             }
                         }
                     }

@@ -16,7 +16,6 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:id="@+id/title"
-        android:text="@string/begins"
         android:textColor="@color/blue"
         android:textSize="30sp"
         android:textAlignment="center"/>

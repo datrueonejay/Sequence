@@ -41,7 +41,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#0032EC"
-            android:text="@string/welcome"
             android:textAlignment="center"
             android:id="@+id/welcome"
             android:textSize="24sp"

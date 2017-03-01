@@ -197,8 +197,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         // create the next level button
         next_level = (Button) findViewById(R.id.nextLevel);
         // disables the next level button at first
@@ -207,10 +205,10 @@ public class MainActivity extends AppCompatActivity {
         // create the level 1 sequence
         current_sequence = new LevelSequence(level_number);
 
+        // sets the move counter
         move_counter.setText("Move  " + Integer.toString(current_sequence.move_counter() + 1));
 
-        // THE FOLLOWING LINE MESSES UP THE INDICATOR SIZE
-//        move_counter.getLayoutParams().width = MainMenu.screen_width/2 - 75;
+        //  sets the height of the move coutner
         move_counter.getLayoutParams().height = MainMenu.screen_height/25;
 
         // create the text for the highscore
@@ -297,10 +295,16 @@ public class MainActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.back_window);
         dialog.show();
+        TextView title = (TextView) dialog.findViewById(R.id.title);
+        title.setText(R.string.back_title);
+
+        TextView confirm = (TextView) dialog.findViewById(R.id.confirmation);
+        confirm.setText(getString(R.string.confirm));
 
         // create the yes button
         Button yes;
         yes = (Button) dialog.findViewById(R.id.yes);
+        yes.setText(getString(R.string.yes));
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -321,6 +325,7 @@ public class MainActivity extends AppCompatActivity {
         // create the no button
         Button no;
         no = (Button) dialog.findViewById(R.id.no);
+        no.setText(getString(R.string.no));
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

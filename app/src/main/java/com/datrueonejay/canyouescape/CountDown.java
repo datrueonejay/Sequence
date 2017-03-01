@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class CountDown extends AppCompatActivity {
 
     CountDownTimer countdown;
+    TextView begins;
     TextView time;
     SoundPool sounds;
     int beep;
@@ -25,6 +26,9 @@ public class CountDown extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         sounds = new SoundPool(50, AudioManager.STREAM_MUSIC, 0);
         beep = sounds.load(this, R.raw.beep, 1);
+
+        begins = (TextView) findViewById(R.id.title);
+        begins.setText(getString(R.string.begins));
 
         time = (TextView) findViewById(R.id.counter);
 
@@ -46,8 +50,6 @@ public class CountDown extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-//                Intent intent = new Intent(CountDown.this, MainActivity.class);
-//                startActivity(intent);
                 CountDown.this.finish();
             }
         }.start();
@@ -57,4 +59,5 @@ public class CountDown extends AppCompatActivity {
     public void onBackPressed(){
 
     }
+
 }

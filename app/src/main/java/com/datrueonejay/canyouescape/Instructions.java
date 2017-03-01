@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 public class Instructions extends AppCompatActivity {
 
+    TextView welcome;
     TextView instructions;
     TextView right;
     TextView wrong;
@@ -32,6 +33,9 @@ public class Instructions extends AppCompatActivity {
 
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        welcome = (TextView) findViewById(R.id.welcome);
+        welcome.setText(getString(R.string.welcome));
 
         instructions = (TextView) findViewById(R.id.instructions);
         //back = (ImageView) findViewById(R.id.back);

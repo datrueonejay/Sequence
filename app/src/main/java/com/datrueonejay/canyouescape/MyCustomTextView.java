@@ -27,7 +27,6 @@ public class MyCustomTextView extends AutoResizeTextView {
 
     @Override
     public void setTextSize(int unit, float size) {
-        //super.setTextSize(TypedValue.COMPLEX_UNIT_FRACTION_PARENT, 15);
         super.setTextSize(unit, size);
     }
 
@@ -37,7 +36,6 @@ public class MyCustomTextView extends AutoResizeTextView {
 
                 Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Cornerstone.ttf");
                 setTypeface(tf);
-                //this.setTextSize(TypedValue.COMPLEX_UNIT_FRACTION_PARENT, 10);
             }
         }catch (Exception e){
             e.printStackTrace();

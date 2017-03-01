@@ -33,19 +33,16 @@ public class LevelSequence{
         }
     }
 
-    void incorrect() {
-        // a method to signal an incorrect move, allowing no more moves
-        can_move = false;
-    }
-
     private void does_not_exceed_length() {
-        // method to ensure that a new move will not exceed the length of the current sequence
+        /** (null) -> null
+         * Checks the the users move does not exceed the length of the sequence.
+         */
         if (current_move >= level_sequence.length)
             can_move = false;
     }
 
     void input_move(int move) {
-        /** (int) -> bool
+        /** (int) -> null
          * REQ: move must be either 0, 1, 2, or 3
          * Given an integer representing a move, if the integers matches the current integer of the
          * move sequence, the method returns True. Other wise False.
@@ -57,6 +54,9 @@ public class LevelSequence{
     }
 
     void increase_move() {
+        /** (null) -> boolean
+         * This method increases the current move number.
+         */
         // method used to move to the next move
         current_move++;
         // ensures a move can still be made
@@ -64,11 +64,16 @@ public class LevelSequence{
     }
 
     int move_counter() {
-        // method to return the integer of the move in the sequence
+        /** (null) -> int
+         * This method retuns the number of the current move.
+         */
         return current_move;
     }
 
     boolean check_move() {
+        /** (null) -> boolean
+         * This method checks if the user move matches the current move of the sequence.
+         */
         //checks if the users move matches the sequence
         boolean matches = false;
         if (user_sequence[current_move] == level_sequence[current_move])
@@ -77,6 +82,9 @@ public class LevelSequence{
     }
 
     boolean check_sequence() {
+        /** (null) -> boolean
+         * This methods checks if the user input sequence matches the answer sequence.
+         */
         // checks if all the users moves matches the level sequence
         boolean matches = false;
         if (Arrays.equals(user_sequence, level_sequence))
@@ -84,17 +92,8 @@ public class LevelSequence{
         return matches;
     }
 
-    boolean can_move() {
-        // a method to check to ensure a move can be made
-        return can_move;
-    }
-
-    int [] level_sequence(){
-        return level_sequence;
-    }
-
     void reset() {
-        /** (Null) -> Null
+        /** (null) -> null
          * This method resets the users moves.
          */
         // resets the users move

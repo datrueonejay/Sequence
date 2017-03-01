@@ -123,6 +123,10 @@ public class Skin {
                 MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
                 MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
                 break;
+            case("simon"):
+                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
+                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
+                break;
         }
     }
 

@@ -165,8 +165,6 @@ public class MainMenu extends AppCompatActivity {
                 // makes the game a timed game mode
                 timed_game = true;
                 timed_up_game= false;
-//                Button two_half = (Button) dialog.findViewById(R.id.two_half);
-//                Button three = (Button) dialog.findViewById(R.id.three);
                 dialog.show();
 
                 half.setOnClickListener(new View.OnClickListener() {
@@ -216,34 +214,6 @@ public class MainMenu extends AppCompatActivity {
 
                     }
                 });
-//                three.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        time = 3;
-//                        game_mode = "three_minutes";
-//                        // create the timed game
-//                        Intent intent = new Intent(MainMenu.this, CountDown.class);
-//                        // makes the game a timed game mode
-//                        timed_game = true;
-//                        startActivity(intent);
-//
-//                    }
-//                });
-//
-//                two_half.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        time = 2.5;
-//                        game_mode = "two_half";
-//                        // create the timed game
-//                        Intent intent = new Intent(MainMenu.this, CountDown.class);
-//                        // makes the game a timed game mode
-//                        timed_game = true;
-//                        startActivity(intent);
-//
-//                    }
-//                });
-
             }
         });
 
@@ -343,8 +313,6 @@ public class MainMenu extends AppCompatActivity {
                 TextView seven_score = (TextView) dialog.findViewById(R.id.seven_score);
                 TextView ten_score = (TextView) dialog.findViewById(R.id.ten_score);
                 TextView fifteen_score = (TextView) dialog.findViewById(R.id.fifteen_score);
-//                TextView timed_two_half_score = (TextView) dialog.findViewById(R.id.timed_two_half_score);
-//                TextView timed_three_score = (TextView) dialog.findViewById(R.id.timed_three_score);
 
                 title.setText(getString(R.string.highscores));
                 main_score.setText(getString(R.string.main_score) + " " + (Integer.toString(MainMenu.sp.getInt("main", 0))));
@@ -358,10 +326,6 @@ public class MainMenu extends AppCompatActivity {
                 seven_score.setText(getString(R.string.seven) + ": " + Integer.toString(MainMenu.sp.getInt("seven", 9999)) + " seconds");
                 ten_score.setText(getString(R.string.ten) + ": " + Integer.toString(MainMenu.sp.getInt("ten", 9999)) + " seconds");
                 fifteen_score.setText(getString(R.string.fifteen) + ": " + Integer.toString(MainMenu.sp.getInt("fifteen", 9999)) + " seconds");
-
-
-//                timed_two_half_score.setText(getString(R.string.timed_two_half_score) +  " " + (Integer.toString(MainMenu.sp.getInt("two_half", 0))));
-//                timed_three_score.setText(getString(R.string.timed_three_score) +  " " + (Integer.toString(MainMenu.sp.getInt("three_minutes", 0))));
 
                 dialog.show();
             }

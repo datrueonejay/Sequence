@@ -1,7 +1,5 @@
 package com.datrueonejay.canyouescape;
 
-
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
@@ -16,9 +14,6 @@ public class Buttons {
         final Drawable yup = MainActivity.skin.GetCorrect();
         final Drawable nope = MainActivity.skin.GetIncorrect();
 
-
-//        final Drawable yup = MainActivity.cont.getResources().getDrawable(R.drawable.green);
-//        final Drawable nope = MainActivity.cont.getResources().getDrawable(R.drawable.red);
         //finds the max dimensions the picture can be to avoid overlap
         final int length = MainMenu.screen_height;
         // set the listener when a button is pressed and held
@@ -50,7 +45,6 @@ public class Buttons {
                         break;
                 }
 
-                //updateButton(MainActivity.rightOrWrong);
                 // sets right or wrong when a button is pressed
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     // tries to input the move

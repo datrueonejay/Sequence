@@ -37,7 +37,6 @@
 
     <com.datrueonejay.canyouescape.MyCustomButton
         android:padding="3dp"
-        android:text="@string/music_on"
         android:textSize="24sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

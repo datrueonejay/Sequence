@@ -64,6 +64,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        // sets the music toggle button
         music_toggle = (Button) findViewById(R.id.music);
         music_toggle.getLayoutParams().height = MainMenu.screen_height/15;
 
@@ -95,6 +96,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        // sets the sound effects toggle button
         sounds_toggle = (Button) findViewById(R.id.sounds);
         sounds_toggle.getLayoutParams().height = MainMenu.screen_height/15;
 
@@ -159,8 +161,6 @@ public class Settings extends AppCompatActivity {
                 }
             }
         });
-
-
 
     }
 

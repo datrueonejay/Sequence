@@ -14,6 +14,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -131,11 +132,6 @@ public class MainActivity extends AppCompatActivity {
         else {
             Buttons.setMaxLevel(-1);
         }
-
-
-
-
-
 
         // create the correct and incorrect sounds of the game
         sounds = new SoundPool(50, AudioManager.STREAM_MUSIC, 0);
@@ -305,19 +301,23 @@ public class MainActivity extends AppCompatActivity {
         Button yes;
         yes = (Button) dialog.findViewById(R.id.yes);
         yes.setText(getString(R.string.yes));
-        yes.setOnClickListener(new View.OnClickListener() {
+        yes.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                MainActivity.this.finish();
-                MainActivity.level_number = 1;
-                if (MainMenu.timed_game) {
-                    downTimer.cancel();
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    dialog.dismiss();
+                    MainActivity.this.finish();
+                    MainActivity.level_number = 1;
+                    if (MainMenu.timed_game) {
+                        downTimer.cancel();
+                    }
+                    if (MainMenu.timed_up_game) {
+                        upTimer.cancel();
+                        upTimer = null;
+                    }
                 }
-                if (MainMenu.timed_up_game){
-                    upTimer.cancel();
-                    upTimer = null;
-                }
+                super.onTouch(v, event);
+                return false;
             }
 
         });
@@ -326,10 +326,14 @@ public class MainActivity extends AppCompatActivity {
         Button no;
         no = (Button) dialog.findViewById(R.id.no);
         no.setText(getString(R.string.no));
-        no.setOnClickListener(new View.OnClickListener() {
+        no.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP){
+                    dialog.dismiss();
+                }
+                super.onTouch(v,event);
+                return false;
             }
         });
 

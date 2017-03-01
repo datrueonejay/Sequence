@@ -2,24 +2,16 @@ package com.datrueonejay.canyouescape;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-
-import static android.util.TypedValue.COMPLEX_UNIT_PX;
 
 public class Unlockables extends AppCompatActivity {
 
@@ -159,34 +151,37 @@ public class Unlockables extends AppCompatActivity {
                 description.setText(descriptions[counter]);
 
                 // set what happens when the button is clicked
-                use.setOnClickListener(new View.OnClickListener() {
+                use.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                     @Override
-                    public void onClick(View v) {
-                        // says the new skin to be used
-                        MainMenu.editor.putString("skin", skin[copy]);
-                        MainMenu.editor.commit();
-                        // loop through all the pages, enabling and showing their button if it is not
-                        // used, otherwise disable and hide the button
-                        for (int counter = 0; counter < 9; counter++){
-                            RelativeLayout change = (RelativeLayout) layout.getChildAt(counter);
-                            // find the use button
-                            Button btn = (Button) change.findViewById(R.id.use);
-                            // disables and hides the button if it is the one being used
-                            if (MainMenu.sp.getString("skin", "classic").equals(skin[counter])){
-                                btn.setEnabled(false);
-                                btn.setVisibility(View.INVISIBLE);
-                            }
-                            // enables and shows the button
-                            else{
-                                btn.setEnabled(true);
-                                btn.setVisibility(View.VISIBLE);
-                            }
-                            // check if the condition is false and if so hide the button
-                            if (conditions[counter] != true) {
-                                btn.setEnabled(false);
-                                btn.setVisibility(View.INVISIBLE);
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (event.getAction() == MotionEvent.ACTION_DOWN){
+                            // says the new skin to be used
+                            MainMenu.editor.putString("skin", skin[copy]);
+                            MainMenu.editor.commit();
+                            // loop through all the pages, enabling and showing their button if it is not
+                            // used, otherwise disable and hide the button
+                            for (int counter = 0; counter < 9; counter++) {
+                                RelativeLayout change = (RelativeLayout) layout.getChildAt(counter);
+                                // find the use button
+                                Button btn = (Button) change.findViewById(R.id.use);
+                                // disables and hides the button if it is the one being used
+                                if (MainMenu.sp.getString("skin", "classic").equals(skin[counter])) {
+                                    btn.setEnabled(false);
+                                    btn.setVisibility(View.INVISIBLE);
+                                }
+                                // enables and shows the button
+                                else {
+                                    btn.setEnabled(true);
+                                    btn.setVisibility(View.VISIBLE);
+                                }
+                                // check if the condition is false and if so hide the button
+                                if (conditions[counter] != true) {
+                                    btn.setEnabled(false);
+                                    btn.setVisibility(View.INVISIBLE);
+                                }
                             }
                         }
+                        return false;
                     }
                 });
             }

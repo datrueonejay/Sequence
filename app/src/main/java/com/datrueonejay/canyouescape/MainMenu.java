@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -128,26 +129,27 @@ public class MainMenu extends AppCompatActivity {
         unlockables.setText(getResources().getString(R.string.unlockables));
         unlockables.getLayoutParams().height = screen_height/15;
 
-        //
-
-        // button to start the non timed game mode
-        main.setOnClickListener(new View.OnClickListener() {
+        // button to start non timed game mode with colour change
+        main.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
             @Override
-            public void onClick(View v) {
-
+            public boolean onTouch(View v, MotionEvent event){
                 Intent intent = new Intent(MainMenu.this, MainActivity.class);
                 // makes the game a regular game
                 timed_game = false;
                 timed_up_game= false;
                 game_mode = "main";
-                startActivity(intent);
+                if (event.getAction() == MotionEvent.ACTION_UP){
+                    startActivity(intent);
+                }
+                super.onTouch(v, event);
+                return false;
             }
-        });
+        }) ;
 
         // button to start the timed game mode
-        time_attack.setOnClickListener(new View.OnClickListener() {
+        time_attack.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
             @Override
-            public void onClick(View v) {
+            public boolean onTouch(View v, MotionEvent event) {
                 // create a pop up box to choose how long they would like to play
                 final Dialog dialog = new Dialog(MainMenu.this);
                 dialog.setContentView(R.layout.pick_time);
@@ -165,7 +167,6 @@ public class MainMenu extends AppCompatActivity {
                 // makes the game a timed game mode
                 timed_game = true;
                 timed_up_game= false;
-                dialog.show();
 
                 half.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -213,91 +214,106 @@ public class MainMenu extends AppCompatActivity {
                         startActivity(intent);
 
                     }
+
                 });
+
+                if (event.getAction() == MotionEvent.ACTION_UP){
+                    dialog.show();
+                }
+                super.onTouch(v, event);
+                return false;
             }
         });
 
-        levels.setOnClickListener(new View.OnClickListener() {
+        levels.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View v) {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP){
+                    final Dialog dialog = new Dialog(MainMenu.this);
+                    dialog.setContentView(R.layout.pick_time);
+                    TextView instruction = (TextView) dialog.findViewById(R.id.instructions);
+                    instruction.setText(getString(R.string.level_instructions));
+                    Button five = (Button) dialog.findViewById(R.id.half);
+                    five.setText(getString(R.string.five));
+                    Button seven = (Button) dialog.findViewById(R.id.one);
+                    seven.setText(getString(R.string.seven));
+                    Button ten = (Button) dialog.findViewById(R.id.one_half);
+                    ten.setText(getString(R.string.ten));
+                    Button fifteen = (Button) dialog.findViewById(R.id.two);
+                    fifteen.setText(getString(R.string.fifteen));
 
-                final Dialog dialog = new Dialog(MainMenu.this);
-                dialog.setContentView(R.layout.pick_time);
-                TextView instruction = (TextView) dialog.findViewById(R.id.instructions);
-                instruction.setText(getString(R.string.level_instructions));
-                Button five = (Button) dialog.findViewById(R.id.half);
-                five.setText(getString(R.string.five));
-                Button seven = (Button) dialog.findViewById(R.id.one);
-                seven.setText(getString(R.string.seven));
-                Button ten = (Button) dialog.findViewById(R.id.one_half);
-                ten.setText(getString(R.string.ten));
-                Button fifteen = (Button) dialog.findViewById(R.id.two);
-                fifteen.setText(getString(R.string.fifteen));
+                    dialog.show();
+                    timed_up_game = true;
+                    timed_game = false;
 
-                dialog.show();
-                timed_up_game = true;
-                timed_game = false;
+                    five.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            game_mode = "five";
+                            level = 5;
+                            Intent intent = new Intent(MainMenu.this, CountDown.class);
+                            startActivity(intent);
 
-                five.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        game_mode = "five";
-                        level = 5;
-                        Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        startActivity(intent);
+                        }
+                    });
 
-                    }
-                });
+                    seven.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            game_mode = "seven";
+                            level = 7;
+                            Intent intent = new Intent(MainMenu.this, CountDown.class);
+                            startActivity(intent);
 
-                seven.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        game_mode = "seven";
-                        level = 7;
-                        Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        startActivity(intent);
+                        }
+                    });
 
-                    }
-                });
+                    ten.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            game_mode = "ten";
+                            level = 10;
+                            Intent intent = new Intent(MainMenu.this, CountDown.class);
+                            startActivity(intent);
 
-                ten.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        game_mode = "ten";
-                        level = 10;
-                        Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        startActivity(intent);
+                        }
+                    });
 
-                    }
-                });
+                    fifteen.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v){
+                            game_mode = "fifteen";
+                            level = 15;
+                            Intent intent = new Intent(MainMenu.this, CountDown.class);
+                            startActivity(intent);
 
-                fifteen.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v){
-                        game_mode = "fifteen";
-                        level = 15;
-                        Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        startActivity(intent);
-
-                    }
-                });
-
+                        }
+                    });
+                }
+                super.onTouch(v, event);
+                return false;
             }
         });
 
         // set the settings button
-        settings.setOnClickListener(new View.OnClickListener() {
+        settings.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View v) {
+            public boolean onTouch(View v, MotionEvent event) {
+                // create the settings activity
                 Intent intent = new Intent(MainMenu.this, Settings.class);
-                startActivity(intent);
+                if (event.getAction() == MotionEvent.ACTION_UP){
+                    startActivity(intent);
+                }
+                super.onTouch(v, event);
+                return false;
             }
         });
 
         // set the highscores button to show a pop up box of the scores
-        highscores.setOnClickListener(new View.OnClickListener(){
+        highscores.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
             @Override
-            public void onClick(View v){
+            public boolean onTouch(View v, MotionEvent event){
+                // create the highscore screen
                 Dialog dialog = new Dialog(MainMenu.this);
                 dialog.setContentView(R.layout.activity_highscores);
 
@@ -327,18 +343,27 @@ public class MainMenu extends AppCompatActivity {
                 ten_score.setText(getString(R.string.ten) + ": " + Integer.toString(MainMenu.sp.getInt("ten", 9999)) + " seconds");
                 fifteen_score.setText(getString(R.string.fifteen) + ": " + Integer.toString(MainMenu.sp.getInt("fifteen", 9999)) + " seconds");
 
-                dialog.show();
+                if (event.getAction() == MotionEvent.ACTION_UP){
+                    dialog.show();
+                }
+                super.onTouch(v, event);
+                return false;
             }
 
         });
 
         // set the unlockables button
-        unlockables.setOnClickListener(new View.OnClickListener() {
+        unlockables.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View v) {
+            public boolean onTouch(View v, MotionEvent event) {
                 Intent intent = new Intent(MainMenu.this, Unlockables.class);
-                startActivity(intent);
+                if (event.getAction() == MotionEvent.ACTION_UP){
+                    startActivity(intent);
+                }
+                super.onTouch(v, event);
+                return false;
             }
+
         });
     }
 

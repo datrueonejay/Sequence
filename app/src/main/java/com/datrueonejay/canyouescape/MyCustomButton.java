@@ -48,9 +48,15 @@ public class MyCustomButton extends Button {
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            v.setBackgroundColor(Color.parseColor("#0C1171"));
+            if (event.getAction() == MotionEvent.ACTION_DOWN){
+                v.setBackgroundColor(v.getResources().getColor(R.color.darkblue));
+            }
+            else if (event.getAction() == MotionEvent.ACTION_UP){
+                v.setBackgroundColor(v.getResources().getColor((R.color.blue)));
+            }
             return false;
         }
+
 
     }
 

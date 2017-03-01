@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,10 +34,14 @@ public class Settings extends AppCompatActivity {
         back.getLayoutParams().height = MainMenu.screen_height/15;
 
         // go back to the game
-        back.setOnClickListener(new View.OnClickListener() {
+        back.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View view) {
-                onBackPressed();
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP){
+                    onBackPressed();
+                }
+                super.onTouch(view, event);
+                return false;
             }
         });
 
@@ -44,11 +49,15 @@ public class Settings extends AppCompatActivity {
         help.setText(R.string.help);
         help.getLayoutParams().height = MainMenu.screen_height/15;
         // opens instructions
-        help.setOnClickListener(new View.OnClickListener() {
+        help.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View view, MotionEvent event) {
                 Intent activity = new Intent(Settings.this, SettingsInstructions.class);
-                startActivity(activity);
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    startActivity(activity);
+                }
+                super.onTouch(view, event);
+                return false;
             }
         });
 
@@ -56,11 +65,15 @@ public class Settings extends AppCompatActivity {
         me.setText(R.string.me);
         me.getLayoutParams().height = MainMenu.screen_height/15;
         // opens screen about me
-        me.setOnClickListener(new View.OnClickListener() {
+        me.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View view, MotionEvent event) {
                 Intent activity = new Intent(Settings.this, AboutMe.class);
-                startActivity(activity);
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    startActivity(activity);
+                }
+                super.onTouch(view, event);
+                return false;
             }
         });
 
@@ -76,23 +89,26 @@ public class Settings extends AppCompatActivity {
             music_toggle.setText(R.string.music_off);
         }
         // turns music volume to 0
-        music_toggle.setOnClickListener(new View.OnClickListener() {
+        music_toggle.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View view) {
-                if (MainMenu.music_on){
-                    MainMenu.music.setVolume(0, 0);
-                    MainMenu.editor.putBoolean("music_on", false);
-                    MainMenu.editor.commit();
-                    MainMenu.music_on = MainMenu.sp.getBoolean("music_on", false);
-                    music_toggle.setText(R.string.music_off);
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (MainMenu.music_on) {
+                        MainMenu.music.setVolume(0, 0);
+                        MainMenu.editor.putBoolean("music_on", false);
+                        MainMenu.editor.commit();
+                        MainMenu.music_on = MainMenu.sp.getBoolean("music_on", false);
+                        music_toggle.setText(R.string.music_off);
+                    } else if (!MainMenu.music_on) {
+                        MainMenu.music.setVolume(0.75f, 0.75f);
+                        MainMenu.editor.putBoolean("music_on", true);
+                        MainMenu.editor.commit();
+                        MainMenu.music_on = MainMenu.sp.getBoolean("music_on", true);
+                        music_toggle.setText(R.string.music_on);
+                    }
                 }
-                else if (!MainMenu.music_on){
-                    MainMenu.music.setVolume(0.75f, 0.75f);
-                    MainMenu.editor.putBoolean("music_on", true);
-                    MainMenu.editor.commit();
-                    MainMenu.music_on = MainMenu.sp.getBoolean("music_on", true);
-                    music_toggle.setText(R.string.music_on);
-                }
+                super.onTouch(view, event);
+                return false;
             }
         });
 
@@ -108,23 +124,26 @@ public class Settings extends AppCompatActivity {
             sounds_toggle.setText(R.string.sounds_off);
         }
         // sets if sounds volume is on or off
-        sounds_toggle.setOnClickListener(new View.OnClickListener() {
+        sounds_toggle.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View view) {
-                if (MainMenu.sounds_on){
-                    // turns the music off
-                    MainMenu.editor.putBoolean("sounds_on", false);
-                    MainMenu.editor.commit();
-                    MainMenu.sounds_on = MainMenu.sp.getBoolean("sounds_on", true);
-                    sounds_toggle.setText(R.string.sounds_off);
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (MainMenu.sounds_on) {
+                        // turns the music off
+                        MainMenu.editor.putBoolean("sounds_on", false);
+                        MainMenu.editor.commit();
+                        MainMenu.sounds_on = MainMenu.sp.getBoolean("sounds_on", true);
+                        sounds_toggle.setText(R.string.sounds_off);
+                    } else if (!MainMenu.sounds_on) {
+                        // turns the music on
+                        MainMenu.editor.putBoolean("sounds_on", true);
+                        MainMenu.editor.commit();
+                        MainMenu.sounds_on = MainMenu.sp.getBoolean("sounds_on", true);
+                        sounds_toggle.setText(R.string.sounds_on);
+                    }
                 }
-                else if (!MainMenu.sounds_on){
-                    // turns the music on
-                    MainMenu.editor.putBoolean("sounds_on", true);
-                    MainMenu.editor.commit();
-                    MainMenu.sounds_on = MainMenu.sp.getBoolean("sounds_on", true);
-                    sounds_toggle.setText(R.string.sounds_on);
-                }
+                super.onTouch(view, event);
+                return false;
             }
         });
 
@@ -141,24 +160,31 @@ public class Settings extends AppCompatActivity {
             case "large": size_toggle.setText(R.string.indicator_large);
                 break;
         }
-        size_toggle.setOnClickListener(new View.OnClickListener() {
+        size_toggle.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
-            public void onClick(View v) {
-                String size = MainMenu.sp.getString("size", "medium");
-                switch (size) {
-                    case "small": size_toggle.setText(R.string.indicator_medium);
-                        MainMenu.editor.putString("size", "medium");
-                        MainMenu.editor.commit();
-                        break;
-                    case "medium": size_toggle.setText(R.string.indicator_large);
-                        MainMenu.editor.putString("size", "large");
-                        MainMenu.editor.commit();
-                        break;
-                    case "large": size_toggle.setText(R.string.indicator_small);
-                        MainMenu.editor.putString("size", "small");
-                        MainMenu.editor.commit();
-                        break;
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    String size = MainMenu.sp.getString("size", "medium");
+                    switch (size) {
+                        case "small":
+                            size_toggle.setText(R.string.indicator_medium);
+                            MainMenu.editor.putString("size", "medium");
+                            MainMenu.editor.commit();
+                            break;
+                        case "medium":
+                            size_toggle.setText(R.string.indicator_large);
+                            MainMenu.editor.putString("size", "large");
+                            MainMenu.editor.commit();
+                            break;
+                        case "large":
+                            size_toggle.setText(R.string.indicator_small);
+                            MainMenu.editor.putString("size", "small");
+                            MainMenu.editor.commit();
+                            break;
+                    }
                 }
+                super.onTouch(view, event);
+                return false;
             }
         });
 

@@ -38,7 +38,6 @@ public class Instructions extends AppCompatActivity {
         welcome.setText(getString(R.string.welcome));
 
         instructions = (TextView) findViewById(R.id.instructions);
-        //back = (ImageView) findViewById(R.id.back);
         right = (TextView) findViewById(R.id.right);
         wrong = (TextView) findViewById(R.id.wrong);
         pic = (ImageView) findViewById(R.id.pic);
@@ -51,6 +50,7 @@ public class Instructions extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                instructions.setText(getString(R.string.instruct));
                 instructions.setVisibility(View.VISIBLE);
             }}, 3000);
 
@@ -58,24 +58,29 @@ public class Instructions extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                right.setText(getString(R.string.right));
                 right.setVisibility(View.VISIBLE);
+                wrong.setText(getString(R.string.wrong));
                 wrong.setVisibility(View.VISIBLE);
                 pic.setVisibility(View.VISIBLE);
                 pic_two.setVisibility(View.VISIBLE);
             }}, 6000);
 
-        // wait 12 seconds before setting next
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                next.setVisibility(View.VISIBLE);
-            }}, 9000);
+//        // wait 12 seconds before setting next
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                next.setVisibility(View.VISIBLE);
+//            }}, 9000);
 
 
         // wait 12 seconds before setting buttons
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                next.setText(getString(R.string.next_more));
+                next.setVisibility(View.VISIBLE);
                 screen.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

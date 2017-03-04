@@ -1,6 +1,5 @@
 package com.datrueonejay.canyouescape;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,14 +9,12 @@ import android.media.SoundPool;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -108,9 +105,10 @@ public class MainActivity extends AppCompatActivity {
             }.start();
         }
 
+        // create the timer
         upTimer = new Timer(true);
 
-
+        // used to set the time elapsed for the timed_up_game
         mHandler = new Handler() {
             public void handleMessage(Message msg) {
                 time.setText("Time elapsed: " + Integer.toString(curr_time) + " seconds");
@@ -183,6 +181,8 @@ public class MainActivity extends AppCompatActivity {
 
         // create settings button
         settings = (ImageButton) findViewById(R.id.settings);
+        settings.getLayoutParams().height = MainMenu.screen_height/20;
+        settings.getLayoutParams().width = MainMenu.screen_height/20;
         // set the picture
         settings.setBackgroundResource(R.drawable.settings);
         settings.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
         // create the next level button
         next_level = (Button) findViewById(R.id.nextLevel);
+        next_level.setText(getString(R.string.next_level));
         // disables the next level button at first
         next_level.setEnabled(false);
 

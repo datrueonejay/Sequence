@@ -70,7 +70,7 @@ public class MainMenu extends AppCompatActivity {
         editor = sp.edit();
 
         // find the background music track
-        music = MediaPlayer.create(getApplicationContext(), R.raw.airport_lounge_4);
+        music = MediaPlayer.create(getApplicationContext(), R.raw.airport_lounge);
 
         // checks if volume is on
         music_on = sp.getBoolean("music_on", true);
@@ -168,53 +168,64 @@ public class MainMenu extends AppCompatActivity {
                 timed_game = true;
                 timed_up_game= false;
 
-                half.setOnClickListener(new View.OnClickListener() {
+                half.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                     @Override
-                    public void onClick(View v) {
+                    public boolean onTouch(View v, MotionEvent event) {
                         time = 0.5;
                         game_mode = "half";
                         // create the timed game
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        startActivity(intent);
-
+                        if (event.getAction() == MotionEvent.ACTION_UP){
+                            startActivity(intent);
+                        }
+                        super.onTouch(v, event);
+                        return false;
                     }
                 });
 
-                one.setOnClickListener(new View.OnClickListener() {
+                one.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                     @Override
-                    public void onClick(View v) {
+                    public boolean onTouch(View v, MotionEvent event) {
                         time = 1;
                         game_mode = "one_minute";
                         // create the timed game
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        startActivity(intent);
-
+                        if (event.getAction() == MotionEvent.ACTION_UP){
+                            startActivity(intent);
+                        }
+                        super.onTouch(v, event);
+                        return false;
                     }
                 });
 
-                one_half.setOnClickListener(new View.OnClickListener() {
+                one_half.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                     @Override
-                    public void onClick(View v) {
+                    public boolean onTouch(View v, MotionEvent event) {
                         time = 1.5;
                         game_mode = "one_half";
                         // create the timed game
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        startActivity(intent);
-
+                        if (event.getAction() == MotionEvent.ACTION_UP){
+                            startActivity(intent);
+                        }
+                        super.onTouch(v, event);
+                        return false;
                     }
                 });
 
-                two.setOnClickListener(new View.OnClickListener() {
+                two.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                     @Override
-                    public void onClick(View v){
+                    public boolean onTouch(View v, MotionEvent event) {
                         time = 2;
                         game_mode = "two_minutes";
                         // create the timed game
                         Intent intent = new Intent(MainMenu.this, CountDown.class);
-                        startActivity(intent);
-
+                        if (event.getAction() == MotionEvent.ACTION_UP){
+                            startActivity(intent);
+                        }
+                        super.onTouch(v, event);
+                        return false;
                     }
-
                 });
 
                 if (event.getAction() == MotionEvent.ACTION_UP){
@@ -246,47 +257,63 @@ public class MainMenu extends AppCompatActivity {
                     timed_up_game = true;
                     timed_game = false;
 
-                    five.setOnClickListener(new View.OnClickListener() {
+                    five.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                         @Override
-                        public void onClick(View v) {
+                        public boolean onTouch(View v, MotionEvent event) {
                             game_mode = "five";
                             level = 5;
                             Intent intent = new Intent(MainMenu.this, CountDown.class);
-                            startActivity(intent);
+                            if (event.getAction() == MotionEvent.ACTION_UP){
+                                startActivity(intent);
 
+                            }
+                            super.onTouch(v, event);
+                            return false;
                         }
                     });
 
-                    seven.setOnClickListener(new View.OnClickListener() {
+                    five.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                         @Override
-                        public void onClick(View v) {
+                        public boolean onTouch(View v, MotionEvent event) {
                             game_mode = "seven";
                             level = 7;
                             Intent intent = new Intent(MainMenu.this, CountDown.class);
-                            startActivity(intent);
+                            if (event.getAction() == MotionEvent.ACTION_UP){
+                                startActivity(intent);
 
+                            }
+                            super.onTouch(v, event);
+                            return false;
                         }
                     });
 
-                    ten.setOnClickListener(new View.OnClickListener() {
+                    ten.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                         @Override
-                        public void onClick(View v) {
+                        public boolean onTouch(View v, MotionEvent event) {
                             game_mode = "ten";
                             level = 10;
                             Intent intent = new Intent(MainMenu.this, CountDown.class);
-                            startActivity(intent);
+                            if (event.getAction() == MotionEvent.ACTION_UP){
+                                startActivity(intent);
 
+                            }
+                            super.onTouch(v, event);
+                            return false;
                         }
                     });
 
-                    fifteen.setOnClickListener(new View.OnClickListener() {
+                    fifteen.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                         @Override
-                        public void onClick(View v){
+                        public boolean onTouch(View v, MotionEvent event) {
                             game_mode = "fifteen";
                             level = 15;
                             Intent intent = new Intent(MainMenu.this, CountDown.class);
-                            startActivity(intent);
+                            if (event.getAction() == MotionEvent.ACTION_UP){
+                                startActivity(intent);
 
+                            }
+                            super.onTouch(v, event);
+                            return false;
                         }
                     });
                 }

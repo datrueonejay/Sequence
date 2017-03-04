@@ -59,6 +59,7 @@
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:scaleType="fitCenter"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/settings"/>
@@ -92,7 +93,6 @@
     <com.datrueonejay.canyouescape.MyCustomButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next Level"
         android:id="@+id/nextLevel"
         android:padding="7dp"
         android:textSize="30sp"
@@ -123,19 +123,6 @@
         android:visibility="invisible"
         android:layout_centerHorizontal="true"
         android:textColor="@color/blue"/>
-
-    <!--
-    <Chronometer
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:textSize="20sp"
-        android:id="@+id/chronometer"
-        android:layout_below="@+id/nextLevel"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/blue"
-        android:textAlignment="center"
-        />
--->
 
     <ImageView
         android:adjustViewBounds="true"

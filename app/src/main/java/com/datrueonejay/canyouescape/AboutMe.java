@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class AboutMe extends AppCompatActivity {
 
     private int secretCounter;
-    private static TextView me;
+    private TextView me;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,20 +23,23 @@ public class AboutMe extends AppCompatActivity {
         me.getLayoutParams().height = MainMenu.screen_height/3;
         me.setText(getResources().getString(R.string.jayden));
         // sets the counter for the secret button
-        secretCounter = 0;
+        secretCounter = 1;
         // sets the button
         Button secret = (Button) findViewById(R.id.secret);
         secret.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if (secretCounter != 5) {
-                    secretCounter++;
+                if (secretCounter != 14) {
+                    MainMenu.editor.putBoolean("dev", false);
+                    MainMenu.editor.commit();
+                    me.setText(getResources().getString(R.string.jayden));
                 }
                 else {
-                    Boolean change = MainMenu.sp.getBoolean("dev", false);
-                    MainMenu.editor.putBoolean("dev", !change);
+                    MainMenu.editor.putBoolean("dev", true);
                     MainMenu.editor.commit();
+                    me.setText(getResources().getString(R.string.jayden_dev));
                 }
+                secretCounter++;
             }
         });
     }

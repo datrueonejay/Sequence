@@ -32,6 +32,8 @@ public class Unlockables extends AppCompatActivity {
 
         cont = this;
 
+        // resumes music
+        MainMenu.music.start();
 
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -188,6 +190,17 @@ public class Unlockables extends AppCompatActivity {
 
 
         }
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        SoundManager.stopPlayingDelayed();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SoundManager.continueMusic();
     }
 
 }

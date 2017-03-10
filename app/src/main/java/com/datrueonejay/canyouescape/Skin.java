@@ -43,8 +43,8 @@ public class Skin {
                 objects[1] = cont.getResources().getDrawable(R.drawable.a);
                 objects[2] = cont.getResources().getDrawable(R.drawable.s);
                 objects[3] = cont.getResources().getDrawable(R.drawable.d);
-                objects[4] = cont.getResources().getDrawable(R.drawable.light);
-                objects[5] = cont.getResources().getDrawable(R.drawable.recycle);
+                objects[4] = cont.getResources().getDrawable(R.drawable.windows);
+                objects[5] = cont.getResources().getDrawable(R.drawable.error);
                 break;
             case("xbox"):
                 objects[0] = cont.getResources().getDrawable(R.drawable.xboxy);
@@ -91,8 +91,8 @@ public class Skin {
                 objects[1] = cont.getResources().getDrawable(R.drawable.simonyellow);
                 objects[2] = cont.getResources().getDrawable(R.drawable.simonblue);
                 objects[3] = cont.getResources().getDrawable(R.drawable.simonred);
-                objects[4] = cont.getResources().getDrawable(R.drawable.greencircle);
-                objects[5] = cont.getResources().getDrawable(R.drawable.redx);
+                objects[4] = cont.getResources().getDrawable(R.drawable.simongreen);
+                objects[5] = cont.getResources().getDrawable(R.drawable.simonred);
                 break;
         }
 
@@ -109,12 +109,16 @@ public class Skin {
                 MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
                 break;
             case("pc"):
+                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.windows_correct, 1);
                 MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.windows_incorrect, 1);
                 break;
             case("xbox"):
                 MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_correct, 1);
+                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_incorrect, 1);
                 break;
             case("playstation"):
+                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.playstation_correct, 1);
+                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_incorrect, 1);
                 break;
             case("ddr"):
 

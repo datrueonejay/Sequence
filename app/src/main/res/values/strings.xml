@@ -66,14 +66,6 @@
     <string name="highscores">Highscores</string>
     <string name="main_score">Classic: </string>
     <string name="timed">Time Attack</string>
-    <!--
-    <string name="timed_half_score">30 Seconds: </string>
-    <string name="timed_one_score">60 Seconds: </string>
-    <string name="timed_one_half_score">90 Seconds: </string>
-    <string name="timed_two_score">120 Seconds: </string>
-    <string name="timed_two_half_score">150 Seconds: </string>
-    <string name="timed_three_score">180 Seconds: </string>
-    -->
 
     <string name="use">Use</string>
 

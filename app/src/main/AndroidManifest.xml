@@ -30,7 +30,9 @@
         </activity>
         <activity android:name=".CountDown" />
         <activity android:name=".Unlockables" />
-        <activity android:name=".Unlocks"></activity>
+        <activity android:name=".Unlocks" />
+        <activity android:name=".Ownership"
+            android:theme="@style/Translucent"/>
     </application>
 
 </manifest>

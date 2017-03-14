@@ -13,6 +13,7 @@ public class Settings extends AppCompatActivity {
     Button back;
     Button help;
     Button me;
+    Button ownership;
     Button music_toggle;
     Button sounds_toggle;
     Button size_toggle;
@@ -67,6 +68,22 @@ public class Settings extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 Intent activity = new Intent(Settings.this, AboutMe.class);
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    startActivity(activity);
+                }
+                super.onTouch(view, event);
+                return false;
+            }
+        });
+
+        ownership = (Button) findViewById(R.id.ownership);
+        ownership.setText(R.string.copyright);
+        ownership.getLayoutParams().height = MainMenu.screen_height/15;
+        // opens screen about me
+        ownership.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                Intent activity = new Intent(Settings.this, Ownership.class);
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     startActivity(activity);
                 }

@@ -14,7 +14,7 @@ public class Ownership extends AppCompatActivity {
         setContentView(R.layout.activity_ownership);
 
         ownership = (TextView) findViewById(R.id.ownership);
-        ownership.getLayoutParams().height = MainMenu.screen_height/3;
+        ownership.getLayoutParams().height = MainMenu.screenHeight/3;
         ownership.setText(R.string.ownership);
 
     }

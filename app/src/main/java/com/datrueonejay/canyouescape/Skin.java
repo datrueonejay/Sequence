@@ -2,7 +2,6 @@ package com.datrueonejay.canyouescape;
 
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
@@ -84,7 +83,7 @@ public class Skin {
                 objects[2] = cont.getResources().getDrawable(R.drawable.heart);
                 objects[3] = cont.getResources().getDrawable(R.drawable.club);
                 objects[4] = cont.getResources().getDrawable(R.drawable.ace);
-                objects[5] = cont.getResources().getDrawable(R.drawable.joker);
+                objects[5] = cont.getResources().getDrawable(R.drawable.ace);
                 break;
             case("simon"):
                 objects[0] = cont.getResources().getDrawable(R.drawable.simongreen);
@@ -101,35 +100,35 @@ public class Skin {
     public static void SetSounds(String skin){
         switch (skin){
             case("classic"):
-                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
-                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
                 break;
             case("invert"):
-                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
-                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
                 break;
             case("pc"):
-                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.windows_correct, 1);
-                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.windows_incorrect, 1);
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.windows_correct, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.windows_incorrect, 1);
                 break;
             case("xbox"):
-                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_correct, 1);
-                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_incorrect, 1);
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_correct, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_incorrect, 1);
                 break;
             case("playstation"):
-                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.playstation_correct, 1);
-                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_incorrect, 1);
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.playstation_correct, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_incorrect, 1);
                 break;
             case("ddr"):
 
                 break;
             case("invisible"):
-                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
-                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
                 break;
             case("simon"):
-                MainActivity.correct_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
-                MainActivity.incorrect_sound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
                 break;
         }
     }

@@ -17,20 +17,20 @@ import android.widget.TextView;
 public class MainMenu extends AppCompatActivity {
 
     public static Context context;
-    Boolean first_time;
+    Boolean firstTime;
 
     public final static DisplayMetrics dimensions = new DisplayMetrics();
-    public static int screen_width;
-    public static int screen_height;
+    public static int screenWidth;
+    public static int screenHeight;
     public static MediaPlayer music;
 
     public static SharedPreferences sp;
     public static SharedPreferences.Editor editor;
 
-    public static boolean music_on;
-    public static boolean sounds_on;
-    public static boolean timed_game;
-    public static boolean timed_up_game;
+    public static boolean musicOn;
+    public static boolean soundsOn;
+    public static boolean timedGame;
+    public static boolean timedUpGame;
 
     public static String game_mode;
 
@@ -53,12 +53,17 @@ public class MainMenu extends AppCompatActivity {
 
         context = this;
 
+        final Intent game = new Intent(MainMenu.this, MainActivity.class);
+        final Intent countdown = new Intent(MainMenu.this, CountDown.class);
+        final Intent settingActivity = new Intent(MainMenu.this, Settings.class);
+        final Intent unlockablesActivity = new Intent(MainMenu.this, Unlockables.class);
+
         // find the dimensions of the screen
         this.getWindowManager().getDefaultDisplay().getMetrics(dimensions);
         // find the width of the screen
-        screen_width = dimensions.widthPixels;
+        screenWidth = dimensions.widthPixels;
         // find the length of the screen
-        screen_height = dimensions.heightPixels;
+        screenHeight = dimensions.heightPixels;
 
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -73,8 +78,8 @@ public class MainMenu extends AppCompatActivity {
         music = MediaPlayer.create(getApplicationContext(), R.raw.airport_lounge);
 
         // checks if volume is on
-        music_on = sp.getBoolean("music_on", true);
-        if (!music_on ){
+        musicOn = sp.getBoolean("musicOn", true);
+        if (!musicOn ){
             music.setVolume(0, 0);
         }
         else {
@@ -86,15 +91,15 @@ public class MainMenu extends AppCompatActivity {
         music.start();
 
         // check if the in game sounds are on
-        sounds_on = sp.getBoolean("sounds_on", true);
+        soundsOn = sp.getBoolean("soundsOn", true);
 
         // checks if this is the first time the app has been opened up
-        first_time = sp.getBoolean("first_time", true);
+        firstTime = sp.getBoolean("firstTime", true);
 
         // shows instructions if first time
-        if (first_time){
+        if (firstTime){
             // set that it is no longer the first time
-            editor.putBoolean("first_time", false);
+            editor.putBoolean("firstTime", false);
             editor.commit();
             Intent activity = new Intent(MainMenu.this, Instructions.class);
             startActivity(activity);
@@ -107,39 +112,38 @@ public class MainMenu extends AppCompatActivity {
         // finds and sets the text buttons of the menu
         main = (Button) findViewById(R.id.main);
         main.setText(getResources().getString(R.string.main));
-        main.getLayoutParams().height = screen_height/15;
+        main.getLayoutParams().height = screenHeight/15;
 
         time_attack = (Button) findViewById(R.id.time);
         time_attack.setText(getResources().getString(R.string.time));
-        time_attack.getLayoutParams().height = screen_height/15;
+        time_attack.getLayoutParams().height = screenHeight/15;
 
         levels = (Button) findViewById(R.id.levels);
         levels.setText(getString(R.string.levels));
-        levels.getLayoutParams().height = screen_height/15;
+        levels.getLayoutParams().height = screenHeight/15;
 
         settings = (Button) findViewById(R.id.settings);
         settings.setText(getResources().getString(R.string.settings));
-        settings.getLayoutParams().height = screen_height/15;
+        settings.getLayoutParams().height = screenHeight/15;
 
         highscores = (Button) findViewById(R.id.highscores);
         highscores.setText(getResources().getString(R.string.highscores));
-        highscores.getLayoutParams().height = screen_height/15;
+        highscores.getLayoutParams().height = screenHeight/15;
 
         unlockables = (Button) findViewById(R.id.unlockables);
         unlockables.setText(getResources().getString(R.string.unlockables));
-        unlockables.getLayoutParams().height = screen_height/15;
+        unlockables.getLayoutParams().height = screenHeight/15;
 
         // button to start non timed game mode with colour change
         main.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
             @Override
             public boolean onTouch(View v, MotionEvent event){
-                Intent intent = new Intent(MainMenu.this, MainActivity.class);
                 // makes the game a regular game
-                timed_game = false;
-                timed_up_game= false;
+                timedGame = false;
+                timedUpGame= false;
                 game_mode = "main";
                 if (event.getAction() == MotionEvent.ACTION_UP){
-                    startActivity(intent);
+                    startActivity(game);
                 }
                 super.onTouch(v, event);
                 return false;
@@ -165,8 +169,8 @@ public class MainMenu extends AppCompatActivity {
                 two.setText(getString(R.string.two));
 
                 // makes the game a timed game mode
-                timed_game = true;
-                timed_up_game= false;
+                timedGame = true;
+                timedUpGame= false;
 
                 half.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                     @Override
@@ -174,9 +178,8 @@ public class MainMenu extends AppCompatActivity {
                         time = 0.5;
                         game_mode = "half";
                         // create the timed game
-                        Intent intent = new Intent(MainMenu.this, CountDown.class);
                         if (event.getAction() == MotionEvent.ACTION_UP){
-                            startActivity(intent);
+                            startActivity(countdown);
                         }
                         super.onTouch(v, event);
                         return false;
@@ -189,9 +192,8 @@ public class MainMenu extends AppCompatActivity {
                         time = 1;
                         game_mode = "one_minute";
                         // create the timed game
-                        Intent intent = new Intent(MainMenu.this, CountDown.class);
                         if (event.getAction() == MotionEvent.ACTION_UP){
-                            startActivity(intent);
+                            startActivity(countdown);
                         }
                         super.onTouch(v, event);
                         return false;
@@ -204,9 +206,8 @@ public class MainMenu extends AppCompatActivity {
                         time = 1.5;
                         game_mode = "one_half";
                         // create the timed game
-                        Intent intent = new Intent(MainMenu.this, CountDown.class);
                         if (event.getAction() == MotionEvent.ACTION_UP){
-                            startActivity(intent);
+                            startActivity(countdown);
                         }
                         super.onTouch(v, event);
                         return false;
@@ -219,9 +220,8 @@ public class MainMenu extends AppCompatActivity {
                         time = 2;
                         game_mode = "two_minutes";
                         // create the timed game
-                        Intent intent = new Intent(MainMenu.this, CountDown.class);
                         if (event.getAction() == MotionEvent.ACTION_UP){
-                            startActivity(intent);
+                            startActivity(countdown);
                         }
                         super.onTouch(v, event);
                         return false;
@@ -254,17 +254,16 @@ public class MainMenu extends AppCompatActivity {
                     fifteen.setText(getString(R.string.fifteen));
 
                     dialog.show();
-                    timed_up_game = true;
-                    timed_game = false;
+                    timedUpGame = true;
+                    timedGame = false;
 
                     five.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
                             game_mode = "five";
                             level = 5;
-                            Intent intent = new Intent(MainMenu.this, CountDown.class);
                             if (event.getAction() == MotionEvent.ACTION_UP){
-                                startActivity(intent);
+                                startActivity(countdown);
 
                             }
                             super.onTouch(v, event);
@@ -272,14 +271,13 @@ public class MainMenu extends AppCompatActivity {
                         }
                     });
 
-                    five.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+                    seven.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
                             game_mode = "seven";
                             level = 7;
-                            Intent intent = new Intent(MainMenu.this, CountDown.class);
                             if (event.getAction() == MotionEvent.ACTION_UP){
-                                startActivity(intent);
+                                startActivity(countdown);
 
                             }
                             super.onTouch(v, event);
@@ -292,9 +290,8 @@ public class MainMenu extends AppCompatActivity {
                         public boolean onTouch(View v, MotionEvent event) {
                             game_mode = "ten";
                             level = 10;
-                            Intent intent = new Intent(MainMenu.this, CountDown.class);
                             if (event.getAction() == MotionEvent.ACTION_UP){
-                                startActivity(intent);
+                                startActivity(countdown);
 
                             }
                             super.onTouch(v, event);
@@ -307,9 +304,8 @@ public class MainMenu extends AppCompatActivity {
                         public boolean onTouch(View v, MotionEvent event) {
                             game_mode = "fifteen";
                             level = 15;
-                            Intent intent = new Intent(MainMenu.this, CountDown.class);
                             if (event.getAction() == MotionEvent.ACTION_UP){
-                                startActivity(intent);
+                                startActivity(countdown);
 
                             }
                             super.onTouch(v, event);
@@ -327,9 +323,8 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 // create the settings activity
-                Intent intent = new Intent(MainMenu.this, Settings.class);
                 if (event.getAction() == MotionEvent.ACTION_UP){
-                    startActivity(intent);
+                    startActivity(settingActivity);
                 }
                 super.onTouch(v, event);
                 return false;
@@ -383,9 +378,8 @@ public class MainMenu extends AppCompatActivity {
         unlockables.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Intent intent = new Intent(MainMenu.this, Unlockables.class);
                 if (event.getAction() == MotionEvent.ACTION_UP){
-                    startActivity(intent);
+                    startActivity(unlockablesActivity);
                 }
                 super.onTouch(v, event);
                 return false;

@@ -20,7 +20,7 @@ public class AboutMe extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // set the text
         me = (TextView) findViewById(R.id.me);
-        me.getLayoutParams().height = MainMenu.screen_height/3;
+        me.getLayoutParams().height = MainMenu.screenHeight/3;
         me.setText(getResources().getString(R.string.jayden));
         // sets the counter for the secret button
         secretCounter = 1;

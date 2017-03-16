@@ -21,25 +21,25 @@ public class SettingsInstructions extends AppCompatActivity {
         // finds the instructions
         TextView instruction = (TextView) findViewById(R.id.instructions);
         // sets it to an eighth of the screen
-        instruction.getLayoutParams().height = MainMenu.screen_height/7;
+        instruction.getLayoutParams().height = MainMenu.screenHeight/7;
         instruction.setText(this.getResources().getString(R.string.instruct));
 
         // finds the instructions
         TextView right = (TextView) findViewById(R.id.right);
         // sets it to an eighth of the screen
-        right.getLayoutParams().height = MainMenu.screen_height/7;
+        right.getLayoutParams().height = MainMenu.screenHeight/7;
         right.setText(this.getResources().getString(R.string.right));
 
         // finds the instructions
         TextView wrong = (TextView) findViewById(R.id.wrong);
         // sets it to an eighth of the screen
-        wrong.getLayoutParams().height = MainMenu.screen_height/7;
+        wrong.getLayoutParams().height = MainMenu.screenHeight/7;
         wrong.setText(this.getResources().getString(R.string.wrong));
 
         // finds the instructions
         TextView next = (TextView) findViewById(R.id.next);
         // sets it to an eighth of the screen
-        next.getLayoutParams().height = MainMenu.screen_height/10;
+        next.getLayoutParams().height = MainMenu.screenHeight/10;
         next.setText(this.getResources().getString(R.string.next));
 
         // keeps the app in portrait

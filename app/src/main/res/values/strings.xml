@@ -29,10 +29,10 @@
     <string name="ownership">I do not own any of the rights to the pictures or music for this app.
         All rights reserved to their respective owners. This app has no intention of monetary gain.
     </string>
-    <string name="music_on">In Game Music: On</string>
+    <string name="musicOn">In Game Music: On</string>
     <string name="music_off">In Game Music: Off</string>
     <string name="title_activity_typeface_util">TypefaceUtil</string>
-    <string name="sounds_on">In Game Sounds: On</string>
+    <string name="soundsOn">In Game Sounds: On</string>
     <string name="sounds_off">In Game Sounds: Off</string>
     <string name="indicator_small">Indicator Size: Small</string>
     <string name="indicator_medium">Indicator Size: Medium</string>

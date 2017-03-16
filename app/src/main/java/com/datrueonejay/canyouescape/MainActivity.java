@@ -32,35 +32,35 @@ public class MainActivity extends AppCompatActivity {
      * 4 as right
      */
     public static Context cont;
-    public static ImageButton move_up;
-    public static ImageButton move_left;
-    public static ImageButton move_down;
-    public static ImageButton move_right;
+    public static ImageButton moveUp;
+    public static ImageButton moveLeft;
+    public static ImageButton moveDown;
+    public static ImageButton moveRight;
     public static ImageButton settings;
     public static ImageButton[] moves = new ImageButton[4];
 
     public static ImageView rightOrWrong;
-    public static Button next_level;
+    public static Button nextLevel;
 
     public static TextView level;
-    public static TextView move_counter;
+    public static TextView moveCounter;
     public static TextView highscore;
     public static TextView time;
 
-    public static LevelSequence current_sequence;
-    public static int level_number = 1;
+    public static LevelSequence currentSequence;
+    public static int levelNumber = 1;
 
     public static CountDownTimer downTimer;
     public static Timer upTimer;
-    public static int curr_time;
+    public static int currTime;
     public Handler mHandler;
     public static RelativeLayout layout;
 
     public static SoundPool sounds;
-    public static int correct_sound;
-    public static int incorrect_sound;
+    public static int correctSound;
+    public static int incorrectSound;
 
-    static long time_left;
+    static long timeLeft;
 
     public static Skin skin;
 
@@ -73,14 +73,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         cont = this;
 
-        curr_time = 0;
+        currTime = 0;
 
         time = (TextView) findViewById(R.id.timer);
-        time.getLayoutParams().height = MainMenu.screen_height/20;
+        time.getLayoutParams().height = MainMenu.screenHeight/20;
 
 
         // checks if it is timed mode
-        if (MainMenu.timed_game){
+        if (MainMenu.timedGame){
             // set the countdown as visible
             time.setVisibility(View.VISIBLE);
             downTimer = new CountDownTimer((long)(MainMenu.time*60000) + 2000, 1000) {
@@ -88,14 +88,14 @@ public class MainActivity extends AppCompatActivity {
                 public void onTick(long millisUntilFinished) {
                     time.setText("Seconds remaining: " + ((millisUntilFinished/1000)-1));
                     if ((millisUntilFinished/1000)==1){
-                        time_left = millisUntilFinished;
+                        timeLeft = millisUntilFinished;
                         Buttons.DisableButtons();
                         time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-                        if (current_sequence.check_sequence()){
-                            time.setText("YOUR SCORE: " + level_number);
+                        if (currentSequence.check_sequence()){
+                            time.setText("YOUR SCORE: " + levelNumber);
                         }
                         else {
-                            time.setText("YOUR SCORE: " + (level_number - 1));
+                            time.setText("YOUR SCORE: " + (levelNumber - 1));
                         }
                     }
                 }
@@ -108,21 +108,21 @@ public class MainActivity extends AppCompatActivity {
         // create the timer
         upTimer = new Timer(true);
 
-        // used to set the time elapsed for the timed_up_game
+        // used to set the time elapsed for the timedUpGame
         mHandler = new Handler() {
             public void handleMessage(Message msg) {
-                time.setText("Time elapsed: " + Integer.toString(curr_time) + " seconds");
+                time.setText("Time elapsed: " + Integer.toString(currTime) + " seconds");
             }
         };
 
         // checks if it is timed up mode
-        if (MainMenu.timed_up_game){
+        if (MainMenu.timedUpGame){
             // set the countdown as visible
             time.setVisibility(View.VISIBLE);
             Buttons.setMaxLevel(MainMenu.level);
             upTimer.scheduleAtFixedRate(new TimerTask() {
                 public void run() {
-                    curr_time += 1; //increase every sec
+                    currTime += 1; //increase every sec
                     mHandler.obtainMessage(1).sendToTarget();
                 }
             }, 0, 1000);
@@ -133,11 +133,11 @@ public class MainActivity extends AppCompatActivity {
 
         // create the correct and incorrect sounds of the game
         sounds = new SoundPool(50, AudioManager.STREAM_MUSIC, 0);
-        correct_sound = sounds.load(this, R.raw.correct, 1);
-        incorrect_sound = sounds.load(this, R.raw.incorrect, 1);
+        correctSound = sounds.load(this, R.raw.correct, 1);
+        incorrectSound = sounds.load(this, R.raw.incorrect, 1);
 
         // checks if the sounds are on
-        MainMenu.sounds_on = MainMenu.sp.getBoolean("sounds_on", true);
+        MainMenu.soundsOn = MainMenu.sp.getBoolean("soundsOn", true);
 
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -145,24 +145,24 @@ public class MainActivity extends AppCompatActivity {
         layout = (RelativeLayout) findViewById(R.id.activity_main);
 
         // create the text for the move counter
-        move_counter = (TextView) findViewById(R.id.moveCounter);
+        moveCounter = (TextView) findViewById(R.id.moveCounter);
 
         // create the buttons upon opening the app
-        move_up = (ImageButton) findViewById(R.id.upButton);
-        move_left = (ImageButton) findViewById(R.id.leftButton);
-        move_down = (ImageButton) findViewById(R.id.downButton);
-        move_right = (ImageButton) findViewById(R.id.rightButton);
+        moveUp = (ImageButton) findViewById(R.id.upButton);
+        moveLeft = (ImageButton) findViewById(R.id.leftButton);
+        moveDown = (ImageButton) findViewById(R.id.downButton);
+        moveRight = (ImageButton) findViewById(R.id.rightButton);
 
         // create an array holding the buttons
-        moves[0] = move_up;
-        moves[1] = move_left;
-        moves[2] = move_down;
-        moves[3] = move_right;
+        moves[0] = moveUp;
+        moves[1] = moveLeft;
+        moves[2] = moveDown;
+        moves[3] = moveRight;
 
         // set the height and width of each button
         for (int counter = 0; counter < 4; counter++){
-            moves[counter].getLayoutParams().width = MainMenu.screen_width/4;
-            moves[counter].getLayoutParams().height = MainMenu.screen_width/4;
+            moves[counter].getLayoutParams().width = MainMenu.screenWidth/4;
+            moves[counter].getLayoutParams().height = MainMenu.screenWidth/4;
         }
 
         String skin_name = MainMenu.sp.getString("skin", "classic");
@@ -181,8 +181,8 @@ public class MainActivity extends AppCompatActivity {
 
         // create settings button
         settings = (ImageButton) findViewById(R.id.settings);
-        settings.getLayoutParams().height = MainMenu.screen_height/20;
-        settings.getLayoutParams().width = MainMenu.screen_height/20;
+        settings.getLayoutParams().height = MainMenu.screenHeight/20;
+        settings.getLayoutParams().width = MainMenu.screenHeight/20;
         // set the picture
         settings.setBackgroundResource(R.drawable.settings);
         settings.setOnClickListener(new View.OnClickListener() {
@@ -194,26 +194,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // create the next level button
-        next_level = (Button) findViewById(R.id.nextLevel);
-        next_level.setText(getString(R.string.next_level));
+        nextLevel = (Button) findViewById(R.id.nextLevel);
+        nextLevel.setText(getString(R.string.next_level));
         // disables the next level button at first
-        next_level.setEnabled(false);
+        nextLevel.setEnabled(false);
 
         // create the level 1 sequence
-        current_sequence = new LevelSequence(level_number);
+        currentSequence = new LevelSequence(levelNumber);
 
         // sets the move counter
-        move_counter.setText("Move  " + Integer.toString(current_sequence.move_counter() + 1));
+        moveCounter.setText("Move  " + Integer.toString(currentSequence.moveCounter() + 1));
 
         //  sets the height of the move coutner
-        move_counter.getLayoutParams().height = MainMenu.screen_height/25;
+        moveCounter.getLayoutParams().height = MainMenu.screenHeight/25;
 
         // create the text for the highscore
         highscore = (TextView) findViewById(R.id.highscore);
-        highscore.getLayoutParams().height = MainMenu.screen_height/20;
+        highscore.getLayoutParams().height = MainMenu.screenHeight/20;
 
         // finds the current high score
-        if (MainMenu.timed_up_game) {
+        if (MainMenu.timedUpGame) {
             long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 9999);
             highscore.setText("Highscore: " + Long.toString(highScore) + " seconds");
         }
@@ -227,31 +227,33 @@ public class MainActivity extends AppCompatActivity {
 
         // create level text
         level = (TextView) findViewById(R.id.level);
-        level.getLayoutParams().width = MainMenu.screen_width/2 - 75;
-        level.getLayoutParams().height = MainMenu.screen_height/25;
-        level.setText(("Level " + Integer.toString(level_number)));
+        level.getLayoutParams().width = MainMenu.screenWidth/2 - 75;
+        level.getLayoutParams().height = MainMenu.screenHeight/25;
+        level.setText(("Level " + Integer.toString(levelNumber)));
 
 
         // create the next level button
-        next_level.setOnClickListener(new View.OnClickListener(){
+        nextLevel.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
             @Override
-            public void onClick(View view){
+            public boolean onTouch(View view, MotionEvent e){
                 // ensures that the users sequence matches the level sequence
-                if (current_sequence.check_sequence()){
-                    // set the next_level button as not visible
-                    next_level.setVisibility(View.INVISIBLE);
+                if (e.getAction() == MotionEvent.ACTION_UP){
+                    // set the nextLevel button as not visible
+                    nextLevel.setVisibility(View.INVISIBLE);
                     // set the new level text
-                    level.setText(("Level " + Integer.toString(level_number)));
+                    level.setText(("Level " + Integer.toString(levelNumber)));
                     // create a new level sequence
-                    current_sequence = new LevelSequence(level_number);
+                    currentSequence = new LevelSequence(levelNumber);
                     // create the text for the move counter
-                    move_counter = (TextView) findViewById(R.id.moveCounter);
-                    move_counter.setText("Move  " + Integer.toString(current_sequence.move_counter() + 1));
+                    moveCounter = (TextView) findViewById(R.id.moveCounter);
+                    moveCounter.setText("Move  " + Integer.toString(currentSequence.moveCounter() + 1));
                     // disables the next level button for new level
-                    next_level.setEnabled(false);
+                    nextLevel.setEnabled(false);
                     // enables the direction buttons again
                     Buttons.EnableButtons();
                 }
+                super.onTouch(view, e);
+                return false;
             }
         });
 
@@ -281,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         sounds.release();
-        if (MainMenu.timed_game){
+        if (MainMenu.timedGame){
             downTimer.cancel();
         }
     }
@@ -308,11 +310,11 @@ public class MainActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     dialog.dismiss();
                     MainActivity.this.finish();
-                    MainActivity.level_number = 1;
-                    if (MainMenu.timed_game) {
+                    MainActivity.levelNumber = 1;
+                    if (MainMenu.timedGame) {
                         downTimer.cancel();
                     }
-                    if (MainMenu.timed_up_game) {
+                    if (MainMenu.timedUpGame) {
                         upTimer.cancel();
                         upTimer = null;
                     }

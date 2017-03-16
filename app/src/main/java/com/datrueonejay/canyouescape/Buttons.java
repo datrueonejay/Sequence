@@ -15,7 +15,7 @@ public class Buttons {
         final Drawable nope = MainActivity.skin.GetIncorrect();
 
         //finds the max dimensions the picture can be to avoid overlap
-        final int length = MainMenu.screen_height;
+        final int length = MainMenu.screenHeight;
         // set the listener when a button is pressed and held
         MainActivity.moves[button_counter - 1].setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -48,9 +48,9 @@ public class Buttons {
                 // sets right or wrong when a button is pressed
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     // tries to input the move
-                    MainActivity.current_sequence.input_move(button_counter);
+                    MainActivity.currentSequence.input_move(button_counter);
                     // tries to check if the move is correct or wrong
-                    boolean correct = MainActivity.current_sequence.check_move();
+                    boolean correct = MainActivity.currentSequence.check_move();
                     // sets the indicator as visible
                     MainActivity.rightOrWrong.setVisibility(View.VISIBLE);
                     // disables all the other buttons
@@ -59,67 +59,67 @@ public class Buttons {
                             MainActivity.moves[a_counter].setEnabled(false);
                     }
                     // disables next level button if it shows
-                    MainActivity.next_level.setEnabled(false);
+                    MainActivity.nextLevel.setEnabled(false);
                     if (correct){
                         // checks if the sound should be played
-                        if (MainMenu.sounds_on) {
+                        if (MainMenu.soundsOn) {
                             // creates a new thread to play the sound
-                            MainActivity.sounds.play(MainActivity.correct_sound, 1, 1, 0, 0, 1);
+                            MainActivity.sounds.play(MainActivity.correctSound, 1, 1, 0, 0, 1);
                         }
                         // sets the background as green
                         MainActivity.rightOrWrong.setBackground(yup);
                         // increases the move
-                        MainActivity.current_sequence.increase_move();
+                        MainActivity.currentSequence.increase_move();
 
                         // checks if the user sequence matches the level sequence
-                        if (MainActivity.current_sequence.check_sequence()) {
+                        if (MainActivity.currentSequence.check_sequence()) {
                             // create the text for the move counter
-                            MainActivity.move_counter.setText("PROCEED");
+                            MainActivity.moveCounter.setText("PROCEED");
                             // sets the next level button as visible
-                            MainActivity.next_level.setVisibility(View.VISIBLE);
+                            MainActivity.nextLevel.setVisibility(View.VISIBLE);
                             // disables the other arrow buttons
                             for (int a_counter = 0; a_counter < 4; a_counter++) {
                                 if (a_counter != (button_counter - 1))
                                     MainActivity.moves[a_counter].setEnabled(false);
                             }
                             // disables next level button if it shows
-                            MainActivity.next_level.setEnabled(false);
+                            MainActivity.nextLevel.setEnabled(false);
 
                             // finds the current high score
                             long score = MainMenu.sp.getInt(MainMenu.game_mode, 0);
                             // checks if the new score is higher than the old high score and not the
                             // beat the clock game mode
-                            if (MainActivity.level_number > score && !MainMenu.timed_up_game) {
+                            if (MainActivity.levelNumber > score && !MainMenu.timedUpGame) {
                                 // save the new highscore
                                 SharedPreferences.Editor editor = MainMenu.sp.edit();
-                                editor.putInt(MainMenu.game_mode, MainActivity.level_number);
+                                editor.putInt(MainMenu.game_mode, MainActivity.levelNumber);
                                 editor.commit();
                                 // set the new highscore
                                 long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
                                 MainActivity.highscore.setText("High Score: " + Long.toString(highScore));
                             }
-                            checkMaxLevel(MainActivity.level_number);
+                            checkMaxLevel(MainActivity.levelNumber);
 
                             // increase the level
-                            MainActivity.level_number++;
+                            MainActivity.levelNumber++;
 
-                        } else if (!MainActivity.current_sequence.check_sequence()) {
+                        } else if (!MainActivity.currentSequence.check_sequence()) {
                             // create the text for the move counter
-                            MainActivity.move_counter.setText("Move  " + Integer.toString(MainActivity.current_sequence.move_counter() + 1));
+                            MainActivity.moveCounter.setText("Move  " + Integer.toString(MainActivity.currentSequence.moveCounter() + 1));
                         }
                     }
                     else {
                         // checks if sound should be played
-                        if (MainMenu.sounds_on) {
+                        if (MainMenu.soundsOn) {
                             // create a new thread to play the incorrect sound
-                            MainActivity.sounds.play(MainActivity.incorrect_sound, 1, 1, 0, 0, 1);
+                            MainActivity.sounds.play(MainActivity.incorrectSound, 1, 1, 0, 0, 1);
                         }
                         // set red
                         MainActivity.rightOrWrong.setBackground(nope);
                         // resets the users inputs
-                        MainActivity.current_sequence.reset();
+                        MainActivity.currentSequence.reset();
                         // create the text for the move counter
-                        MainActivity.move_counter.setText("Move  " + Integer.toString(MainActivity.current_sequence.move_counter() + 1));
+                        MainActivity.moveCounter.setText("Move  " + Integer.toString(MainActivity.currentSequence.moveCounter() + 1));
                     }
                 }
 
@@ -128,13 +128,13 @@ public class Buttons {
                     // sets box back to invisible
                     MainActivity.rightOrWrong.setVisibility(View.INVISIBLE);
                     // re enables all the buttons if sequence is not finished yet
-                    if (!MainActivity.current_sequence.check_sequence()){
+                    if (!MainActivity.currentSequence.check_sequence()){
                        EnableButtons();
                     }
                     else{
                         DisableButtons();
                         // enables the next level button
-                        MainActivity.next_level.setEnabled(true);
+                        MainActivity.nextLevel.setEnabled(true);
                     }
                 }
                 return false;
@@ -149,14 +149,14 @@ public class Buttons {
     private static void checkMaxLevel(int level) {
         if (level == maxLevel) {
             MainActivity.upTimer.cancel();
-            MainActivity.next_level.setEnabled(false);
-            MainActivity.next_level.setVisibility(View.GONE);
+            MainActivity.nextLevel.setEnabled(false);
+            MainActivity.nextLevel.setVisibility(View.GONE);
             MainActivity.upTimer.cancel();
             MainActivity.time.setVisibility(View.VISIBLE);
-            MainActivity.move_counter.setText("FINISHED");
-            MainActivity.time.setText("You took " + Integer.toString(MainActivity.curr_time) + " seconds");
-            if (MainActivity.curr_time < MainMenu.sp.getInt(MainMenu.game_mode, 9999)){
-                MainMenu.editor.putInt(MainMenu.game_mode, MainActivity.curr_time);
+            MainActivity.moveCounter.setText("FINISHED");
+            MainActivity.time.setText("You took " + Integer.toString(MainActivity.currTime) + " seconds");
+            if (MainActivity.currTime < MainMenu.sp.getInt(MainMenu.game_mode, 9999)){
+                MainMenu.editor.putInt(MainMenu.game_mode, MainActivity.currTime);
                 MainMenu.editor.commit();
                 // set the new highscore
                 long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
@@ -169,7 +169,7 @@ public class Buttons {
     public static void DisableButtons(){
         for (int a_counter = 0; a_counter < 4; a_counter++) {
             MainActivity.moves[a_counter].setEnabled(false);
-            MainActivity.next_level.setEnabled(false);
+            MainActivity.nextLevel.setEnabled(false);
         }
     }
 

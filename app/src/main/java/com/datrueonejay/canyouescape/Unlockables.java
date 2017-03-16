@@ -19,7 +19,7 @@ public class Unlockables extends AppCompatActivity {
 
     HorizontalScrollView scroller;
     LinearLayout layout;
-    String[] how_to;
+    String[] howTo;
     String[] descriptions;
     Button use;
     String[] skin = new String[9];
@@ -71,7 +71,7 @@ public class Unlockables extends AppCompatActivity {
         // finds the strings for descriptions
         descriptions = getResources().getStringArray(R.array.arrows);
         // finds the strings for how to unlock
-        how_to = getResources().getStringArray(R.array.howto);
+        howTo = getResources().getStringArray(R.array.howto);
         // the skins in the game
         skin[0] = "classic";
         skin[1] = "invert";
@@ -93,13 +93,13 @@ public class Unlockables extends AppCompatActivity {
             skins.LoadSkin(skin[counter], cont);
             // find the current page
             RelativeLayout page = (RelativeLayout) layout.getChildAt(counter);
-            page.getLayoutParams().width = MainMenu.screen_width;
+            page.getLayoutParams().width = MainMenu.screenWidth;
             TextView title = (TextView) page.findViewById(R.id.title);
             title.setText(this.getString(R.string.unlockables));
 
             // finds how to unlock and sets it for current one
             TextView how = (TextView) page.findViewById(R.id.how);
-            how.setText(how_to[counter]);
+            how.setText(howTo[counter]);
 
             // sets the locked button if it is locked
             if (!conditions[counter]){
@@ -110,33 +110,33 @@ public class Unlockables extends AppCompatActivity {
                 // sets the picture for the up button
                 ImageView up = (ImageView) page.findViewById(R.id.upButton);
                 up.setBackground(skins.GetUp());
-                up.getLayoutParams().width = MainMenu.screen_width / 4;
-                up.getLayoutParams().height = MainMenu.screen_width / 4;
+                up.getLayoutParams().width = MainMenu.screenWidth / 4;
+                up.getLayoutParams().height = MainMenu.screenWidth / 4;
                 // sets the picture for the up button
                 ImageView left = (ImageView) page.findViewById(R.id.leftButton);
                 left.setBackground(skins.GetLeft());
-                left.getLayoutParams().width = MainMenu.screen_width / 4;
-                left.getLayoutParams().height = MainMenu.screen_width / 4;
+                left.getLayoutParams().width = MainMenu.screenWidth / 4;
+                left.getLayoutParams().height = MainMenu.screenWidth / 4;
                 // sets the picture for the up button
                 ImageView down = (ImageView) page.findViewById(R.id.downButton);
                 down.setBackground(skins.GetDown());
-                down.getLayoutParams().width = MainMenu.screen_width / 4;
-                down.getLayoutParams().height = MainMenu.screen_width / 4;
+                down.getLayoutParams().width = MainMenu.screenWidth / 4;
+                down.getLayoutParams().height = MainMenu.screenWidth / 4;
                 // sets the picture for the up button
                 ImageView right = (ImageView) page.findViewById(R.id.rightButton);
                 right.setBackground(skins.GetRight());
-                right.getLayoutParams().width = MainMenu.screen_width / 4;
-                right.getLayoutParams().height = MainMenu.screen_width / 4;
+                right.getLayoutParams().width = MainMenu.screenWidth / 4;
+                right.getLayoutParams().height = MainMenu.screenWidth / 4;
                 // sets the picture for the up button
                 ImageView correct = (ImageView) page.findViewById(R.id.correct);
                 correct.setBackground(skins.GetCorrect());
-                correct.getLayoutParams().width = MainMenu.screen_width / 6;
-                correct.getLayoutParams().height = MainMenu.screen_width / 6;
+                correct.getLayoutParams().width = MainMenu.screenWidth / 6;
+                correct.getLayoutParams().height = MainMenu.screenWidth / 6;
                 // sets the picture for the up button
                 ImageView incorrect = (ImageView) page.findViewById(R.id.incorrect);
                 incorrect.setBackground(skins.GetIncorrect());
-                incorrect.getLayoutParams().width = MainMenu.screen_width / 6;
-                incorrect.getLayoutParams().height = MainMenu.screen_width / 6;
+                incorrect.getLayoutParams().width = MainMenu.screenWidth / 6;
+                incorrect.getLayoutParams().height = MainMenu.screenWidth / 6;
 
                 // find the use button for the current page
                 use = (Button) page.findViewById(R.id.use);
@@ -149,7 +149,7 @@ public class Unlockables extends AppCompatActivity {
 
                 // finds description and sets it for current one
                 final TextView description = (TextView) page.findViewById(R.id.description);
-                description.getLayoutParams().height = MainMenu.screen_height/8;
+                description.getLayoutParams().height = MainMenu.screenHeight/8;
                 description.setText(descriptions[counter]);
 
                 // set what happens when the button is clicked

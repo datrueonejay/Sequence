@@ -23,13 +23,13 @@ public class LevelSequence{
         can_move = true;
 
         // loops through each move in the array, creating a new value for the current number
-        for (int move_counter = 0; move_counter < level_sequence.length; move_counter ++) {
+        for (int moveCounter = 0; moveCounter < level_sequence.length; moveCounter ++) {
             // create a random number between 1-4
             Random random_number = new Random();
             int move = random_number.nextInt(100) % 4;
             //int move = (int) (Math.random()*(3) + 1);
             // assigns the move number to the sequence of moves
-            level_sequence[move_counter] = move + 1;
+            level_sequence[moveCounter] = move + 1;
         }
     }
 
@@ -63,7 +63,7 @@ public class LevelSequence{
         does_not_exceed_length();
     }
 
-    int move_counter() {
+    int moveCounter() {
         /** (null) -> int
          * This method retuns the number of the current move.
          */

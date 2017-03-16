@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<HorizontalScrollView
+<com.datrueonejay.canyouescape.ExampleScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_unlockables"
@@ -15,7 +15,7 @@
 
         <include layout="@layout/unlockables_page"
             android:id="@+id/page1"
-            android:padding="5dp"/>
+            android:padding="5dp" />
 
         <include layout="@layout/unlockables_page"
             android:id="@+id/page2"
@@ -52,4 +52,4 @@
     </LinearLayout>
 
 
-</HorizontalScrollView>
+</com.datrueonejay.canyouescape.ExampleScrollView>

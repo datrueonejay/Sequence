@@ -2,6 +2,7 @@ package com.datrueonejay.canyouescape;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -17,7 +18,7 @@ public class Unlockables extends AppCompatActivity {
 
     Context cont;
 
-    HorizontalScrollView scroller;
+    ExampleScrollView scroller;
     LinearLayout layout;
     String[] howTo;
     String[] descriptions;
@@ -83,16 +84,53 @@ public class Unlockables extends AppCompatActivity {
         skin[7] = "cards";
         skin[8] = "ddr";
 
-        scroller = (HorizontalScrollView) findViewById(R.id.activity_unlockables);
+        scroller = (ExampleScrollView) findViewById(R.id.activity_unlockables);
         layout = (LinearLayout) scroller.findViewById(R.id.linear_part);
+
+        scroller.setOnScrollViewListener(new ExampleScrollView.OnScrollViewListener() {
+            public void onScrollChanged( ExampleScrollView v, int l, int t, int oldl, int oldt ) {
+                Rect scrollBounds = new Rect();
+                scroller.getHitRect(scrollBounds);
+                layout.getChildAt(0).setVisibility(View.INVISIBLE);
+                layout.getChildAt(1).setVisibility(View.INVISIBLE);
+                layout.getChildAt(2).setVisibility(View.INVISIBLE);
+                layout.getChildAt(3).setVisibility(View.INVISIBLE);
+                layout.getChildAt(4).setVisibility(View.INVISIBLE);
+                layout.getChildAt(5).setVisibility(View.INVISIBLE);
+                layout.getChildAt(6).setVisibility(View.INVISIBLE);
+                layout.getChildAt(7).setVisibility(View.INVISIBLE);
+                layout.getChildAt(8).setVisibility(View.INVISIBLE);
+                if (layout.getChildAt(0).getLocalVisibleRect(scrollBounds))
+                    layout.getChildAt(0).setVisibility(View.VISIBLE);
+                if (layout.getChildAt(1).getLocalVisibleRect(scrollBounds))
+                    layout.getChildAt(1).setVisibility(View.VISIBLE);
+                if (layout.getChildAt(2).getLocalVisibleRect(scrollBounds))
+                    layout.getChildAt(2).setVisibility(View.VISIBLE);
+                if (layout.getChildAt(3).getLocalVisibleRect(scrollBounds))
+                    layout.getChildAt(3).setVisibility(View.VISIBLE);
+                if (layout.getChildAt(4).getLocalVisibleRect(scrollBounds))
+                    layout.getChildAt(4).setVisibility(View.VISIBLE);
+                if (layout.getChildAt(5).getLocalVisibleRect(scrollBounds))
+                    layout.getChildAt(5).setVisibility(View.VISIBLE);
+                if (layout.getChildAt(6).getLocalVisibleRect(scrollBounds))
+                    layout.getChildAt(6).setVisibility(View.VISIBLE);
+                if (layout.getChildAt(7).getLocalVisibleRect(scrollBounds))
+                    layout.getChildAt(7).setVisibility(View.VISIBLE);
+                if (layout.getChildAt(8).getLocalVisibleRect(scrollBounds))
+                    layout.getChildAt(8).setVisibility(View.VISIBLE);
+        }});
+
+
         // create and set each page
         for (int counter = 0; counter < 9; counter++){
+
+
             // copies counter
             final int copy = counter;
             Skin skins = new Skin();
             skins.LoadSkin(skin[counter], cont);
             // find the current page
-            RelativeLayout page = (RelativeLayout) layout.getChildAt(counter);
+            final RelativeLayout page = (RelativeLayout) layout.getChildAt(counter);
             page.getLayoutParams().width = MainMenu.screenWidth;
             TextView title = (TextView) page.findViewById(R.id.title);
             title.setText(this.getString(R.string.unlockables));
@@ -190,6 +228,7 @@ public class Unlockables extends AppCompatActivity {
 
 
         }
+
     }
     @Override
     protected void onPause(){

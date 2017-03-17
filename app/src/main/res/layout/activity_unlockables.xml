@@ -19,7 +19,7 @@
 
         <include layout="@layout/unlockables_page"
             android:id="@+id/page2"
-            android:padding="5dp"/>
+            android:padding="5dp" />
 
         <include layout="@layout/unlockables_page"
             android:id="@+id/pag3"

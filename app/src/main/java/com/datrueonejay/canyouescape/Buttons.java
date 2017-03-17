@@ -86,16 +86,16 @@ public class Buttons {
                             MainActivity.nextLevel.setEnabled(false);
 
                             // finds the current high score
-                            long score = MainMenu.sp.getInt(MainMenu.game_mode, 0);
+                            long score = MainMenu.sp.getInt(MainMenu.gameMode, 0);
                             // checks if the new score is higher than the old high score and not the
                             // beat the clock game mode
                             if (MainActivity.levelNumber > score && !MainMenu.timedUpGame) {
                                 // save the new highscore
                                 SharedPreferences.Editor editor = MainMenu.sp.edit();
-                                editor.putInt(MainMenu.game_mode, MainActivity.levelNumber);
+                                editor.putInt(MainMenu.gameMode, MainActivity.levelNumber);
                                 editor.commit();
                                 // set the new highscore
-                                long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
+                                long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 0);
                                 MainActivity.highscore.setText("High Score: " + Long.toString(highScore));
                             }
                             checkMaxLevel(MainActivity.levelNumber);
@@ -155,11 +155,11 @@ public class Buttons {
             MainActivity.time.setVisibility(View.VISIBLE);
             MainActivity.moveCounter.setText("FINISHED");
             MainActivity.time.setText("You took " + Integer.toString(MainActivity.currTime) + " seconds");
-            if (MainActivity.currTime < MainMenu.sp.getInt(MainMenu.game_mode, 9999)){
-                MainMenu.editor.putInt(MainMenu.game_mode, MainActivity.currTime);
+            if (MainActivity.currTime < MainMenu.sp.getInt(MainMenu.gameMode, 9999)){
+                MainMenu.editor.putInt(MainMenu.gameMode, MainActivity.currTime);
                 MainMenu.editor.commit();
                 // set the new highscore
-                long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
+                long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 0);
                 MainActivity.highscore.setText("High Score: " + Long.toString(highScore) + " seconds");
             }
         }

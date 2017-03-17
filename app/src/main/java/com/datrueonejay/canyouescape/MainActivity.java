@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static ImageButton moveDown;
     public static ImageButton moveRight;
     public static ImageButton settings;
+    public static Button mid;
     public static ImageButton[] moves = new ImageButton[4];
 
     public static ImageView rightOrWrong;
@@ -165,6 +167,22 @@ public class MainActivity extends AppCompatActivity {
             moves[counter].getLayoutParams().height = MainMenu.screenWidth/4;
         }
 
+        // set it to proper height above bottom
+        RelativeLayout.LayoutParams paramsLeft;
+        paramsLeft = (RelativeLayout.LayoutParams) moveLeft.getLayoutParams();
+        paramsLeft.setMargins(0, 0, 0, (MainMenu.screenWidth/4 + MainMenu.screenWidth/4 + MainMenu.screenWidth/8) / 2 - MainMenu.screenWidth/8);
+        moveLeft.setLayoutParams(paramsLeft);
+
+        // set it to proper height above bottom
+        RelativeLayout.LayoutParams paramsRight;
+        paramsRight = (RelativeLayout.LayoutParams) moveRight.getLayoutParams();
+        paramsRight.setMargins(0, 0, 0,  (MainMenu.screenWidth/4 + MainMenu.screenWidth/4 + MainMenu.screenWidth/8) / 2 - MainMenu.screenWidth/8);
+        moveRight.setLayoutParams(paramsRight);
+
+        mid = (Button) findViewById(R.id.mid);
+        mid.getLayoutParams().width = MainMenu.screenWidth/8;
+        mid.getLayoutParams().height = MainMenu.screenWidth/8;
+
         String skin_name = MainMenu.sp.getString("skin", "classic");
         skin = new Skin();
         // find the skin
@@ -214,11 +232,11 @@ public class MainActivity extends AppCompatActivity {
 
         // finds the current high score
         if (MainMenu.timedUpGame) {
-            long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 9999);
+            long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 9999);
             highscore.setText("Highscore: " + Long.toString(highScore) + " seconds");
         }
         else{
-            long highScore = MainMenu.sp.getInt(MainMenu.game_mode, 0);
+            long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 0);
             highscore.setText("Highscore: " + Long.toString(highScore));
         }
 

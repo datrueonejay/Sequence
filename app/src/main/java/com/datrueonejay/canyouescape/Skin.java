@@ -59,7 +59,7 @@ public class Skin {
                 objects[2] = cont.getResources().getDrawable(R.drawable.playstationx);
                 objects[3] = cont.getResources().getDrawable(R.drawable.playstationcircle);
                 objects[4] = cont.getResources().getDrawable(R.drawable.playstationtrophy);
-                objects[5] = cont.getResources().getDrawable(R.drawable.redx);
+                objects[5] = cont.getResources().getDrawable(R.drawable.playstationwrong);
                 break;
             case("ddr"):
                 objects[0] = cont.getResources().getDrawable(R.drawable.ddrup);
@@ -83,7 +83,7 @@ public class Skin {
                 objects[2] = cont.getResources().getDrawable(R.drawable.heart);
                 objects[3] = cont.getResources().getDrawable(R.drawable.club);
                 objects[4] = cont.getResources().getDrawable(R.drawable.ace);
-                objects[5] = cont.getResources().getDrawable(R.drawable.ace);
+                objects[5] = cont.getResources().getDrawable(R.drawable.joker);
                 break;
             case("simon"):
                 objects[0] = cont.getResources().getDrawable(R.drawable.simongreen);
@@ -120,7 +120,8 @@ public class Skin {
                 MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_incorrect, 1);
                 break;
             case("ddr"):
-
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.ddr_correct, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.ddr_incorrect, 1);
                 break;
             case("invisible"):
                 MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);

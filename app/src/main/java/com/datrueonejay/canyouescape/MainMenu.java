@@ -32,7 +32,7 @@ public class MainMenu extends AppCompatActivity {
     public static boolean timedGame;
     public static boolean timedUpGame;
 
-    public static String game_mode;
+    public static String gameMode;
 
     public static double time;
     public static int level;
@@ -141,7 +141,7 @@ public class MainMenu extends AppCompatActivity {
                 // makes the game a regular game
                 timedGame = false;
                 timedUpGame= false;
-                game_mode = "main";
+                gameMode = "main";
                 if (event.getAction() == MotionEvent.ACTION_UP){
                     startActivity(game);
                 }
@@ -176,7 +176,7 @@ public class MainMenu extends AppCompatActivity {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         time = 0.5;
-                        game_mode = "half";
+                        gameMode = "half";
                         // create the timed game
                         if (event.getAction() == MotionEvent.ACTION_UP){
                             startActivity(countdown);
@@ -190,7 +190,7 @@ public class MainMenu extends AppCompatActivity {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         time = 1;
-                        game_mode = "one_minute";
+                        gameMode = "one_minute";
                         // create the timed game
                         if (event.getAction() == MotionEvent.ACTION_UP){
                             startActivity(countdown);
@@ -204,7 +204,7 @@ public class MainMenu extends AppCompatActivity {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         time = 1.5;
-                        game_mode = "one_half";
+                        gameMode = "one_half";
                         // create the timed game
                         if (event.getAction() == MotionEvent.ACTION_UP){
                             startActivity(countdown);
@@ -218,7 +218,7 @@ public class MainMenu extends AppCompatActivity {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         time = 2;
-                        game_mode = "two_minutes";
+                        gameMode = "two_minutes";
                         // create the timed game
                         if (event.getAction() == MotionEvent.ACTION_UP){
                             startActivity(countdown);
@@ -260,7 +260,7 @@ public class MainMenu extends AppCompatActivity {
                     five.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
-                            game_mode = "five";
+                            gameMode = "five";
                             level = 5;
                             if (event.getAction() == MotionEvent.ACTION_UP){
                                 startActivity(countdown);
@@ -274,7 +274,7 @@ public class MainMenu extends AppCompatActivity {
                     seven.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
-                            game_mode = "seven";
+                            gameMode = "seven";
                             level = 7;
                             if (event.getAction() == MotionEvent.ACTION_UP){
                                 startActivity(countdown);
@@ -288,7 +288,7 @@ public class MainMenu extends AppCompatActivity {
                     ten.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
-                            game_mode = "ten";
+                            gameMode = "ten";
                             level = 10;
                             if (event.getAction() == MotionEvent.ACTION_UP){
                                 startActivity(countdown);
@@ -302,7 +302,7 @@ public class MainMenu extends AppCompatActivity {
                     fifteen.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
-                            game_mode = "fifteen";
+                            gameMode = "fifteen";
                             level = 15;
                             if (event.getAction() == MotionEvent.ACTION_UP){
                                 startActivity(countdown);

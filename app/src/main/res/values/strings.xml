@@ -77,16 +77,15 @@
         nothing.\"</string>
     <string name="invert">\"The inverted set. Keys are the wrong way yknow. Green is bad, and red
     is good. Simple.\"</string>
-    <string name="invisible">\"The invisible set. Yeah. Have fun figuring out if you\'re right or
-        wrong.\"</string>
+    <string name="invisible">\"The invisible set. Yeah. I\"m sure you\'ll find a way to use this.\"</string>
     <string name="simon">\"Simon says press yellow. Or red. Or blue. Or green. Just pick the right
         one.\"</string>
     <string name="pc">\"The PC gamer. WASD you know it. \"</string>
-    <string name="xbox">\"The O-Box gamer. Like O-Box 359, O-Box Two, the game Hay Low, all that.\"</string>
-    <string name="ps3">\"The Praystation gamer. PRS1, PRS2, PRS3, PRS4, Big Little Planet yknow.\"</string>
-    <string name="cards">\"The card dealer. Heart, diamonds, clubs, spades. Ace.\"</string>
-    <string name="ddr">\"The Dance Pants Revolution guy. That dude who holds the back bar and goes
-        ham on the dance pants.\"</string>
+    <string name="xbox">\"The Y-Box gamer. Like Y-Box 360, Y-Box One, the game Hay Low, all that.\"</string>
+    <string name="ps3">\"The Paystation gamer. PS1, PS2, PS3, PS4, Big Little Planet.\"</string>
+    <string name="cards">\"The card dealer. Heart, diamonds, clubs, spades. Ace it or be a joke(r).\"</string>
+    <string name="ddr">\"The Dans Dans Revolution skin. Make sure to time it right, er well actually
+        it doesn\'t really matter.\"</string>
 
     <string-array name="arrows">
         <item>@string/classic</item>
@@ -101,10 +100,10 @@
     </string-array>
 
     <string name="how1">Have this skin as a gift, it\'s on the house.</string>
-    <string name="how2">Score at least 1 in classic or time attack.</string>
-    <string name="how3">Score at least 5 in classic or time attack.</string>
-    <string name="how4">Score at least 10 in classic.</string>
-    <string name="how5">Score at least 15 in classic.</string>
+    <string name="how2">Score at least 5 in classic or time attack.</string>
+    <string name="how3">Score at least 10 in classic or time attack.</string>
+    <string name="how4">Score at least 15 in classic.</string>
+    <string name="how5">Score at least 20 in classic.</string>
     <string name="how6">Score at least 10 in time attack.</string>
     <string name="how7">Score at least 10 in time attack.</string>
     <string name="how8">Achieve a time of under 20 seconds for beat the clock level 5.</string>

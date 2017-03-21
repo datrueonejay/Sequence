@@ -35,7 +35,7 @@
         android:id="@+id/rightButton"
         android:scaleType="fitCenter"
         android:background="@null"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/downButton"
         android:layout_toRightOf="@+id/mid"
         />
 
@@ -45,7 +45,7 @@
         android:id="@+id/leftButton"
         android:scaleType="fitCenter"
         android:background="@null"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/downButton"
         android:layout_toLeftOf="@+id/mid"
         />
 

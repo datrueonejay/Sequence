@@ -163,25 +163,13 @@ public class MainActivity extends AppCompatActivity {
 
         // set the height and width of each button
         for (int counter = 0; counter < 4; counter++){
-            moves[counter].getLayoutParams().width = MainMenu.screenWidth/4;
-            moves[counter].getLayoutParams().height = MainMenu.screenWidth/4;
+            moves[counter].getLayoutParams().width = MainMenu.screenWidth/5;
+            moves[counter].getLayoutParams().height = MainMenu.screenWidth/5;
         }
 
-        // set it to proper height above bottom
-        RelativeLayout.LayoutParams paramsLeft;
-        paramsLeft = (RelativeLayout.LayoutParams) moveLeft.getLayoutParams();
-        paramsLeft.setMargins(0, 0, 0, (MainMenu.screenWidth/4 + MainMenu.screenWidth/4 + MainMenu.screenWidth/8) / 2 - MainMenu.screenWidth/8);
-        moveLeft.setLayoutParams(paramsLeft);
-
-        // set it to proper height above bottom
-        RelativeLayout.LayoutParams paramsRight;
-        paramsRight = (RelativeLayout.LayoutParams) moveRight.getLayoutParams();
-        paramsRight.setMargins(0, 0, 0,  (MainMenu.screenWidth/4 + MainMenu.screenWidth/4 + MainMenu.screenWidth/8) / 2 - MainMenu.screenWidth/8);
-        moveRight.setLayoutParams(paramsRight);
-
         mid = (Button) findViewById(R.id.mid);
-        mid.getLayoutParams().width = MainMenu.screenWidth/8;
-        mid.getLayoutParams().height = MainMenu.screenWidth/8;
+        mid.getLayoutParams().width = MainMenu.screenWidth/5;
+        mid.getLayoutParams().height = MainMenu.screenWidth/5;
 
         String skin_name = MainMenu.sp.getString("skin", "classic");
         skin = new Skin();

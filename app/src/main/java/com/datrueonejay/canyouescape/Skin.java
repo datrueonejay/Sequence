@@ -8,7 +8,6 @@ import android.widget.ImageView;
 public class Skin {
 
     private static Drawable[] objects = new Drawable[6];
-
     // takes in the name of the skin, sets background resources, sounds and gets correct and
     // incorrect pictures
     Skin(){

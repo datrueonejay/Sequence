@@ -63,12 +63,12 @@ public class Unlockables extends AppCompatActivity {
             conditions[0] = true;
             conditions[1] = a > 4 || b > 4 || c > 4 || d > 4 || e > 4 || f > 4;
             conditions[2] = a > 9 || b > 9 || c > 9 || d > 9 || e > 9 || f > 9;
-            conditions[3] = a > 9;
-            conditions[4] = a > 14;
-            conditions[5] = b > 14 || c > 14 || d > 14 || e > 14 || f > 14;
-            conditions[6] = b > 14 || c > 14 || d > 14 || e > 14 || f > 14;
-            conditions[7] = g <= 20;
-            conditions[8] = h <= 40;
+            conditions[3] = a > 14;
+            conditions[4] = a > 19;
+            conditions[5] = b > 9 || c > 9 || d > 9 || e > 9 || f > 9;
+            conditions[6] = b > 9 || c > 9 || d > 9 || e > 9 || f > 9;
+            conditions[7] = g < 20;
+            conditions[8] = h < 40;
         }
 
 

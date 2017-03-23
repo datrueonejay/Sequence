@@ -49,8 +49,8 @@
     <string name="back_title">Are you sure?</string>
     <string name="next_level">Next Level</string>
 
-    <string name="confirm">Are you sure you want to leave? Your progress will not be saved (Your
-        highscore will be saved)</string>
+    <string name="confirm">Are you sure you want to go back to the main menu? Your highscore will be saved.
+    </string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
@@ -62,13 +62,14 @@
     <string name="two_half">150 Seconds</string>
     <string name="three">180 Seconds</string>
 
+    <string name="level">Level</string>
     <string name="five">Level 5</string>
     <string name="seven">Level 7</string>
     <string name="ten">Level 10</string>
     <string name="fifteen">Level 15</string>
 
     <string name="highscores">Highscores</string>
-    <string name="main_score">Classic: </string>
+    <string name="highest_level">Highest Level: </string>
     <string name="timed">Time Attack</string>
 
     <string name="use">Use</string>
@@ -84,7 +85,7 @@
     <string name="xbox">\"The Y-Box gamer. Like Y-Box 360, Y-Box One, the game Hay Low, all that.\"</string>
     <string name="ps3">\"The Paystation gamer. PS1, PS2, PS3, PS4, Big Little Planet.\"</string>
     <string name="cards">\"The card dealer. Heart, diamonds, clubs, spades. Ace it or be a joke(r).\"</string>
-    <string name="ddr">\"The Dans Dans Revolution skin. Make sure to time it right, er well actually
+    <string name="ddr">\"The Pants Pants Revolution skin. Make sure to time it right, er well actually
         it doesn\'t really matter.\"</string>
 
     <string-array name="arrows">

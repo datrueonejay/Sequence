@@ -49,10 +49,11 @@
         android:layout_toLeftOf="@+id/mid"
         />
 
-    <Button
+    <com.datrueonejay.canyouescape.MyCustomTextView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/mid"
+        android:textAlignment="center"
         android:background="@null"
         android:layout_above="@+id/downButton"
         android:layout_centerHorizontal="true" />
@@ -97,7 +98,7 @@
         android:id="@+id/nextLevel"
         android:padding="7dp"
         android:textSize="30sp"
-        android:layout_below="@+id/highscore"
+        android:layout_above="@+id/upButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
         android:visibility="invisible"/>
@@ -120,7 +121,7 @@
         android:textSize="30sp"
         android:textAlignment="center"
         android:id="@+id/timer"
-        android:layout_below="@+id/nextLevel"
+        android:layout_below="@+id/highscore"
         android:visibility="invisible"
         android:layout_centerHorizontal="true"
         android:textColor="@color/blue"/>

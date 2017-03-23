@@ -52,4 +52,16 @@ public class CountDown extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+        SoundManager.stopPlayingDelayed();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SoundManager.continueMusic();
+    }
+
 }

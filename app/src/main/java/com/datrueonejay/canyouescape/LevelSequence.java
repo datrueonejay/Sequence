@@ -33,12 +33,13 @@ public class LevelSequence{
         }
     }
 
-    private void does_not_exceed_length() {
+    public boolean does_not_exceed_length() {
         /** (null) -> null
          * Checks the the users move does not exceed the length of the sequence.
          */
         if (current_move >= level_sequence.length)
             can_move = false;
+        return can_move;
     }
 
     void input_move(int move) {
@@ -100,6 +101,10 @@ public class LevelSequence{
         current_move = 0;
         // ensures that moves can be made again
         can_move = true;
+    }
+
+    public int getMove() {
+        return level_sequence[current_move];
     }
 
 

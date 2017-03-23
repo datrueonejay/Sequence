@@ -116,7 +116,7 @@ public class Skin {
                 break;
             case("playstation"):
                 MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.playstation_correct, 1);
-                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.xbox_incorrect, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.playstation_incorrect, 1);
                 break;
             case("ddr"):
                 MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.ddr_correct, 1);
@@ -127,8 +127,8 @@ public class Skin {
                 MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
                 break;
             case("simon"):
-                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
-                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.simon_says_correct, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.simon_says_incorrect, 1);
                 break;
         }
     }

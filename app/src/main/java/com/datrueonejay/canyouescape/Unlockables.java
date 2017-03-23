@@ -27,6 +27,9 @@ public class Unlockables extends AppCompatActivity {
     public static Boolean[] conditions = new Boolean[9];
     public static RelativeLayout[] pages = new RelativeLayout[9];
 
+    Button use;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,12 +90,116 @@ public class Unlockables extends AppCompatActivity {
         skin[7] = "cards";
         skin[8] = "ddr";
 
-        MyPagerAdapter adapter = new MyPagerAdapter();
+        // create the view pager adapter
+        final MyPagerAdapter adapter = new MyPagerAdapter();
+        // set up the view pager
         ViewPager myPager = (ViewPager) findViewById(R.id.pages);
         myPager.setAdapter(adapter);
+
+        // create the pages
+        for (int counter = 0; counter < 9; counter ++){
+            Skin skins = new Skin();
+            skins.LoadSkin(Unlockables.skin[counter], Unlockables.cont);
+            // find the current page
+            RelativeLayout page = (RelativeLayout) getLayoutInflater().inflate(R.layout.unlockables_page, null);
+
+            //page.getLayoutParams().width = MainMenu.screenWidth;
+            TextView title = (TextView) page.findViewById(R.id.title);
+            title.setText(cont.getString(R.string.unlockables));
+
+            // finds how to unlock and sets it for current one
+            TextView how = (TextView) page.findViewById(R.id.how);
+            how.setText(howTo[counter]);
+
+            // sets the locked button if it is locked
+            if (!Unlockables.conditions[counter]){
+                ImageView lock = (ImageView) page.findViewById(R.id.lock);
+                lock.setBackground(cont.getResources().getDrawable(R.drawable.locked));
+            }
+            else {
+                // sets size of mid space
+                View mid = page.findViewById(R.id.mid);
+                mid.getLayoutParams().width = MainMenu.screenWidth / 5;
+                mid.getLayoutParams().height = MainMenu.screenWidth / 5;
+                // sets the picture for the up button
+                ImageView up = (ImageView) page.findViewById(R.id.upButton);
+                up.setBackground(skins.GetUp());
+                up.getLayoutParams().width = MainMenu.screenWidth / 5;
+                up.getLayoutParams().height = MainMenu.screenWidth / 5;
+                // sets the picture for the up button
+                ImageView left = (ImageView) page.findViewById(R.id.leftButton);
+                left.setBackground(skins.GetLeft());
+                left.getLayoutParams().width = MainMenu.screenWidth / 5;
+                left.getLayoutParams().height = MainMenu.screenWidth / 5;
+                // sets the picture for the up button
+                ImageView down = (ImageView) page.findViewById(R.id.downButton);
+                down.setBackground(skins.GetDown());
+                down.getLayoutParams().width = MainMenu.screenWidth / 5;
+                down.getLayoutParams().height = MainMenu.screenWidth / 5;
+                // sets the picture for the up button
+                ImageView right = (ImageView) page.findViewById(R.id.rightButton);
+                right.setBackground(skins.GetRight());
+                right.getLayoutParams().width = MainMenu.screenWidth / 5;
+                right.getLayoutParams().height = MainMenu.screenWidth / 5;
+                // sets the picture for the up button
+                ImageView correct = (ImageView) page.findViewById(R.id.correct);
+                correct.setBackground(skins.GetCorrect());
+                correct.getLayoutParams().width = MainMenu.screenWidth / 6;
+                correct.getLayoutParams().height = MainMenu.screenWidth / 6;
+                // sets the picture for the up button
+                ImageView incorrect = (ImageView) page.findViewById(R.id.incorrect);
+                incorrect.setBackground(skins.GetIncorrect());
+                incorrect.getLayoutParams().width = MainMenu.screenWidth / 6;
+                incorrect.getLayoutParams().height = MainMenu.screenWidth / 6;
+
+                // find the use button for the current page
+                use = (Button) page.findViewById(R.id.use);
+                use.setText(Unlockables.cont.getString(R.string.use));
+                use.setVisibility(View.VISIBLE);
+                if (MainMenu.sp.getString("skin", "classic").equals(Unlockables.skin[counter])){
+                    use.setEnabled(false);
+                    use.setVisibility(View.INVISIBLE);
+                }
+
+                // finds description and sets it for current one
+                final TextView description = (TextView) page.findViewById(R.id.description);
+                description.getLayoutParams().height = MainMenu.screenHeight/8;
+                description.setText(Unlockables.descriptions[counter]);
+
+                // copies the counter
+                final int copy = counter;
+                // set what happens when the button is clicked
+                use.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (event.getAction() == MotionEvent.ACTION_DOWN){
+                            // says the new skin to be used
+                            MainMenu.editor.putString("skin", Unlockables.skin[copy]);
+                            MainMenu.editor.commit();
+                            // hide the current button
+                            use.setVisibility(View.INVISIBLE);
+                            for (int counter = 0; counter < 9; counter ++){
+                                if (counter == copy){
+                                    pages[counter].findViewById(R.id.use).setVisibility(View.INVISIBLE);
+                                }
+                                else {
+                                    pages[counter].findViewById(R.id.use).setVisibility(View.VISIBLE);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                        return false;
+                    }
+                });
+
+            }
+            pages[counter] = page;
+        }
+
         myPager.setCurrentItem(0);
 
     }
+
     @Override
     protected void onPause(){
         super.onPause();

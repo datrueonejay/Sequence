@@ -10,6 +10,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:background="@color/blue"
@@ -28,13 +30,16 @@
         android:layout_marginBottom="15dp"/>
 
     <com.datrueonejay.canyouescape.MyCustomTextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/timed"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/main_score"
         android:textSize="20sp"
-        android:textColor="@color/blue"
+        android:background="@color/blue"
+        android:textColor="#FFF"
         android:layout_marginBottom="15dp"
         android:textAlignment="center"/>
 
@@ -83,13 +88,16 @@
         android:textAlignment="center"/>
 
     <com.datrueonejay.canyouescape.MyCustomTextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/levels"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/timed_two_score"
         android:textSize="20sp"
-        android:textColor="@color/blue"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:background="@color/blue"
+        android:textColor="#FFF"
         android:layout_marginBottom="15dp"
         android:textAlignment="center"/>
 

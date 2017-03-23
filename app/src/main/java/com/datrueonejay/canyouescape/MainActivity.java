@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static ImageButton moveDown;
     public static ImageButton moveRight;
     public static ImageButton settings;
-    public static Button mid;
+    public static MyCustomTextView mid;
     public static ImageButton[] moves = new ImageButton[4];
 
     public static ImageView rightOrWrong;
@@ -163,13 +163,13 @@ public class MainActivity extends AppCompatActivity {
 
         // set the height and width of each button
         for (int counter = 0; counter < 4; counter++){
-            moves[counter].getLayoutParams().width = MainMenu.screenWidth/5;
-            moves[counter].getLayoutParams().height = MainMenu.screenWidth/5;
+            moves[counter].getLayoutParams().width = MainMenu.screenWidth/4;
+            moves[counter].getLayoutParams().height = MainMenu.screenWidth/4;
         }
 
-        mid = (Button) findViewById(R.id.mid);
-        mid.getLayoutParams().width = MainMenu.screenWidth/5;
-        mid.getLayoutParams().height = MainMenu.screenWidth/5;
+        mid = (MyCustomTextView) findViewById(R.id.mid);
+        mid.getLayoutParams().width = MainMenu.screenWidth/4;
+        mid.getLayoutParams().height = MainMenu.screenWidth/4;
 
         String skin_name = MainMenu.sp.getString("skin", "classic");
         skin = new Skin();
@@ -221,7 +221,11 @@ public class MainActivity extends AppCompatActivity {
         // finds the current high score
         if (MainMenu.timedUpGame) {
             long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 9999);
-            highscore.setText("Highscore: " + Long.toString(highScore) + " seconds");
+            highscore.setText("Best Time: " + Long.toString(highScore) + " seconds");
+        }
+        else if (MainMenu.timedGame){
+            long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 0);
+            highscore.setText("Highest Level: " + Long.toString(highScore));
         }
         else{
             long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 0);
@@ -257,11 +261,20 @@ public class MainActivity extends AppCompatActivity {
                     nextLevel.setEnabled(false);
                     // enables the direction buttons again
                     Buttons.EnableButtons();
+                    // if dev mode show the new correct move
+                    if (MainMenu.sp.getBoolean("dev", false)){
+                        mid.setText(Integer.toString(currentSequence.getMove()));
+                    }
                 }
                 super.onTouch(view, e);
                 return false;
             }
         });
+
+        // if dev mode show the correct move
+        if (MainMenu.sp.getBoolean("dev", false)){
+            mid.setText(Integer.toString(currentSequence.getMove()));
+        }
 
 
     }

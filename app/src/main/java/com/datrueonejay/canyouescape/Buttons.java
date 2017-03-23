@@ -1,5 +1,6 @@
 package com.datrueonejay.canyouescape;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
@@ -53,7 +54,9 @@ public class Buttons {
                     // tries to check if the move is correct or wrong
                     boolean correct = MainActivity.currentSequence.check_move();
                     // sets the indicator as visible
-                    MainActivity.rightOrWrong.setVisibility(View.VISIBLE);
+                    if (!MainActivity.currentSequence.check_sequence()){
+                        MainActivity.rightOrWrong.setVisibility(View.VISIBLE);
+                    }
                     // disables all the other buttons
                     for (int a_counter = 0; a_counter < 4; a_counter++) {
                         if (a_counter != (button_counter - 1))
@@ -68,7 +71,9 @@ public class Buttons {
                             MainActivity.sounds.play(MainActivity.correctSound, 1, 1, 0, 0, 1);
                         }
                         // sets the background as green
-                        MainActivity.rightOrWrong.setBackground(yup);
+                        if (!MainActivity.currentSequence.check_sequence()){
+                            MainActivity.rightOrWrong.setBackground(yup);
+                        }
                         // increases the move
                         MainActivity.currentSequence.increase_move();
 
@@ -97,7 +102,12 @@ public class Buttons {
                                 editor.commit();
                                 // set the new highscore
                                 long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 0);
-                                MainActivity.highscore.setText("High Score: " + Long.toString(highScore));
+                                if (MainMenu.timedGame){
+                                    MainActivity.highscore.setText("Highest Level: " + Long.toString(highScore));
+                                }
+                                else {
+                                    MainActivity.highscore.setText("Highscore: " + Long.toString(highScore));
+                                }
                             }
                             checkMaxLevel(MainActivity.levelNumber);
 
@@ -138,6 +148,11 @@ public class Buttons {
                         MainActivity.nextLevel.setEnabled(true);
                     }
                 }
+
+                // if dev mode show the correct move
+                if (MainMenu.sp.getBoolean("dev", false) && MainActivity.currentSequence.does_not_exceed_length()){
+                    MainActivity.mid.setText(Integer.toString(MainActivity.currentSequence.getMove()));
+                }
                 return false;
             }
         });
@@ -161,7 +176,7 @@ public class Buttons {
                 MainMenu.editor.commit();
                 // set the new highscore
                 long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 0);
-                MainActivity.highscore.setText("High Score: " + Long.toString(highScore) + " seconds");
+                MainActivity.highscore.setText("Best Time: " + Long.toString(highScore) + " seconds");
             }
         }
     }

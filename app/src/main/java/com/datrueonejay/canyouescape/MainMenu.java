@@ -352,13 +352,13 @@ public class MainMenu extends AppCompatActivity {
                 TextView ten_score = (TextView) dialog.findViewById(R.id.ten_score);
                 TextView fifteen_score = (TextView) dialog.findViewById(R.id.fifteen_score);
 
-                title.setText(getString(R.string.highscores));
-                main_score.setText(getString(R.string.main_score) + " " + (Integer.toString(MainMenu.sp.getInt("main", 0))));
+                title.setText(getString(R.string.main));
+                main_score.setText(getString(R.string.highest_level) + " " + getString (R.string.level) + " " + Integer.toString(MainMenu.sp.getInt("main", 0)));
                 timed.setText(getString(R.string.timed));
-                timed_half_score.setText(getString(R.string.half) +  ": " + (Integer.toString(MainMenu.sp.getInt("half", 0))));
-                timed_one_score.setText(getString(R.string.one) +  ": " + (Integer.toString(MainMenu.sp.getInt("one_minute", 0))));
-                timed_one_half_score.setText(getString(R.string.one_half) +  ": " + (Integer.toString(MainMenu.sp.getInt("one_half", 0))));
-                timed_two_score.setText(getString(R.string.two) +  ": " + (Integer.toString(MainMenu.sp.getInt("two_minutes", 0))));
+                timed_half_score.setText(getString(R.string.half) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("half", 0))));
+                timed_one_score.setText(getString(R.string.one) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("one_minute", 0))));
+                timed_one_half_score.setText(getString(R.string.one_half) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("one_half", 0))));
+                timed_two_score.setText(getString(R.string.two) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("two_minutes", 0))));
                 levels.setText(getString(R.string.levels));
                 five_score.setText(getString(R.string.five) + ": " + Integer.toString(MainMenu.sp.getInt("five", 9999)) + " seconds");
                 seven_score.setText(getString(R.string.seven) + ": " + Integer.toString(MainMenu.sp.getInt("seven", 9999)) + " seconds");

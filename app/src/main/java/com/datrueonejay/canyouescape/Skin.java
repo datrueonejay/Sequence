@@ -79,8 +79,8 @@ public class Skin {
             case("cards"):
                 objects[0] = cont.getResources().getDrawable(R.drawable.spade);
                 objects[1] = cont.getResources().getDrawable(R.drawable.diamond);
-                objects[2] = cont.getResources().getDrawable(R.drawable.heart);
-                objects[3] = cont.getResources().getDrawable(R.drawable.club);
+                objects[2] = cont.getResources().getDrawable(R.drawable.club);
+                objects[3] = cont.getResources().getDrawable(R.drawable.heart);
                 objects[4] = cont.getResources().getDrawable(R.drawable.ace);
                 objects[5] = cont.getResources().getDrawable(R.drawable.joker);
                 break;
@@ -123,12 +123,16 @@ public class Skin {
                 MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.ddr_incorrect, 1);
                 break;
             case("invisible"):
-                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.correct, 1);
-                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.incorrect, 1);
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.invisible, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.invisible, 1);
                 break;
             case("simon"):
                 MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.simon_says_correct, 1);
                 MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.simon_says_incorrect, 1);
+                break;
+            case("cards"):
+                MainActivity.correctSound = MainActivity.sounds.load(MainActivity.cont, R.raw.cards_correct, 1);
+                MainActivity.incorrectSound = MainActivity.sounds.load(MainActivity.cont, R.raw.cards_incorrect, 1);
                 break;
         }
     }

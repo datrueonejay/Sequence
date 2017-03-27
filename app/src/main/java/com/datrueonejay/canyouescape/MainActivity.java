@@ -1,5 +1,6 @@
 package com.datrueonejay.canyouescape;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +15,6 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
      * 4 as right
      */
     public static Context cont;
+
     public static ImageButton moveUp;
     public static ImageButton moveLeft;
     public static ImageButton moveDown;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static ImageView rightOrWrong;
     public static Button nextLevel;
+
+    public static ImageView fill;
 
     public static TextView level;
     public static TextView moveCounter;
@@ -78,8 +81,13 @@ public class MainActivity extends AppCompatActivity {
         currTime = 0;
 
         time = (TextView) findViewById(R.id.timer);
-        time.getLayoutParams().height = MainMenu.screenHeight/20;
+        time.getLayoutParams().height = MainMenu.screenHeight/25;
 
+        // create the next level button
+        nextLevel = (Button) findViewById(R.id.nextLevel);
+        nextLevel.setText(getString(R.string.next_level));
+        // disables the next level button at first
+        nextLevel.setEnabled(false);
 
         // checks if it is timed mode
         if (MainMenu.timedGame){
@@ -93,6 +101,78 @@ public class MainActivity extends AppCompatActivity {
                         timeLeft = millisUntilFinished;
                         Buttons.DisableButtons();
                         time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+                        nextLevel.setVisibility(View.VISIBLE);
+                        nextLevel.setEnabled(true);
+                        nextLevel.setText(R.string.return_menu);
+                        nextLevel.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
+                            @Override
+                            public boolean onTouch(View view, MotionEvent event){
+                                if (event.getAction() == MotionEvent.ACTION_UP){
+                                    final Dialog dialog = new Dialog(MainActivity.cont);
+                                    dialog.setContentView(R.layout.back_window);
+                                    dialog.show();
+                                    TextView title = (TextView) dialog.findViewById(R.id.title);
+                                    title.setText(R.string.back_title);
+
+                                    TextView confirm = (TextView) dialog.findViewById(R.id.confirmation);
+                                    confirm.setText(MainMenu.context.getString(R.string.confirm));
+
+                                    // create the yes button
+                                    Button yes;
+                                    yes = (Button) dialog.findViewById(R.id.yes);
+                                    yes.setText(MainActivity.cont.getString(R.string.yes));
+                                    yes.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+                                        @Override
+                                        public boolean onTouch(View v, MotionEvent event) {
+                                            if (event.getAction() == MotionEvent.ACTION_UP) {
+                                                dialog.dismiss();
+                                                Activity act = (Activity) MainActivity.cont;
+                                                act.finish();
+                                                MainActivity.levelNumber = 1;
+                                                if (MainMenu.timedGame) {
+                                                    MainActivity.downTimer.cancel();
+                                                }
+                                                if (MainMenu.timedUpGame) {
+                                                    MainActivity.upTimer.cancel();
+                                                    MainActivity.upTimer = null;
+                                                }
+                                            }
+                                            super.onTouch(v, event);
+                                            return false;
+                                        }
+
+                                    });
+
+                                    // create the no button
+                                    Button no;
+                                    no = (Button) dialog.findViewById(R.id.no);
+                                    no.setText(MainActivity.cont.getString(R.string.no));
+                                    no.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+                                        @Override
+                                        public boolean onTouch(View v, MotionEvent event) {
+                                            if (event.getAction() == MotionEvent.ACTION_UP){
+                                                dialog.dismiss();
+                                            }
+                                            super.onTouch(v,event);
+                                            return false;
+                                        }
+                                    });
+                                }
+                                super.onTouch(view, event);
+                                return false;
+                            }
+                        });
+                        upTimer.cancel();
+                        time.setVisibility(View.VISIBLE);
+                        moveCounter.setText("FINISHED");
+                        time.setText("You took " + Integer.toString(MainActivity.currTime) + " seconds");
+                        if (MainActivity.currTime < MainMenu.sp.getInt(MainMenu.gameMode, 9999)){
+                            MainMenu.editor.putInt(MainMenu.gameMode, MainActivity.currTime);
+                            MainMenu.editor.commit();
+                            // set the new highscore
+                            long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 0);
+                            highscore.setText("Best Time: " + Long.toString(highScore) + " seconds");
+                        }
                         if (currentSequence.check_sequence()){
                             time.setText("YOUR SCORE: " + levelNumber);
                         }
@@ -146,6 +226,20 @@ public class MainActivity extends AppCompatActivity {
         // create the layout
         layout = (RelativeLayout) findViewById(R.id.activity_main);
 
+        // create the background
+        fill = (ImageView) findViewById(R.id.fill);
+        fill.setBackgroundColor(getResources().getColor(R.color.blue));
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) fill.getLayoutParams();
+        // if timed put it to match with timer
+        if (!MainMenu.gameMode.equals("main")){
+            params.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.timer);
+        }
+        else {
+            params.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.highscore);
+        }
+        fill.setLayoutParams(params);
+
+
         // create the text for the move counter
         moveCounter = (TextView) findViewById(R.id.moveCounter);
 
@@ -198,12 +292,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(activity);
             }
         });
-
-        // create the next level button
-        nextLevel = (Button) findViewById(R.id.nextLevel);
-        nextLevel.setText(getString(R.string.next_level));
-        // disables the next level button at first
-        nextLevel.setEnabled(false);
 
         // create the level 1 sequence
         currentSequence = new LevelSequence(levelNumber);

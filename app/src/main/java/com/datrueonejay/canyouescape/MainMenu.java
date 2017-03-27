@@ -2,16 +2,20 @@ package com.datrueonejay.canyouescape;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainMenu extends AppCompatActivity {
@@ -37,24 +41,16 @@ public class MainMenu extends AppCompatActivity {
     public static double time;
     public static int level;
 
-    TextView title;
-
-    Button main;
-    Button time_attack;
-    Button levels;
-    Button settings;
-    Button highscores;
-    Button unlockables;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        final Dialog dialog = new Dialog(MainMenu.this);
+
         context = this;
 
         final Intent game = new Intent(MainMenu.this, MainActivity.class);
-        final Intent countdown = new Intent(MainMenu.this, CountDown.class);
         final Intent settingActivity = new Intent(MainMenu.this, Settings.class);
         final Intent unlockablesActivity = new Intent(MainMenu.this, Unlockables.class);
 
@@ -101,38 +97,80 @@ public class MainMenu extends AppCompatActivity {
             // set that it is no longer the first time
             editor.putBoolean("firstTime", false);
             editor.commit();
-            Intent activity = new Intent(MainMenu.this, Instructions.class);
-            startActivity(activity);
+
+            dialog.setContentView(R.layout.activity_settings_instructions);
+
+            TextView title = (TextView) dialog.findViewById(R.id.title);
+            title.setText(R.string.welcome);
+
+            TextView info = (TextView) dialog.findViewById(R.id.info);
+            info.getLayoutParams().height = MainMenu.screenHeight/4;
+            info.setText(R.string.info);
+
+            ImageView pic = (ImageView) dialog.findViewById(R.id.pic);
+            pic.getLayoutParams().height = MainMenu.screenWidth/4;
+
+            TextView closing = (TextView) dialog.findViewById(R.id.closing);
+            closing.setText(R.string.next);
+
+            dialog.show();
         }
 
+        // gets relative layour one and two, second one contains texts
+        RelativeLayout one = (RelativeLayout) findViewById(R.id.one);
+        RelativeLayout two = (RelativeLayout) findViewById(R.id.two);
+
         // sets the title
-        title = (TextView) findViewById(R.id.title);
+        TextView title = (TextView) one.findViewById(R.id.title);
+        title.getLayoutParams().height = screenHeight/8;
         title.setText(getResources().getString(R.string.title));
 
+        TextView titleTwo = (TextView) two.findViewById(R.id.title_two);
+        titleTwo.getLayoutParams().height = screenHeight/8;
+        titleTwo.setText(getResources().getString(R.string.title));
+
         // finds and sets the text buttons of the menu
-        main = (Button) findViewById(R.id.main);
-        main.setText(getResources().getString(R.string.main));
+        Button main = (Button) one.findViewById(R.id.main);
         main.getLayoutParams().height = screenHeight/15;
 
-        time_attack = (Button) findViewById(R.id.time);
-        time_attack.setText(getResources().getString(R.string.time));
-        time_attack.getLayoutParams().height = screenHeight/15;
+        TextView mainText = (TextView) two.findViewById(R.id.main_text);
+        mainText.getLayoutParams().height = screenHeight/15;
+        mainText.setText(getResources().getString(R.string.main));
 
-        levels = (Button) findViewById(R.id.levels);
-        levels.setText(getString(R.string.levels));
+        Button timeAttack = (Button) one.findViewById(R.id.time);
+        timeAttack.getLayoutParams().height = screenHeight/15;
+
+        TextView timeAttackText = (TextView) two.findViewById(R.id.time_text);
+        timeAttackText.getLayoutParams().height = screenHeight/15;
+        timeAttackText.setText(getResources().getString(R.string.time));
+
+        Button levels = (Button) one.findViewById(R.id.levels);
         levels.getLayoutParams().height = screenHeight/15;
 
-        settings = (Button) findViewById(R.id.settings);
-        settings.setText(getResources().getString(R.string.settings));
+        TextView levelsText = (TextView) two.findViewById(R.id.levels_text);
+        levelsText.getLayoutParams().height = screenHeight/15;
+        levelsText.setText(getString(R.string.levels));
+
+        Button settings = (Button) one.findViewById(R.id.settings);
         settings.getLayoutParams().height = screenHeight/15;
 
-        highscores = (Button) findViewById(R.id.highscores);
-        highscores.setText(getResources().getString(R.string.highscores));
+        TextView settingsText = (TextView) two.findViewById(R.id.settings_text);
+        settingsText.getLayoutParams().height = screenHeight/15;
+        settingsText.setText(getResources().getString(R.string.settings));
+
+        Button highscores = (Button) one.findViewById(R.id.highscores);
         highscores.getLayoutParams().height = screenHeight/15;
 
-        unlockables = (Button) findViewById(R.id.unlockables);
-        unlockables.setText(getResources().getString(R.string.unlockables));
+        TextView highscoresText = (TextView) two.findViewById(R.id.highscores_text);
+        highscoresText.getLayoutParams().height = screenHeight/15;
+        highscoresText.setText(getResources().getString(R.string.highscores));
+
+        Button unlockables = (Button) one.findViewById(R.id.unlockables);
         unlockables.getLayoutParams().height = screenHeight/15;
+
+        TextView unlockablesText = (TextView) two.findViewById(R.id.unlockables_text);
+        unlockablesText.getLayoutParams().height = screenHeight/15;
+        unlockablesText.setText(getResources().getString(R.string.unlockables));
 
         // button to start non timed game mode with colour change
         main.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
@@ -151,11 +189,10 @@ public class MainMenu extends AppCompatActivity {
         }) ;
 
         // button to start the timed game mode
-        time_attack.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
+        timeAttack.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 // create a pop up box to choose how long they would like to play
-                final Dialog dialog = new Dialog(MainMenu.this);
                 dialog.setContentView(R.layout.pick_time);
                 TextView instruction = (TextView) dialog.findViewById(R.id.instructions);
                 instruction.setText(getString(R.string.time_instructions));
@@ -179,7 +216,8 @@ public class MainMenu extends AppCompatActivity {
                         gameMode = "half";
                         // create the timed game
                         if (event.getAction() == MotionEvent.ACTION_UP){
-                            startActivity(countdown);
+                            dialog.dismiss();
+                            createDialog();
                         }
                         super.onTouch(v, event);
                         return false;
@@ -193,7 +231,8 @@ public class MainMenu extends AppCompatActivity {
                         gameMode = "one_minute";
                         // create the timed game
                         if (event.getAction() == MotionEvent.ACTION_UP){
-                            startActivity(countdown);
+                            dialog.dismiss();
+                            createDialog();
                         }
                         super.onTouch(v, event);
                         return false;
@@ -207,7 +246,8 @@ public class MainMenu extends AppCompatActivity {
                         gameMode = "one_half";
                         // create the timed game
                         if (event.getAction() == MotionEvent.ACTION_UP){
-                            startActivity(countdown);
+                            dialog.dismiss();
+                            createDialog();
                         }
                         super.onTouch(v, event);
                         return false;
@@ -221,7 +261,8 @@ public class MainMenu extends AppCompatActivity {
                         gameMode = "two_minutes";
                         // create the timed game
                         if (event.getAction() == MotionEvent.ACTION_UP){
-                            startActivity(countdown);
+                            dialog.dismiss();
+                            createDialog();
                         }
                         super.onTouch(v, event);
                         return false;
@@ -240,7 +281,6 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP){
-                    final Dialog dialog = new Dialog(MainMenu.this);
                     dialog.setContentView(R.layout.pick_time);
                     TextView instruction = (TextView) dialog.findViewById(R.id.instructions);
                     instruction.setText(getString(R.string.level_instructions));
@@ -263,8 +303,8 @@ public class MainMenu extends AppCompatActivity {
                             gameMode = "five";
                             level = 5;
                             if (event.getAction() == MotionEvent.ACTION_UP){
-                                startActivity(countdown);
-
+                                dialog.dismiss();
+                                createDialog();
                             }
                             super.onTouch(v, event);
                             return false;
@@ -277,8 +317,8 @@ public class MainMenu extends AppCompatActivity {
                             gameMode = "seven";
                             level = 7;
                             if (event.getAction() == MotionEvent.ACTION_UP){
-                                startActivity(countdown);
-
+                                dialog.dismiss();
+                                createDialog();
                             }
                             super.onTouch(v, event);
                             return false;
@@ -291,8 +331,8 @@ public class MainMenu extends AppCompatActivity {
                             gameMode = "ten";
                             level = 10;
                             if (event.getAction() == MotionEvent.ACTION_UP){
-                                startActivity(countdown);
-
+                                dialog.dismiss();
+                                createDialog();
                             }
                             super.onTouch(v, event);
                             return false;
@@ -305,8 +345,8 @@ public class MainMenu extends AppCompatActivity {
                             gameMode = "fifteen";
                             level = 15;
                             if (event.getAction() == MotionEvent.ACTION_UP){
-                                startActivity(countdown);
-
+                                dialog.dismiss();
+                                createDialog();
                             }
                             super.onTouch(v, event);
                             return false;
@@ -417,6 +457,51 @@ public class MainMenu extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
+    }
+
+    private void createDialog() {
+
+        final Dialog countdownDialog = new Dialog(MainMenu.this);
+        countdownDialog.setContentView(R.layout.activity_count_down);
+
+        final CountDownTimer countdown;
+        TextView begins;
+        final TextView time;
+
+        // sets the title
+        begins = (TextView) countdownDialog.findViewById(R.id.title);
+        begins.setText(getString(R.string.begins));
+
+        time = (TextView) countdownDialog.findViewById(R.id.counter);
+        final Intent game = new Intent(MainMenu.this, MainActivity.class);
+
+        // sets the timer for 5 seconds
+        countdown = new CountDownTimer(7000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if ((millisUntilFinished/1000)==1){
+                    startActivity(game);
+                    countdownDialog.dismiss();
+                }
+                else{
+                    time.setText(String.valueOf((millisUntilFinished/1000)-1));
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+        }.start();
+
+        countdownDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                countdown.cancel();
+            }
+        });
+        countdownDialog.show();
     }
 
 }

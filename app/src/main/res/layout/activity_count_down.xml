@@ -23,8 +23,9 @@
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@+id/title"
         android:id="@+id/counter"
+        android:layout_centerHorizontal="true"
         android:textColor="@color/blue"
         android:textSize="70sp"
         android:textAlignment="center"/>

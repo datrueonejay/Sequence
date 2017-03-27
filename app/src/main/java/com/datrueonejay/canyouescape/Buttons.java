@@ -1,11 +1,14 @@
 package com.datrueonejay.canyouescape;
 
-import android.content.Intent;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Buttons {
 
@@ -29,21 +32,20 @@ public class Buttons {
                 // find the size of the background
                 switch (size){
                     case "small":
-                        MainActivity.rightOrWrong.getLayoutParams().height = length/8;
-                        MainActivity.rightOrWrong.getLayoutParams().width = length/8;
+                        MainActivity.rightOrWrong.getLayoutParams().height = length/9;
+                        MainActivity.rightOrWrong.getLayoutParams().width = length/9;
                         MainActivity.rightOrWrong.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                         break;
                     case "medium":
-                        MainActivity.rightOrWrong.getLayoutParams().height = length/6;
-                        MainActivity.rightOrWrong.getLayoutParams().width = length/6;
+                        MainActivity.rightOrWrong.getLayoutParams().height = length/7;
+                        MainActivity.rightOrWrong.getLayoutParams().width = length/7;
                         MainActivity.rightOrWrong.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
                         break;
                     case "large":
-                        MainActivity.rightOrWrong.getLayoutParams().height = length/4;
-                        MainActivity.rightOrWrong.getLayoutParams().width = length/4;
+                        MainActivity.rightOrWrong.getLayoutParams().height = length/5;
+                        MainActivity.rightOrWrong.getLayoutParams().width = length/5;
                         MainActivity.rightOrWrong.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-
                         break;
                 }
 
@@ -165,8 +167,65 @@ public class Buttons {
     private static void checkMaxLevel(int level) {
         if (level == maxLevel) {
             MainActivity.upTimer.cancel();
-            MainActivity.nextLevel.setEnabled(false);
-            MainActivity.nextLevel.setVisibility(View.GONE);
+            MainActivity.nextLevel.setText(R.string.return_menu);
+            MainActivity.nextLevel.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
+                @Override
+                public boolean onTouch(View view, MotionEvent event){
+                    if (event.getAction() == MotionEvent.ACTION_UP){
+                        final Dialog dialog = new Dialog(MainActivity.cont);
+                        dialog.setContentView(R.layout.back_window);
+                        dialog.show();
+                        TextView title = (TextView) dialog.findViewById(R.id.title);
+                        title.setText(R.string.back_title);
+
+                        TextView confirm = (TextView) dialog.findViewById(R.id.confirmation);
+                        confirm.setText(MainMenu.context.getString(R.string.confirm));
+
+                        // create the yes button
+                        Button yes;
+                        yes = (Button) dialog.findViewById(R.id.yes);
+                        yes.setText(MainActivity.cont.getString(R.string.yes));
+                        yes.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+                            @Override
+                            public boolean onTouch(View v, MotionEvent event) {
+                                if (event.getAction() == MotionEvent.ACTION_UP) {
+                                    dialog.dismiss();
+                                    Activity act = (Activity) MainActivity.cont;
+                                    act.finish();
+                                    MainActivity.levelNumber = 1;
+                                    if (MainMenu.timedGame) {
+                                        MainActivity.downTimer.cancel();
+                                    }
+                                    if (MainMenu.timedUpGame) {
+                                        MainActivity.upTimer.cancel();
+                                        MainActivity.upTimer = null;
+                                    }
+                                }
+                                super.onTouch(v, event);
+                                return false;
+                            }
+
+                        });
+
+                        // create the no button
+                        Button no;
+                        no = (Button) dialog.findViewById(R.id.no);
+                        no.setText(MainActivity.cont.getString(R.string.no));
+                        no.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+                            @Override
+                            public boolean onTouch(View v, MotionEvent event) {
+                                if (event.getAction() == MotionEvent.ACTION_UP){
+                                    dialog.dismiss();
+                                }
+                                super.onTouch(v,event);
+                                return false;
+                            }
+                        });
+                    }
+                    super.onTouch(view, event);
+                    return false;
+                }
+            });
             MainActivity.upTimer.cancel();
             MainActivity.time.setVisibility(View.VISIBLE);
             MainActivity.moveCounter.setText("FINISHED");

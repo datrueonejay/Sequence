@@ -11,13 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".Instructions"
-            android:theme="@style/Translucent" />
         <activity android:name=".Settings" />
-        <activity
-            android:name=".SettingsInstructions"
-            android:theme="@style/Translucent" />
         <activity
             android:name=".AboutMe"
             android:theme="@style/Translucent" />
@@ -31,8 +25,6 @@
         <activity android:name=".CountDown" />
         <activity android:name=".Unlockables" />
         <activity android:name=".Unlocks" />
-        <activity android:name=".Ownership"
-            android:theme="@style/Translucent"/>
     </application>
 
 </manifest>

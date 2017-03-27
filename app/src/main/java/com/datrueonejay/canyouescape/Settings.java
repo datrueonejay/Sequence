@@ -1,22 +1,20 @@
 package com.datrueonejay.canyouescape;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Settings extends AppCompatActivity {
 
-    Button back;
-    Button help;
-    Button me;
-    Button ownership;
-    Button musicToggle;
-    Button soundsToggle;
-    Button sizeToggle;
+    private int secretCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +26,14 @@ public class Settings extends AppCompatActivity {
         // resumes music
         MainMenu.music.start();
 
-        back = (Button) findViewById(R.id.back);
-        back.setText(R.string.back);
+        Button back = (Button) findViewById(R.id.back);
         back.getLayoutParams().height = MainMenu.screenHeight/15;
+        back.getLayoutParams().width = MainMenu.screenWidth/4;
+
+        TextView backText = (TextView) findViewById(R.id.back_text);
+        backText.getLayoutParams().height = MainMenu.screenHeight/15;
+        backText.getLayoutParams().width = MainMenu.screenWidth/4;
+        backText.setText(R.string.back);
 
         // go back to the game
         back.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
@@ -44,48 +47,116 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        help = (Button) findViewById(R.id.help);
-        help.setText(R.string.help);
+        Button help = (Button) findViewById(R.id.help);
         help.getLayoutParams().height = MainMenu.screenHeight/15;
+
+        TextView helpText = (TextView) findViewById(R.id.help_text);
+        helpText.setText(R.string.help);
+        helpText.getLayoutParams().height = MainMenu.screenHeight/15;
+
         // opens instructions
         help.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
-                Intent activity = new Intent(Settings.this, SettingsInstructions.class);
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    startActivity(activity);
+                    Dialog dialog = new Dialog(Settings.this);
+                    dialog.setContentView(R.layout.activity_settings_instructions);
+
+                    TextView title = (TextView) dialog.findViewById(R.id.title);
+                    title.setText(R.string.help);
+
+                    TextView info = (TextView) dialog.findViewById(R.id.info);
+                    info.getLayoutParams().height = MainMenu.screenHeight/4;
+                    info.setText(R.string.info);
+
+                    ImageView pic = (ImageView) dialog.findViewById(R.id.pic);
+                    pic.getLayoutParams().height = MainMenu.screenWidth/4;
+
+                    TextView closing = (TextView) dialog.findViewById(R.id.closing);
+                    closing.getLayoutParams().height = MainMenu.screenHeight/10;
+                    closing.setText(R.string.next);
+
+                    dialog.show();
                 }
                 super.onTouch(view, event);
                 return false;
             }
         });
 
-        me = (Button) findViewById(R.id.me);
-        me.setText(R.string.me);
+        Button me = (Button) findViewById(R.id.me);
         me.getLayoutParams().height = MainMenu.screenHeight/15;
+
+        TextView meText = (TextView) findViewById(R.id.me_text);
+        meText.setText(R.string.me);
+        meText.getLayoutParams().height = MainMenu.screenHeight/15;
+
         // opens screen about me
         me.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
-                Intent activity = new Intent(Settings.this, AboutMe.class);
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    startActivity(activity);
+                    //startActivity(activity);
+                    Dialog dialog = new Dialog(Settings.this);
+                    dialog.setContentView(R.layout.activity_about_me);
+                    // set the title
+                    final TextView title = (TextView) dialog.findViewById(R.id.title);
+                    title.setText(R.string.me);
+                    // set the text
+                    final TextView me = (TextView) dialog.findViewById(R.id.me);
+                    me.getLayoutParams().height = MainMenu.screenHeight/2;
+                    me.setText(getResources().getString(R.string.jayden));
+                    // sets the counter for the secret button
+                    secretCounter = 1;
+                    // sets the button
+                    Button secret = (Button) dialog.findViewById(R.id.secret);
+                    secret.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v){
+                            if (secretCounter != 14) {
+                                MainMenu.editor.putBoolean("dev", false);
+                                MainMenu.editor.commit();
+                                me.setText(getResources().getString(R.string.jayden));
+                            }
+                            else {
+                                MainMenu.editor.putBoolean("dev", true);
+                                MainMenu.editor.commit();
+                                me.setText(getResources().getString(R.string.jayden_dev));
+                            }
+                            secretCounter++;
+                        }
+                    });
+                    dialog.show();
                 }
                 super.onTouch(view, event);
                 return false;
             }
         });
 
-        ownership = (Button) findViewById(R.id.ownership);
-        ownership.setText(R.string.copyright);
+        Button ownership = (Button) findViewById(R.id.ownership);
         ownership.getLayoutParams().height = MainMenu.screenHeight/15;
+
+        TextView ownershipText = (TextView) findViewById(R.id.ownership_text);
+        ownershipText.setText(R.string.copyright);
+        ownershipText.getLayoutParams().height = MainMenu.screenHeight/15;
+
         // opens screen about me
         ownership.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
-                Intent activity = new Intent(Settings.this, Ownership.class);
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    startActivity(activity);
+                    Dialog dialog = new Dialog(Settings.this);
+                    dialog.setContentView(R.layout.activity_ownership);
+
+                    // set the title
+                    TextView title = (TextView) dialog.findViewById(R.id.title);
+                    title.setText(R.string.copyright);
+
+                    // set the text
+                    TextView ownership = (TextView) dialog.findViewById(R.id.ownership);
+                    ownership.getLayoutParams().height = MainMenu.screenHeight/3;
+                    ownership.setText(R.string.ownership);
+
+                    dialog.show();
                 }
                 super.onTouch(view, event);
                 return false;
@@ -93,15 +164,18 @@ public class Settings extends AppCompatActivity {
         });
 
         // sets the music toggle button
-        musicToggle = (Button) findViewById(R.id.music);
+        Button musicToggle = (Button) findViewById(R.id.music);
         musicToggle.getLayoutParams().height = MainMenu.screenHeight/15;
+
+        final TextView musicToggleText = (TextView) findViewById(R.id.music_text);
+        musicToggleText.getLayoutParams().height = MainMenu.screenHeight/15;
 
         // set the music text upon entering the settings menu
         if (MainMenu.musicOn){
-            musicToggle.setText(R.string.musicOn);
+            musicToggleText.setText(R.string.musicOn);
         }
         else if (!MainMenu.musicOn){
-            musicToggle.setText(R.string.music_off);
+            musicToggleText.setText(R.string.music_off);
         }
         // turns music volume to 0
         musicToggle.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
@@ -113,13 +187,13 @@ public class Settings extends AppCompatActivity {
                         MainMenu.editor.putBoolean("musicOn", false);
                         MainMenu.editor.commit();
                         MainMenu.musicOn = MainMenu.sp.getBoolean("musicOn", false);
-                        musicToggle.setText(R.string.music_off);
+                        musicToggleText.setText(R.string.music_off);
                     } else if (!MainMenu.musicOn) {
                         MainMenu.music.setVolume(0.75f, 0.75f);
                         MainMenu.editor.putBoolean("musicOn", true);
                         MainMenu.editor.commit();
                         MainMenu.musicOn = MainMenu.sp.getBoolean("musicOn", true);
-                        musicToggle.setText(R.string.musicOn);
+                        musicToggleText.setText(R.string.musicOn);
                     }
                 }
                 super.onTouch(view, event);
@@ -128,15 +202,18 @@ public class Settings extends AppCompatActivity {
         });
 
         // sets the sound effects toggle button
-        soundsToggle = (Button) findViewById(R.id.sounds);
+        Button soundsToggle = (Button) findViewById(R.id.sounds);
         soundsToggle.getLayoutParams().height = MainMenu.screenHeight/15;
+
+        final TextView soundsToggleText = (TextView) findViewById(R.id.sounds_text);
+        soundsToggleText.getLayoutParams().height = MainMenu.screenHeight/15;
 
         // set the sounds text
         if (MainMenu.soundsOn){
-            soundsToggle.setText(R.string.soundsOn);
+            soundsToggleText.setText(R.string.soundsOn);
         }
         else if (!MainMenu.soundsOn) {
-            soundsToggle.setText(R.string.sounds_off);
+            soundsToggleText.setText(R.string.sounds_off);
         }
         // sets if sounds volume is on or off
         soundsToggle.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
@@ -148,13 +225,13 @@ public class Settings extends AppCompatActivity {
                         MainMenu.editor.putBoolean("soundsOn", false);
                         MainMenu.editor.commit();
                         MainMenu.soundsOn = MainMenu.sp.getBoolean("soundsOn", true);
-                        soundsToggle.setText(R.string.sounds_off);
+                        soundsToggleText.setText(R.string.sounds_off);
                     } else if (!MainMenu.soundsOn) {
                         // turns the music on
                         MainMenu.editor.putBoolean("soundsOn", true);
                         MainMenu.editor.commit();
                         MainMenu.soundsOn = MainMenu.sp.getBoolean("soundsOn", true);
-                        soundsToggle.setText(R.string.soundsOn);
+                        soundsToggleText.setText(R.string.soundsOn);
                     }
                 }
                 super.onTouch(view, event);
@@ -162,17 +239,20 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        sizeToggle = (Button) findViewById(R.id.size);
+        Button sizeToggle = (Button) findViewById(R.id.size);
         sizeToggle.getLayoutParams().height = MainMenu.screenHeight/15;
+
+        final TextView sizeToggleText = (TextView) findViewById(R.id.size_text);
+        sizeToggleText.getLayoutParams().height = MainMenu.screenHeight/15;
 
         // checks what the size is
         String size = MainMenu.sp.getString("size", "medium");
         switch (size){
-            case "small": sizeToggle.setText(R.string.indicator_small);
+            case "small": sizeToggleText.setText(R.string.indicator_small);
                 break;
-            case "medium": sizeToggle.setText(R.string.indicator_medium);
+            case "medium": sizeToggleText.setText(R.string.indicator_medium);
                 break;
-            case "large": sizeToggle.setText(R.string.indicator_large);
+            case "large": sizeToggleText.setText(R.string.indicator_large);
                 break;
         }
         sizeToggle.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
@@ -182,17 +262,17 @@ public class Settings extends AppCompatActivity {
                     String size = MainMenu.sp.getString("size", "medium");
                     switch (size) {
                         case "small":
-                            sizeToggle.setText(R.string.indicator_medium);
+                            sizeToggleText.setText(R.string.indicator_medium);
                             MainMenu.editor.putString("size", "medium");
                             MainMenu.editor.commit();
                             break;
                         case "medium":
-                            sizeToggle.setText(R.string.indicator_large);
+                            sizeToggleText.setText(R.string.indicator_large);
                             MainMenu.editor.putString("size", "large");
                             MainMenu.editor.commit();
                             break;
                         case "large":
-                            sizeToggle.setText(R.string.indicator_small);
+                            sizeToggleText.setText(R.string.indicator_small);
                             MainMenu.editor.putString("size", "small");
                             MainMenu.editor.commit();
                             break;

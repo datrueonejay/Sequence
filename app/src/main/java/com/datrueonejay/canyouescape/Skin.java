@@ -10,6 +10,7 @@ public class Skin {
     private static Drawable[] objects = new Drawable[6];
     // takes in the name of the skin, sets background resources, sounds and gets correct and
     // incorrect pictures
+    // currently has 9 skins
     Skin(){
     }
 
@@ -166,6 +167,10 @@ public class Skin {
 
     public static Drawable GetIncorrect(){
         return objects[5];
+    }
+
+    public static int numSkins() {
+        return 9;
     }
 
 

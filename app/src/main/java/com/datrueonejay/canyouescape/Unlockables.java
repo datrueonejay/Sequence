@@ -18,17 +18,13 @@ public class Unlockables extends AppCompatActivity {
 
     public static Context cont;
 
-    LinearLayout layout;
     public static String[] howTo;
     public static String[] descriptions;
-    public static String[] skin = new String[9];
+    public static String[] skin = new String[Skin.numSkins()];
 
 
-    public static Boolean[] conditions = new Boolean[9];
-    public static RelativeLayout[] pages = new RelativeLayout[9];
-
-    Button use;
-
+    public static Boolean[] conditions = new Boolean[Skin.numSkins()];
+    public static RelativeLayout[] pages = new RelativeLayout[Skin.numSkins()];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +53,7 @@ public class Unlockables extends AppCompatActivity {
 
 
         if (MainMenu.sp.getBoolean("dev", false)){
-            for (int count = 0; count < 9; count++){
+            for (int count = 0; count < Skin.numSkins(); count++){
                 conditions[count] = true;
             }
         }
@@ -97,24 +93,28 @@ public class Unlockables extends AppCompatActivity {
         myPager.setAdapter(adapter);
 
         // create the pages
-        for (int counter = 0; counter < 9; counter ++){
+        for (int counter = 0; counter < Skin.numSkins(); counter ++){
             Skin skins = new Skin();
             skins.LoadSkin(Unlockables.skin[counter], Unlockables.cont);
             // find the current page
             RelativeLayout page = (RelativeLayout) getLayoutInflater().inflate(R.layout.unlockables_page, null);
 
-            //page.getLayoutParams().width = MainMenu.screenWidth;
             TextView title = (TextView) page.findViewById(R.id.title);
+            title.getLayoutParams().height = MainMenu.screenHeight/20;
             title.setText(cont.getString(R.string.unlockables));
 
             // finds how to unlock and sets it for current one
             TextView how = (TextView) page.findViewById(R.id.how);
+            how.getLayoutParams().height = MainMenu.screenHeight/12;
             how.setText(howTo[counter]);
+
+            Button use = (Button) page.findViewById(R.id.use);
 
             // sets the locked button if it is locked
             if (!Unlockables.conditions[counter]){
                 ImageView lock = (ImageView) page.findViewById(R.id.lock);
                 lock.setBackground(cont.getResources().getDrawable(R.drawable.locked));
+                use.setVisibility(View.INVISIBLE);
             }
             else {
                 // sets size of mid space
@@ -154,16 +154,21 @@ public class Unlockables extends AppCompatActivity {
 
                 // find the use button for the current page
                 use = (Button) page.findViewById(R.id.use);
-                use.setText(Unlockables.cont.getString(R.string.use));
                 use.setVisibility(View.VISIBLE);
                 if (MainMenu.sp.getString("skin", "classic").equals(Unlockables.skin[counter])){
+                    use.setText(Unlockables.cont.getString(R.string.selected));
                     use.setEnabled(false);
-                    use.setVisibility(View.INVISIBLE);
+                    use.setBackgroundColor(getResources().getColor(R.color.darkblue));
+                }
+                else {
+                    use.setText(Unlockables.cont.getString(R.string.use));
+                    use.setEnabled(true);
+                    use.setBackgroundColor(getResources().getColor(R.color.blue));
                 }
 
                 // finds description and sets it for current one
                 final TextView description = (TextView) page.findViewById(R.id.description);
-                description.getLayoutParams().height = MainMenu.screenHeight/8;
+                description.getLayoutParams().height = MainMenu.screenHeight/10;
                 description.setText(Unlockables.descriptions[counter]);
 
                 // copies the counter
@@ -176,14 +181,17 @@ public class Unlockables extends AppCompatActivity {
                             // says the new skin to be used
                             MainMenu.editor.putString("skin", Unlockables.skin[copy]);
                             MainMenu.editor.commit();
-                            // hide the current button
-                            use.setVisibility(View.INVISIBLE);
                             for (int counter = 0; counter < 9; counter ++){
+                                Button use = (Button) pages[counter].findViewById(R.id.use);
                                 if (counter == copy){
-                                    pages[counter].findViewById(R.id.use).setVisibility(View.INVISIBLE);
+                                    use.setText(R.string.selected);
+                                    use.setEnabled(false);
+                                    use.setBackgroundColor(getResources().getColor(R.color.darkblue));
                                 }
                                 else {
-                                    pages[counter].findViewById(R.id.use).setVisibility(View.VISIBLE);
+                                    use.setText(R.string.use);
+                                    use.setEnabled(true);
+                                    use.setBackgroundColor(getResources().getColor(R.color.blue));
                                 }
                             }
                             adapter.notifyDataSetChanged();

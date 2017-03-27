@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:id="@+id/instructions"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:padding="10dp"/>
 
     <com.datrueonejay.canyouescape.MyCustomButton
         android:layout_width="match_parent"

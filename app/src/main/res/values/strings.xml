@@ -34,14 +34,14 @@
     <string name="title_activity_typeface_util">TypefaceUtil</string>
     <string name="soundsOn">In Game Sounds: On</string>
     <string name="sounds_off">In Game Sounds: Off</string>
-    <string name="indicator_small">Indicator Size: Small</string>
-    <string name="indicator_medium">Indicator Size: Medium</string>
-    <string name="indicator_large">Indicator Size: Large</string>
+    <string name="indicator_small">Indicator Size: S</string>
+    <string name="indicator_medium">Indicator Size: M</string>
+    <string name="indicator_large">Indicator Size: L</string>
 
     <string name="title">Sequence</string>
     <string name="main">Classic</string>
     <string name="time">Time Attack</string>
-    <string name="time_instructions">Finish as many levels as you can in the given time</string>
+    <string name="time_instructions">Finish as many levels as you can in the time</string>
     <string name="levels">Beat the Clock</string>
     <string name="level_instructions">Finish the given levels as fast as you can</string>
     <string name="settings">Settings</string>
@@ -49,7 +49,7 @@
     <string name="back_title">Are you sure?</string>
     <string name="next_level">Next Level</string>
 
-    <string name="confirm">Are you sure you want to go back to the main menu? Your highscore will be saved.
+    <string name="confirm">Return to the main menu? Your highscore will be saved.
     </string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -73,6 +73,9 @@
     <string name="timed">Time Attack</string>
 
     <string name="use">Use</string>
+    <string name="selected">Selected</string>
+    <string name="return_menu">Return to menu</string>
+    <string name="move">Move</string>
 
     <string name="classic">\"The classic. If you\'re using this you\'ve probably unlocked
         nothing.\"</string>
@@ -110,6 +113,9 @@
     <string name="how8">Achieve a time of under 20 seconds for beat the clock level 5.</string>
     <string name="how9">Achieve a time of under 40 seconds for beat the clock level 7.</string>
 
+    <string name="info">Determine the sequence of the level. The level number represensts the number
+        of moves you must determine. A correct moves is indicated by a green light and a ding. A
+        wrong move is indicated by a red light and a buzz. </string>
 
     <string-array name="howto">
         <item>@string/how1</item>

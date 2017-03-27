@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main_menu"
     android:layout_width="match_parent"
@@ -10,68 +10,159 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.datrueonejay.canyouescape.MainMenu">
 
-    <com.datrueonejay.canyouescape.MyCustomTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/blue"
-        android:textSize="50sp"
-        android:padding="3dp"
-        android:layout_marginBottom="15dp"/>
 
-    <com.datrueonejay.canyouescape.MyCustomButton
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main"
-        android:layout_below="@+id/title"
-        android:textSize="24sp"
-        android:padding="3dp"
-        android:layout_marginBottom="15dp"/>
+        android:layout_height="match_parent"
+        android:id="@+id/one">
 
-    <com.datrueonejay.canyouescape.MyCustomButton
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/blue"
+            android:textSize="50sp"
+            android:padding="3dp"
+            android:layout_marginBottom="15dp"/>
+
+        <com.datrueonejay.canyouescape.MyCustomButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/main"
+            android:layout_below="@+id/title"
+            android:textSize="24sp"
+            android:padding="3dp"
+            android:layout_marginBottom="15dp"/>
+
+        <com.datrueonejay.canyouescape.MyCustomButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/time"
+            android:layout_below="@+id/main"
+            android:textSize="24sp"
+            android:padding="3dp"
+            android:layout_marginBottom="15dp"/>
+
+        <com.datrueonejay.canyouescape.MyCustomButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/levels"
+            android:layout_below="@+id/time"
+            android:textSize="24sp"
+            android:padding="3dp"
+            android:layout_marginBottom="15dp"/>
+
+        <com.datrueonejay.canyouescape.MyCustomButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings"
+            android:layout_below="@+id/levels"
+            android:textSize="24sp"
+            android:padding="3dp"
+            android:layout_marginBottom="15dp"/>
+
+        <com.datrueonejay.canyouescape.MyCustomButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/highscores"
+            android:layout_below="@+id/settings"
+            android:textSize="24sp"
+            android:padding="3dp"
+            android:layout_marginBottom="15dp"/>
+
+        <com.datrueonejay.canyouescape.MyCustomButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/unlockables"
+            android:layout_below="@+id/highscores"
+            android:textSize="24sp"
+            android:padding="3dp"
+            android:layout_marginBottom="15dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/time"
-        android:layout_below="@+id/main"
-        android:textSize="24sp"
-        android:padding="3dp"
-        android:layout_marginBottom="15dp"/>
+        android:layout_height="match_parent"
+        android:id="@+id/two">
 
-    <com.datrueonejay.canyouescape.MyCustomButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/levels"
-        android:layout_below="@+id/time"
-        android:textSize="24sp"
-        android:padding="3dp"
-        android:layout_marginBottom="15dp"/>
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_two"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/blue"
+            android:textSize="50sp"
+            android:padding="3dp"
+            android:layout_marginBottom="15dp" />
 
-    <com.datrueonejay.canyouescape.MyCustomButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/settings"
-        android:layout_below="@+id/levels"
-        android:textSize="24sp"
-        android:padding="3dp"
-        android:layout_marginBottom="15dp"/>
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/main_text"
+            android:layout_below="@+id/title_two"
+            android:textSize="45sp"
+            android:padding="5dp"
+            android:layout_marginBottom="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"/>
 
-    <com.datrueonejay.canyouescape.MyCustomButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/highscores"
-        android:layout_below="@+id/settings"
-        android:textSize="24sp"
-        android:padding="3dp"
-        android:layout_marginBottom="15dp"/>
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/time_text"
+            android:layout_below="@+id/main_text"
+            android:textSize="45sp"
+            android:padding="5dp"
+            android:layout_marginBottom="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"/>
 
-    <com.datrueonejay.canyouescape.MyCustomButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/unlockables"
-        android:layout_below="@+id/highscores"
-        android:textSize="24sp"
-        android:padding="3dp"
-        android:layout_marginBottom="15dp"/>
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/levels_text"
+            android:layout_below="@+id/time_text"
+            android:textSize="45sp"
+            android:padding="5dp"
+            android:layout_marginBottom="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"/>
 
-</RelativeLayout>
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_text"
+            android:layout_below="@+id/levels_text"
+            android:textSize="45sp"
+            android:padding="5dp"
+            android:layout_marginBottom="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"/>
+
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/highscores_text"
+            android:layout_below="@+id/settings_text"
+            android:textSize="45sp"
+            android:padding="5dp"
+            android:layout_marginBottom="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"/>
+
+        <com.datrueonejay.canyouescape.MyCustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/unlockables_text"
+            android:layout_below="@+id/highscores_text"
+            android:textSize="45sp"
+            android:padding="5dp"
+            android:layout_marginBottom="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

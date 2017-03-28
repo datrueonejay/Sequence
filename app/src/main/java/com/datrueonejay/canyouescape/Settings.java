@@ -33,6 +33,7 @@ public class Settings extends AppCompatActivity {
         TextView backText = (TextView) findViewById(R.id.back_text);
         backText.getLayoutParams().height = MainMenu.screenHeight/15;
         backText.getLayoutParams().width = MainMenu.screenWidth/4;
+        backText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         backText.setText(R.string.back);
 
         // go back to the game
@@ -52,6 +53,7 @@ public class Settings extends AppCompatActivity {
 
         TextView helpText = (TextView) findViewById(R.id.help_text);
         helpText.setText(R.string.help);
+        helpText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         helpText.getLayoutParams().height = MainMenu.screenHeight/15;
 
         // opens instructions
@@ -87,6 +89,7 @@ public class Settings extends AppCompatActivity {
         me.getLayoutParams().height = MainMenu.screenHeight/15;
 
         TextView meText = (TextView) findViewById(R.id.me_text);
+        meText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         meText.setText(R.string.me);
         meText.getLayoutParams().height = MainMenu.screenHeight/15;
 
@@ -136,6 +139,7 @@ public class Settings extends AppCompatActivity {
         ownership.getLayoutParams().height = MainMenu.screenHeight/15;
 
         TextView ownershipText = (TextView) findViewById(R.id.ownership_text);
+        ownershipText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         ownershipText.setText(R.string.copyright);
         ownershipText.getLayoutParams().height = MainMenu.screenHeight/15;
 
@@ -168,6 +172,7 @@ public class Settings extends AppCompatActivity {
         musicToggle.getLayoutParams().height = MainMenu.screenHeight/15;
 
         final TextView musicToggleText = (TextView) findViewById(R.id.music_text);
+        musicToggleText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         musicToggleText.getLayoutParams().height = MainMenu.screenHeight/15;
 
         // set the music text upon entering the settings menu
@@ -206,6 +211,7 @@ public class Settings extends AppCompatActivity {
         soundsToggle.getLayoutParams().height = MainMenu.screenHeight/15;
 
         final TextView soundsToggleText = (TextView) findViewById(R.id.sounds_text);
+        soundsToggleText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         soundsToggleText.getLayoutParams().height = MainMenu.screenHeight/15;
 
         // set the sounds text
@@ -243,6 +249,7 @@ public class Settings extends AppCompatActivity {
         sizeToggle.getLayoutParams().height = MainMenu.screenHeight/15;
 
         final TextView sizeToggleText = (TextView) findViewById(R.id.size_text);
+        sizeToggleText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         sizeToggleText.getLayoutParams().height = MainMenu.screenHeight/15;
 
         // checks what the size is

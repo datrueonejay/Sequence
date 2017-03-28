@@ -135,6 +135,7 @@ public class MainMenu extends AppCompatActivity {
 
         TextView mainText = (TextView) two.findViewById(R.id.main_text);
         mainText.getLayoutParams().height = screenHeight/15;
+        mainText.setPadding(0, screenHeight/60, 0, screenHeight/60);
         mainText.setText(getResources().getString(R.string.main));
 
         Button timeAttack = (Button) one.findViewById(R.id.time);
@@ -142,6 +143,7 @@ public class MainMenu extends AppCompatActivity {
 
         TextView timeAttackText = (TextView) two.findViewById(R.id.time_text);
         timeAttackText.getLayoutParams().height = screenHeight/15;
+        timeAttackText.setPadding(0, screenHeight/60, 0, screenHeight/60);
         timeAttackText.setText(getResources().getString(R.string.time));
 
         Button levels = (Button) one.findViewById(R.id.levels);
@@ -149,6 +151,7 @@ public class MainMenu extends AppCompatActivity {
 
         TextView levelsText = (TextView) two.findViewById(R.id.levels_text);
         levelsText.getLayoutParams().height = screenHeight/15;
+        levelsText.setPadding(0, screenHeight/60, 0, screenHeight/60);
         levelsText.setText(getString(R.string.levels));
 
         Button settings = (Button) one.findViewById(R.id.settings);
@@ -156,6 +159,7 @@ public class MainMenu extends AppCompatActivity {
 
         TextView settingsText = (TextView) two.findViewById(R.id.settings_text);
         settingsText.getLayoutParams().height = screenHeight/15;
+        settingsText.setPadding(0, screenHeight/60, 0, screenHeight/60);
         settingsText.setText(getResources().getString(R.string.settings));
 
         Button highscores = (Button) one.findViewById(R.id.highscores);
@@ -163,6 +167,7 @@ public class MainMenu extends AppCompatActivity {
 
         TextView highscoresText = (TextView) two.findViewById(R.id.highscores_text);
         highscoresText.getLayoutParams().height = screenHeight/15;
+        highscoresText.setPadding(0, screenHeight/60, 0, screenHeight/60);
         highscoresText.setText(getResources().getString(R.string.highscores));
 
         Button unlockables = (Button) one.findViewById(R.id.unlockables);
@@ -170,6 +175,7 @@ public class MainMenu extends AppCompatActivity {
 
         TextView unlockablesText = (TextView) two.findViewById(R.id.unlockables_text);
         unlockablesText.getLayoutParams().height = screenHeight/15;
+        unlockablesText.setPadding(0, screenHeight/60, 0, screenHeight/60);
         unlockablesText.setText(getResources().getString(R.string.unlockables));
 
         // button to start non timed game mode with colour change

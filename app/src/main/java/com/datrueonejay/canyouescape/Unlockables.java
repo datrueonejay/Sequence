@@ -94,6 +94,8 @@ public class Unlockables extends AppCompatActivity {
             // sets the locked button if it is locked
             if (!Unlockables.conditions[counter]){
                 ImageView lock = (ImageView) page.findViewById(R.id.lock);
+                lock.getLayoutParams().height = 2*MainMenu.screenWidth/3;
+                lock.getLayoutParams().width = 2*MainMenu.screenWidth/3;
                 lock.setBackground(cont.getResources().getDrawable(R.drawable.locked));
                 use.setVisibility(View.INVISIBLE);
             }

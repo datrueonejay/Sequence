@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_ownership"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,8 +27,9 @@
         android:textSize="50sp"
         android:textAlignment="center"
         android:layout_below="@+id/title"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp"
         />
 
 </RelativeLayout>

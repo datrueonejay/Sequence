@@ -4,7 +4,6 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/white"
     tools:context="com.datrueonejay.canyouescape.MainActivity">
 
     <ImageView
@@ -79,9 +78,9 @@
         android:paddingLeft="15dp"
         android:textSize="30sp"
         android:layout_marginBottom="15dp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        />
 
-    <!--move counter-->
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,7 +92,8 @@
         android:paddingRight="15dp"
         android:textSize="30sp"
         android:layout_marginBottom="15dp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        />
 
     <com.datrueonejay.canyouescape.MyCustomButton
         android:layout_width="wrap_content"
@@ -104,7 +104,8 @@
         android:layout_above="@+id/upButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        />
 
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:paddingTop="5dp"
@@ -116,7 +117,8 @@
         android:layout_below="@+id/moveCounter"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        />
 
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:paddingLeft="5dp"
@@ -129,7 +131,8 @@
         android:layout_below="@+id/highscore"
         android:visibility="invisible"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        />
 
     <ImageView
         android:adjustViewBounds="true"
@@ -139,10 +142,7 @@
         android:id="@+id/rightOrWrong"
         android:layout_above="@+id/upButton"
         android:layout_centerHorizontal="true"
-        android:scaleType="centerInside"/>
-
-
-
-
+        android:scaleType="centerInside"
+        />
 
 </RelativeLayout>

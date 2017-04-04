@@ -1,14 +1,11 @@
 package com.datrueonejay.canyouescape;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-
-
 
 public class MyCustomButton extends Button {
 
@@ -31,21 +28,19 @@ public class MyCustomButton extends Button {
     private void init() {
         try{
             if (!isInEditMode()) {
-
+                // set font
                 Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Cornerstone.ttf");
                 setTypeface(tf);
                 this.setBackgroundColor(getResources().getColor(R.color.blue));
                 this.setTextColor(getResources().getColor(R.color.white));
-
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     public static class ButtonTouchEvent implements OnTouchListener{
-
+        // changes colour background when pressed
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             if (event.getAction() == MotionEvent.ACTION_DOWN){
@@ -56,9 +51,5 @@ public class MyCustomButton extends Button {
             }
             return false;
         }
-
-
     }
-
-
 }

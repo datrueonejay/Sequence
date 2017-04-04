@@ -2,7 +2,6 @@ package com.datrueonejay.canyouescape;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.Rect;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,19 +9,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class Unlockables extends AppCompatActivity {
 
     public static Context cont;
-
     public static String[] howTo;
     public static String[] descriptions;
     public static String[] skin = new String[Skin.numSkins()];
-
-
     public static Boolean[] conditions = new Boolean[Skin.numSkins()];
     public static RelativeLayout[] pages = new RelativeLayout[Skin.numSkins()];
 
@@ -30,12 +25,9 @@ public class Unlockables extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.unlockables_view_pager);
-
         cont = this;
-
         // resumes music
         MainMenu.music.start();
-
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // finds all the scores to check conditions
@@ -49,9 +41,6 @@ public class Unlockables extends AppCompatActivity {
         int h = MainMenu.sp.getInt("seven", 9999);
         int i = MainMenu.sp.getInt("ten", 9999);
         int k = MainMenu.sp.getInt("fifteen", 9999);
-
-
-
         if (MainMenu.sp.getBoolean("dev", false)){
             for (int count = 0; count < Skin.numSkins(); count++){
                 conditions[count] = true;
@@ -69,8 +58,6 @@ public class Unlockables extends AppCompatActivity {
             conditions[7] = g < 20;
             conditions[8] = h < 40;
         }
-
-
         // finds the strings for descriptions
         descriptions = getResources().getStringArray(R.array.arrows);
         // finds the strings for how to unlock
@@ -85,31 +72,25 @@ public class Unlockables extends AppCompatActivity {
         skin[6] = "playstation";
         skin[7] = "cards";
         skin[8] = "ddr";
-
         // create the view pager adapter
         final MyPagerAdapter adapter = new MyPagerAdapter();
         // set up the view pager
         ViewPager myPager = (ViewPager) findViewById(R.id.pages);
         myPager.setAdapter(adapter);
-
         // create the pages
         for (int counter = 0; counter < Skin.numSkins(); counter ++){
             Skin skins = new Skin();
             skins.LoadSkin(Unlockables.skin[counter], Unlockables.cont);
             // find the current page
             RelativeLayout page = (RelativeLayout) getLayoutInflater().inflate(R.layout.unlockables_page, null);
-
             TextView title = (TextView) page.findViewById(R.id.title);
             title.getLayoutParams().height = MainMenu.screenHeight/20;
             title.setText(cont.getString(R.string.unlockables));
-
             // finds how to unlock and sets it for current one
             TextView how = (TextView) page.findViewById(R.id.how);
             how.getLayoutParams().height = MainMenu.screenHeight/12;
             how.setText(howTo[counter]);
-
             Button use = (Button) page.findViewById(R.id.use);
-
             // sets the locked button if it is locked
             if (!Unlockables.conditions[counter]){
                 ImageView lock = (ImageView) page.findViewById(R.id.lock);
@@ -151,7 +132,6 @@ public class Unlockables extends AppCompatActivity {
                 incorrect.setBackground(skins.GetIncorrect());
                 incorrect.getLayoutParams().width = MainMenu.screenWidth / 6;
                 incorrect.getLayoutParams().height = MainMenu.screenWidth / 6;
-
                 // find the use button for the current page
                 use = (Button) page.findViewById(R.id.use);
                 use.setVisibility(View.VISIBLE);
@@ -165,12 +145,10 @@ public class Unlockables extends AppCompatActivity {
                     use.setEnabled(true);
                     use.setBackgroundColor(getResources().getColor(R.color.blue));
                 }
-
                 // finds description and sets it for current one
                 final TextView description = (TextView) page.findViewById(R.id.description);
                 description.getLayoutParams().height = MainMenu.screenHeight/10;
                 description.setText(Unlockables.descriptions[counter]);
-
                 // copies the counter
                 final int copy = counter;
                 // set what happens when the button is clicked
@@ -203,9 +181,7 @@ public class Unlockables extends AppCompatActivity {
             }
             pages[counter] = page;
         }
-
         myPager.setCurrentItem(0);
-
     }
 
     @Override
@@ -219,5 +195,4 @@ public class Unlockables extends AppCompatActivity {
         super.onResume();
         SoundManager.continueMusic();
     }
-
 }

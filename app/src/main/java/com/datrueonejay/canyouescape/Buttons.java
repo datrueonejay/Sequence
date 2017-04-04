@@ -15,8 +15,8 @@ public class Buttons {
     private static int maxLevel;
 
     public static void CreateButton(final int button_counter) {
-        final Drawable yup = MainActivity.skin.GetCorrect();
-        final Drawable nope = MainActivity.skin.GetIncorrect();
+        final Drawable correctPic = MainActivity.skin.GetCorrect();
+        final Drawable incorrectPic = MainActivity.skin.GetIncorrect();
 
 
         //finds the max dimensions the picture can be to avoid overlap
@@ -25,10 +25,8 @@ public class Buttons {
         MainActivity.moves[button_counter - 1].setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
                 // sets the size of the indicator box
                 String size = MainMenu.sp.getString("size", "medium");
-
                 // find the size of the background
                 switch (size){
                     case "small":
@@ -40,7 +38,6 @@ public class Buttons {
                         MainActivity.rightOrWrong.getLayoutParams().height = length/7;
                         MainActivity.rightOrWrong.getLayoutParams().width = length/7;
                         MainActivity.rightOrWrong.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-
                         break;
                     case "large":
                         MainActivity.rightOrWrong.getLayoutParams().height = length/5;
@@ -48,7 +45,6 @@ public class Buttons {
                         MainActivity.rightOrWrong.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                         break;
                 }
-
                 // sets right or wrong when a button is pressed
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     // tries to input the move
@@ -74,11 +70,10 @@ public class Buttons {
                         }
                         // sets the background as green
                         if (!MainActivity.currentSequence.check_sequence()){
-                            MainActivity.rightOrWrong.setBackground(yup);
+                            MainActivity.rightOrWrong.setBackground(correctPic);
                         }
                         // increases the move
                         MainActivity.currentSequence.increase_move();
-
                         // checks if the user sequence matches the level sequence
                         if (MainActivity.currentSequence.check_sequence()) {
                             // create the text for the move counter
@@ -92,30 +87,22 @@ public class Buttons {
                             }
                             // disables next level button if it shows
                             MainActivity.nextLevel.setEnabled(false);
-
                             // finds the current high score
                             long score = MainMenu.sp.getInt(MainMenu.gameMode, 0);
                             // checks if the new score is higher than the old high score and not the
                             // beat the clock game mode
-                            if (MainActivity.levelNumber > score && !MainMenu.timedUpGame) {
+                            if (MainActivity.levelNumber > score && !MainMenu.beatTheClockMode) {
                                 // save the new highscore
                                 SharedPreferences.Editor editor = MainMenu.sp.edit();
                                 editor.putInt(MainMenu.gameMode, MainActivity.levelNumber);
                                 editor.commit();
                                 // set the new highscore
                                 long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 0);
-                                if (MainMenu.timedGame){
-                                    MainActivity.highscore.setText("Highest Level: " + Long.toString(highScore));
-                                }
-                                else {
-                                    MainActivity.highscore.setText("Highscore: " + Long.toString(highScore));
-                                }
+                                MainActivity.highscore.setText("Highest Level: " + Long.toString(highScore));
                             }
                             checkMaxLevel(MainActivity.levelNumber);
-
                             // increase the level
                             MainActivity.levelNumber++;
-
                         } else if (!MainActivity.currentSequence.check_sequence()) {
                             // create the text for the move counter
                             MainActivity.moveCounter.setText("Move  " + Integer.toString(MainActivity.currentSequence.moveCounter() + 1));
@@ -127,22 +114,21 @@ public class Buttons {
                             // create a new thread to play the incorrect sound
                             MainActivity.sounds.play(MainActivity.incorrectSound, 1, 1, 0, 0, 1);
                         }
-                        // set red
-                        MainActivity.rightOrWrong.setBackground(nope);
+                        // set incorrect
+                        MainActivity.rightOrWrong.setBackground(incorrectPic);
                         // resets the users inputs
                         MainActivity.currentSequence.reset();
                         // create the text for the move counter
                         MainActivity.moveCounter.setText("Move  " + Integer.toString(MainActivity.currentSequence.moveCounter() + 1));
                     }
                 }
-
                 // sets when button is released
                 else if (event.getAction() == MotionEvent.ACTION_UP){
                     // sets box back to invisible
                     MainActivity.rightOrWrong.setVisibility(View.INVISIBLE);
                     // re enables all the buttons if sequence is not finished yet
                     if (!MainActivity.currentSequence.check_sequence()){
-                       EnableButtons();
+                        EnableButtons();
                     }
                     else{
                         DisableButtons();
@@ -150,7 +136,6 @@ public class Buttons {
                         MainActivity.nextLevel.setEnabled(true);
                     }
                 }
-
                 // if dev mode show the correct move
                 if (MainMenu.sp.getBoolean("dev", false) && MainActivity.currentSequence.does_not_exceed_length()){
                     MainActivity.mid.setText(Integer.toString(MainActivity.currentSequence.getMove()));
@@ -165,22 +150,23 @@ public class Buttons {
     }
 
     private static void checkMaxLevel(int level) {
+        // stops game if max level is reached
         if (level == maxLevel) {
             MainActivity.upTimer.cancel();
+            // set button to return to menu
             MainActivity.nextLevel.setText(R.string.return_menu);
             MainActivity.nextLevel.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
                 @Override
                 public boolean onTouch(View view, MotionEvent event){
                     if (event.getAction() == MotionEvent.ACTION_UP){
+                        // create yes or no to return
                         final Dialog dialog = new Dialog(MainActivity.cont);
                         dialog.setContentView(R.layout.back_window);
                         dialog.show();
                         TextView title = (TextView) dialog.findViewById(R.id.title);
                         title.setText(R.string.back_title);
-
                         TextView confirm = (TextView) dialog.findViewById(R.id.confirmation);
                         confirm.setText(MainMenu.context.getString(R.string.confirm));
-
                         // create the yes button
                         Button yes;
                         yes = (Button) dialog.findViewById(R.id.yes);
@@ -193,10 +179,10 @@ public class Buttons {
                                     Activity act = (Activity) MainActivity.cont;
                                     act.finish();
                                     MainActivity.levelNumber = 1;
-                                    if (MainMenu.timedGame) {
+                                    if (MainMenu.timeAttackMode) {
                                         MainActivity.downTimer.cancel();
                                     }
-                                    if (MainMenu.timedUpGame) {
+                                    if (MainMenu.beatTheClockMode) {
                                         MainActivity.upTimer.cancel();
                                         MainActivity.upTimer = null;
                                     }
@@ -206,7 +192,6 @@ public class Buttons {
                             }
 
                         });
-
                         // create the no button
                         Button no;
                         no = (Button) dialog.findViewById(R.id.no);
@@ -226,10 +211,10 @@ public class Buttons {
                     return false;
                 }
             });
-            MainActivity.upTimer.cancel();
             MainActivity.time.setVisibility(View.VISIBLE);
             MainActivity.moveCounter.setText("FINISHED");
             MainActivity.time.setText("You took " + Integer.toString(MainActivity.currTime) + " seconds");
+            // if shorted time was achieved
             if (MainActivity.currTime < MainMenu.sp.getInt(MainMenu.gameMode, 9999)){
                 MainMenu.editor.putInt(MainMenu.gameMode, MainActivity.currTime);
                 MainMenu.editor.commit();
@@ -240,7 +225,7 @@ public class Buttons {
         }
     }
 
-    // method to disable buttons
+    // method to disable move and next level buttons
     public static void DisableButtons(){
         for (int a_counter = 0; a_counter < 4; a_counter++) {
             MainActivity.moves[a_counter].setEnabled(false);
@@ -248,6 +233,7 @@ public class Buttons {
         }
     }
 
+    // enables all move buttons
     public static void EnableButtons(){
         for (int a_counter = 0; a_counter < 4; a_counter++) {
             MainActivity.moves[a_counter].setEnabled(true);

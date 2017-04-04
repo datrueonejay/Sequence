@@ -3,13 +3,13 @@
     android:orientation="vertical"
     android:layout_width="400dp"
     android:layout_height="match_parent"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp">
+    >
 
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_centerHorizontal="true"
+        android:background="@null"
         android:id="@+id/mid"
         android:layout_above="@+id/downButton"/>
 
@@ -20,14 +20,18 @@
         android:id="@+id/midSkinny"/>
 
     <com.datrueonejay.canyouescape.MyCustomTextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:textSize="50sp"
         android:id="@+id/title"
         android:layout_marginBottom="15dp"
-        android:paddingTop="5dp"/>
+        android:textColor="@color/white"
+        android:background="@color/blue"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        />
 
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:layout_width="match_parent"
@@ -36,26 +40,32 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:id="@+id/how"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:layout_margin="5dp"
-        android:layout_below="@+id/title"/>
+        android:textColor="@color/blue"
+        android:layout_below="@+id/title"
+        />
 
     <ImageView
         android:layout_below="@+id/how"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_toLeftOf="@+id/midSkinny"
-        android:id="@+id/correct"/>
+        android:id="@+id/correct"
+        />
 
     <ImageView
         android:layout_below="@+id/how"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_toRightOf="@+id/midSkinny"
-        android:id="@+id/incorrect"/>
+        android:id="@+id/incorrect"
+        />
 
     <ImageView
         android:id="@+id/lock"
@@ -63,7 +73,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        />
 
     <ImageView
         android:layout_width="100dp"
@@ -79,7 +90,8 @@
         android:layout_above="@+id/downButton"
         android:layout_toLeftOf="@+id/downButton"
         android:id="@+id/leftButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        />
 
     <ImageView
         android:layout_width="100dp"
@@ -87,7 +99,8 @@
         android:layout_above="@+id/use"
         android:id="@+id/downButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        />
 
     <ImageView
         android:layout_width="100dp"
@@ -95,7 +108,8 @@
         android:layout_above="@+id/downButton"
         android:layout_toRightOf="@id/downButton"
         android:id="@+id/rightButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        />
 
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:layout_width="match_parent"
@@ -106,9 +120,11 @@
         android:layout_margin="5dp"
         android:textAlignment="center"
         android:id="@+id/description"
-        android:layout_marginBottom="5dp" />
-
-
+        android:textColor="@color/blue"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_marginBottom="5dp"
+        />
 
     <com.datrueonejay.canyouescape.MyCustomButton
         android:layout_width="wrap_content"
@@ -116,6 +132,7 @@
         android:id="@+id/use"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/description"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="15dp"
+        />
 
 </RelativeLayout>

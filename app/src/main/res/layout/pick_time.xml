@@ -10,7 +10,8 @@
         android:textAlignment="center"
         android:id="@+id/instructions"
         android:textSize="20sp"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:textColor="@color/blue"/>
 
     <com.datrueonejay.canyouescape.MyCustomButton
         android:layout_width="match_parent"
@@ -56,31 +57,4 @@
         android:layout_below="@+id/one_half"
         />
 
-    <!--
-
-    <com.datrueonejay.canyouescape.MyCustomButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/two_half"
-        android:text="@string/two_half"
-        android:textAlignment="center"
-        android:padding="3dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:layout_below="@+id/two"
-        />
-
-    <com.datrueonejay.canyouescape.MyCustomButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/three"
-        android:text="@string/three"
-        android:textAlignment="center"
-        android:padding="3dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:layout_below="@+id/two_half"
-        />
-
-    -->
 </RelativeLayout>

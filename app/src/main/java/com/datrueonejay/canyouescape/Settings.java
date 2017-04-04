@@ -1,13 +1,11 @@
 package com.datrueonejay.canyouescape;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,20 +20,16 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         // resumes music
         MainMenu.music.start();
-
         Button back = (Button) findViewById(R.id.back);
         back.getLayoutParams().height = MainMenu.screenHeight/15;
         back.getLayoutParams().width = MainMenu.screenWidth/4;
-
         TextView backText = (TextView) findViewById(R.id.back_text);
         backText.getLayoutParams().height = MainMenu.screenHeight/15;
         backText.getLayoutParams().width = MainMenu.screenWidth/4;
         backText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         backText.setText(R.string.back);
-
         // go back to the game
         back.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
@@ -47,15 +41,12 @@ public class Settings extends AppCompatActivity {
                 return false;
             }
         });
-
         Button help = (Button) findViewById(R.id.help);
         help.getLayoutParams().height = MainMenu.screenHeight/15;
-
         TextView helpText = (TextView) findViewById(R.id.help_text);
         helpText.setText(R.string.help);
         helpText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         helpText.getLayoutParams().height = MainMenu.screenHeight/15;
-
         // opens instructions
         help.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
@@ -63,36 +54,28 @@ public class Settings extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     Dialog dialog = new Dialog(Settings.this);
                     dialog.setContentView(R.layout.activity_settings_instructions);
-
                     TextView title = (TextView) dialog.findViewById(R.id.title);
                     title.setText(R.string.help);
-
                     TextView info = (TextView) dialog.findViewById(R.id.info);
                     info.getLayoutParams().height = MainMenu.screenHeight/4;
                     info.setText(R.string.info);
-
                     ImageView pic = (ImageView) dialog.findViewById(R.id.pic);
                     pic.getLayoutParams().height = MainMenu.screenWidth/4;
-
                     TextView closing = (TextView) dialog.findViewById(R.id.closing);
-                    closing.getLayoutParams().height = MainMenu.screenHeight/10;
+                    closing.getLayoutParams().height = MainMenu.screenHeight/13;
                     closing.setText(R.string.next);
-
                     dialog.show();
                 }
                 super.onTouch(view, event);
                 return false;
             }
         });
-
         Button me = (Button) findViewById(R.id.me);
         me.getLayoutParams().height = MainMenu.screenHeight/15;
-
         TextView meText = (TextView) findViewById(R.id.me_text);
         meText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         meText.setText(R.string.me);
         meText.getLayoutParams().height = MainMenu.screenHeight/15;
-
         // opens screen about me
         me.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
@@ -106,7 +89,7 @@ public class Settings extends AppCompatActivity {
                     title.setText(R.string.me);
                     // set the text
                     final TextView me = (TextView) dialog.findViewById(R.id.me);
-                    me.getLayoutParams().height = MainMenu.screenHeight/2;
+                    me.getLayoutParams().height = MainMenu.screenHeight/3;
                     me.setText(getResources().getString(R.string.jayden));
                     // sets the counter for the secret button
                     secretCounter = 1;
@@ -134,15 +117,12 @@ public class Settings extends AppCompatActivity {
                 return false;
             }
         });
-
         Button ownership = (Button) findViewById(R.id.ownership);
         ownership.getLayoutParams().height = MainMenu.screenHeight/15;
-
         TextView ownershipText = (TextView) findViewById(R.id.ownership_text);
         ownershipText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         ownershipText.setText(R.string.copyright);
         ownershipText.getLayoutParams().height = MainMenu.screenHeight/15;
-
         // opens screen about me
         ownership.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
@@ -150,31 +130,25 @@ public class Settings extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     Dialog dialog = new Dialog(Settings.this);
                     dialog.setContentView(R.layout.activity_ownership);
-
                     // set the title
                     TextView title = (TextView) dialog.findViewById(R.id.title);
                     title.setText(R.string.copyright);
-
                     // set the text
                     TextView ownership = (TextView) dialog.findViewById(R.id.ownership);
-                    ownership.getLayoutParams().height = MainMenu.screenHeight/3;
+                    ownership.getLayoutParams().height = MainMenu.screenHeight/6;
                     ownership.setText(R.string.ownership);
-
                     dialog.show();
                 }
                 super.onTouch(view, event);
                 return false;
             }
         });
-
         // sets the music toggle button
         Button musicToggle = (Button) findViewById(R.id.music);
         musicToggle.getLayoutParams().height = MainMenu.screenHeight/15;
-
         final TextView musicToggleText = (TextView) findViewById(R.id.music_text);
         musicToggleText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         musicToggleText.getLayoutParams().height = MainMenu.screenHeight/15;
-
         // set the music text upon entering the settings menu
         if (MainMenu.musicOn){
             musicToggleText.setText(R.string.musicOn);
@@ -205,15 +179,12 @@ public class Settings extends AppCompatActivity {
                 return false;
             }
         });
-
         // sets the sound effects toggle button
         Button soundsToggle = (Button) findViewById(R.id.sounds);
         soundsToggle.getLayoutParams().height = MainMenu.screenHeight/15;
-
         final TextView soundsToggleText = (TextView) findViewById(R.id.sounds_text);
         soundsToggleText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         soundsToggleText.getLayoutParams().height = MainMenu.screenHeight/15;
-
         // set the sounds text
         if (MainMenu.soundsOn){
             soundsToggleText.setText(R.string.soundsOn);
@@ -244,14 +215,11 @@ public class Settings extends AppCompatActivity {
                 return false;
             }
         });
-
         Button sizeToggle = (Button) findViewById(R.id.size);
         sizeToggle.getLayoutParams().height = MainMenu.screenHeight/15;
-
         final TextView sizeToggleText = (TextView) findViewById(R.id.size_text);
         sizeToggleText.setPadding(0, MainMenu.screenHeight/60, 0, MainMenu.screenHeight/60);
         sizeToggleText.getLayoutParams().height = MainMenu.screenHeight/15;
-
         // checks what the size is
         String size = MainMenu.sp.getString("size", "medium");
         switch (size){
@@ -289,7 +257,6 @@ public class Settings extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
     @Override

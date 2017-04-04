@@ -3,10 +3,6 @@ package com.datrueonejay.canyouescape;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.widget.TextView;
-
-
 
 public class MyCustomTextView extends AutoResizeTextView {
 
@@ -33,7 +29,7 @@ public class MyCustomTextView extends AutoResizeTextView {
     private void init() {
         try{
             if (!isInEditMode()) {
-
+                // set font
                 Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Cornerstone.ttf");
                 setTypeface(tf);
             }

@@ -4,41 +4,30 @@
     <string name="tap">(Tap anywhere to continue)</string>
     <string name="back">Back</string>
     <string name="help">How To Play</string>
-    <string name="instruct">Each level will have a number of moves (same as the level)
-            which you must determine.</string>
-    <string name="right">If you tap the correct direction, a green light will appear, a ding will
-        sound and you can make the next move.
-    </string>
-    <string name="wrong">If it is incorrect, a red light will appear, a buzz will sound and your
-        sequence will reset.</string>
     <string name="next">You may proceed to the next level if you find the correct sequence.</string>
-    <string name="next_more">You may proceed to the next level if you find the correct sequence.
-        (Tap anywhere to continue)</string>
     <string name="me">About the Developer</string>
-    <string name="jayden">I am a first year student at U of T Scarborough, studying Computer
-        Science. This app is my first app, and I will continue to develop more in the future. I
-        hope you enjoy the app. Special thanks to dmf444 for helping me in the development of this
-        app, and to ThatGuy for trying to break the app.
+    <string name="jayden">This app was created by datrueonejay, a first year student at U of T
+        Scarborough. I hope you enjoy the app. If you have any comments on the app feel free to
+        email me at datrueonejay@gmail.com. Special thanks to dmf444 for helping, and to ThatGuy
+        for trying to break it.
     </string>
-    <string name="jayden_dev">! am a first year student at U of T Scarborough, studying Computer
-        Science. This app is my first app, and ! will continue to develop more in the future. !
-        hope you enjoy the app. Special thanks to dmf444 for helping me in the development of this
-        app, and to ThatGuy for trying to break the app.
+    <string name="jayden_dev">This app was created by datrueonejay! a first year student at U of T
+        Scarborough! I hope you enjoy the app! If you have any comments on the app feel free to
+        email me at datrueonejay@gmail!com! Special thanks to dmf444 for helping! and to ThatGuy
+        for trying to break it!
     </string>
     <string name="copyright">Copyright</string>
     <string name="ownership">I do not own any of the rights to the pictures or music for this app.
-        All rights reserved to their respective owners. This app has no intention of monetary gain.
+        All rights reserved to their respective owners.
     </string>
     <string name="musicOn">In Game Music: On</string>
     <string name="music_off">In Game Music: Off</string>
-    <string name="title_activity_typeface_util">TypefaceUtil</string>
     <string name="soundsOn">In Game Sounds: On</string>
     <string name="sounds_off">In Game Sounds: Off</string>
     <string name="indicator_small">Indicator Size: S</string>
     <string name="indicator_medium">Indicator Size: M</string>
     <string name="indicator_large">Indicator Size: L</string>
 
-    <string name="title">Sequence</string>
     <string name="main">Classic</string>
     <string name="time">Time Attack</string>
     <string name="time_instructions">Finish as many levels as you can in the time</string>
@@ -49,8 +38,7 @@
     <string name="back_title">Are you sure?</string>
     <string name="next_level">Next Level</string>
 
-    <string name="confirm">Return to the main menu? Your highscore will be saved.
-    </string>
+    <string name="confirm">Return to the main menu? Your highscore will be saved.</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
@@ -59,8 +47,6 @@
     <string name="one">60 Seconds</string>
     <string name="one_half">90 Seconds</string>
     <string name="two">120 Seconds</string>
-    <string name="two_half">150 Seconds</string>
-    <string name="three">180 Seconds</string>
 
     <string name="level">Level</string>
     <string name="five">Level 5</string>
@@ -81,15 +67,18 @@
         nothing.\"</string>
     <string name="invert">\"The inverted set. Keys are the wrong way yknow. Green is bad, and red
     is good. Simple.\"</string>
-    <string name="invisible">\"The invisible set. Yeah. I\"m sure you\'ll find a way to use this.\"</string>
+    <string name="invisible">\"The invisible set. Yeah. I\'m sure you\'ll find a way to use this.\"
+    </string>
     <string name="simon">\"Simon says press yellow. Or red. Or blue. Or green. Just pick the right
         one.\"</string>
-    <string name="pc">\"The PC gamer. WASD you know it. \"</string>
-    <string name="xbox">\"The Y-Box gamer. Like Y-Box 360, Y-Box One, the game Hay Low, all that.\"</string>
+    <string name="pc">\"The PC gamer. WASD you know.\"</string>
+    <string name="xbox">\"The Y-Box gamer. Like Y-Box 360, Y-Box One, the game Hay Low, all that.\"
+    </string>
     <string name="ps3">\"The Paystation gamer. PS1, PS2, PS3, PS4, Big Little Planet.\"</string>
-    <string name="cards">\"The card dealer. Heart, diamonds, clubs, spades. Ace it or be a joke(r).\"</string>
-    <string name="ddr">\"The Pants Pants Revolution skin. Make sure to time it right, er well actually
-        it doesn\'t really matter.\"</string>
+    <string name="cards">\"The card dealer. Heart, diamonds, clubs, spades. Ace it or be a joke(r).
+        \"</string>
+    <string name="ddr">\"The Pants Pants Revolution skin. Make sure to time it right, er well
+        actually it doesn\'t really matter.\"</string>
 
     <string-array name="arrows">
         <item>@string/classic</item>
@@ -113,9 +102,10 @@
     <string name="how8">Achieve a time of under 20 seconds for beat the clock level 5.</string>
     <string name="how9">Achieve a time of under 40 seconds for beat the clock level 7.</string>
 
-    <string name="info">Determine the sequence of the level. The level number represensts the number
-        of moves you must determine. A correct moves is indicated by a green light and a ding. A
-        wrong move is indicated by a red light and a buzz. </string>
+    <string name="info">Each level has a sequence of moves (up, left, down, or right) which you must
+        determine. Each correct move is one step closer to finishing the level. An incorrect move
+        will reset your progress for that level.
+    </string>
 
     <string-array name="howto">
         <item>@string/how1</item>

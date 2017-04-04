@@ -60,7 +60,8 @@ public class Settings extends AppCompatActivity {
                     info.getLayoutParams().height = MainMenu.screenHeight/4;
                     info.setText(R.string.info);
                     ImageView pic = (ImageView) dialog.findViewById(R.id.pic);
-                    pic.getLayoutParams().width = 2*MainMenu.screenWidth/3;
+                    pic.getLayoutParams().width = MainMenu.screenWidth/2;
+                    pic.getLayoutParams().height = MainMenu.screenHeight/8;
                     TextView closing = (TextView) dialog.findViewById(R.id.closing);
                     closing.getLayoutParams().height = MainMenu.screenHeight/13;
                     closing.setText(R.string.next);

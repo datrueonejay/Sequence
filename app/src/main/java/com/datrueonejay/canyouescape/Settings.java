@@ -136,7 +136,7 @@ public class Settings extends AppCompatActivity {
                     title.setText(R.string.copyright);
                     // set the text
                     TextView ownership = (TextView) dialog.findViewById(R.id.ownership);
-                    ownership.getLayoutParams().height = MainMenu.screenHeight/6;
+                    ownership.getLayoutParams().height = MainMenu.screenHeight/3;
                     ownership.setText(R.string.ownership);
                     dialog.show();
                 }

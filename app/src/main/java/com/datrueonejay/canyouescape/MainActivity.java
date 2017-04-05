@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         // timer for up counter
         currTime = 0;
         time = (TextView) findViewById(R.id.timer);
-        time.getLayoutParams().height = MainMenu.screenHeight/25;
+        time.getLayoutParams().height = MainMenu.screenHeight/21;
         // create the next level button
         nextLevel = (Button) findViewById(R.id.nextLevel);
         nextLevel.setText(getString(R.string.next_level));
@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
         moveCounter.getLayoutParams().height = MainMenu.screenHeight/25;
         // create the text for the highscore
         highscore = (TextView) findViewById(R.id.highscore);
-        highscore.getLayoutParams().height = MainMenu.screenHeight/20;
+        highscore.getLayoutParams().height = MainMenu.screenHeight/18;
         // finds the current high score if beat the clock mode
         if (MainMenu.beatTheClockMode) {
             long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 9999);

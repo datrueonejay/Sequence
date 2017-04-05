@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_settings_instructions"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#80FFFFFF">
+    android:layout_height="match_parent">
 
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:layout_alignParentTop="true"
@@ -30,7 +29,7 @@
         android:textSize="20sp"
         android:textColor="@color/blue"
         android:textAlignment="center"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:layout_below="@+id/title"/>
 
     <ImageView
@@ -40,7 +39,7 @@
         android:src="@drawable/example"
         android:id="@+id/pic"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         />
@@ -56,7 +55,7 @@
         android:textColor="@color/blue"
         android:textAlignment="center"
         android:layout_below="@+id/pic"
-        android:layout_marginBottom="15dp"/>
+        android:paddingBottom="15dp"/>
 
 
 </RelativeLayout>

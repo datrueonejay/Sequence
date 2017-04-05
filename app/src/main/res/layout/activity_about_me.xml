@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_about_me"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#80FFFFFF"
-    >
+    android:layout_height="match_parent">
 
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:layout_alignParentTop="true"

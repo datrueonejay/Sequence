@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class Buttons {
@@ -79,6 +80,7 @@ public class Buttons {
                             // create the text for the move counter
                             MainActivity.moveCounter.setText("PROCEED");
                             // sets the next level button as visible
+                            MainActivity.nextLevelText.setVisibility(View.VISIBLE);
                             MainActivity.nextLevel.setVisibility(View.VISIBLE);
                             // disables the other arrow buttons
                             for (int a_counter = 0; a_counter < 4; a_counter++) {
@@ -154,23 +156,39 @@ public class Buttons {
         if (level == maxLevel) {
             MainActivity.upTimer.cancel();
             // set button to return to menu
-            MainActivity.nextLevel.setText(R.string.return_menu);
+            MainActivity.nextLevelText.setText(R.string.return_menu);
+            MainActivity.nextLevel.getLayoutParams().width = 2*MainMenu.screenWidth/3;
+            MainActivity.nextLevelText.getLayoutParams().width = 2*MainMenu.screenWidth/3;
+            MainActivity.nextLevelText.setPadding(MainMenu.screenWidth/36, MainMenu.screenHeight/60, MainMenu.screenWidth/36, MainMenu.screenHeight/60);
             MainActivity.nextLevel.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
                 @Override
                 public boolean onTouch(View view, MotionEvent event){
                     if (event.getAction() == MotionEvent.ACTION_UP){
-                        // create yes or no to return
+                        // dialog to return to main menu
                         final Dialog dialog = new Dialog(MainActivity.cont);
                         dialog.setContentView(R.layout.back_window);
-                        dialog.show();
                         TextView title = (TextView) dialog.findViewById(R.id.title);
+                        title.getLayoutParams().height = MainMenu.screenHeight/25;
+                        title.setPadding(0, MainMenu.screenWidth/81, 0, MainMenu.screenWidth/81);
+                        RelativeLayout.LayoutParams titleParams = (RelativeLayout.LayoutParams) title.getLayoutParams();
+                        titleParams.setMargins(0, 0, 0, MainMenu.screenWidth/27);
                         title.setText(R.string.back_title);
                         TextView confirm = (TextView) dialog.findViewById(R.id.confirmation);
-                        confirm.setText(MainMenu.context.getString(R.string.confirm));
+                        confirm.getLayoutParams().height = MainMenu.screenHeight/20;
+                        RelativeLayout.LayoutParams confirmParams = (RelativeLayout.LayoutParams) confirm.getLayoutParams();
+                        confirmParams.setMargins(0, 0, 0, MainMenu.screenWidth/27);
+                        confirm.setText(MainActivity.cont.getString(R.string.confirm));
                         // create the yes button
-                        Button yes;
-                        yes = (Button) dialog.findViewById(R.id.yes);
-                        yes.setText(MainActivity.cont.getString(R.string.yes));
+                        Button yes = (Button) dialog.findViewById(R.id.yes);
+                        yes.getLayoutParams().height = MainMenu.screenHeight/15;
+                        RelativeLayout.LayoutParams yesParams = (RelativeLayout.LayoutParams) yes.getLayoutParams();
+                        yesParams.setMargins(MainMenu.screenWidth/22, 0, MainMenu.screenWidth/22, MainMenu.screenWidth/27);
+                        TextView yesText = (TextView) dialog.findViewById(R.id.yes_text);
+                        yesText.getLayoutParams().height = MainMenu.screenHeight/15;
+                        yesText.setPadding(0, MainMenu.screenHeight/45, 0, MainMenu.screenHeight/45);
+                        RelativeLayout.LayoutParams yesTextParams = (RelativeLayout.LayoutParams) yesText.getLayoutParams();
+                        yesTextParams.setMargins(MainMenu.screenWidth/22, 0, MainMenu.screenWidth/22, MainMenu.screenWidth/27);
+                        yesText.setText(MainActivity.cont.getString(R.string.yes));
                         yes.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
@@ -193,9 +211,16 @@ public class Buttons {
 
                         });
                         // create the no button
-                        Button no;
-                        no = (Button) dialog.findViewById(R.id.no);
-                        no.setText(MainActivity.cont.getString(R.string.no));
+                        Button no = (Button) dialog.findViewById(R.id.no);
+                        no.getLayoutParams().height = MainMenu.screenHeight/15;
+                        RelativeLayout.LayoutParams noParams = (RelativeLayout.LayoutParams) no.getLayoutParams();
+                        noParams.setMargins(MainMenu.screenWidth/22, 0, MainMenu.screenWidth/22, MainMenu.screenWidth/27);
+                        TextView noText = (TextView) dialog.findViewById(R.id.no_text);
+                        noText.getLayoutParams().height = MainMenu.screenHeight/15;
+                        noText.setPadding(0, MainMenu.screenHeight/45, 0, MainMenu.screenHeight/45);
+                        RelativeLayout.LayoutParams noTextParams = (RelativeLayout.LayoutParams) noText.getLayoutParams();
+                        noTextParams.setMargins(MainMenu.screenWidth/22, 0, MainMenu.screenWidth/22, MainMenu.screenWidth/27);
+                        noText.setText(MainActivity.cont.getString(R.string.no));
                         no.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
@@ -206,6 +231,7 @@ public class Buttons {
                                 return false;
                             }
                         });
+                        dialog.show();
                     }
                     super.onTouch(view, event);
                     return false;

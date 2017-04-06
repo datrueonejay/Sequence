@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:id="@+id/instructions"
-        android:textSize="20sp"
+        android:textSize="100sp"
         android:padding="10dp"
         android:textColor="@color/blue"/>
 
@@ -21,7 +21,7 @@
         android:textAlignment="center"
         android:padding="3dp"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
+        android:textSize="100sp"
         />
 
     <com.datrueonejay.canyouescape.MyCustomButton
@@ -31,7 +31,7 @@
         android:textAlignment="center"
         android:padding="3dp"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
+        android:textSize="100sp"
         android:layout_below="@+id/half"
         />
 
@@ -42,7 +42,7 @@
         android:textAlignment="center"
         android:padding="3dp"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
+        android:textSize="100sp"
         android:layout_below="@+id/one"
         />
 
@@ -53,8 +53,60 @@
         android:textAlignment="center"
         android:padding="3dp"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
+        android:textSize="100sp"
         android:layout_below="@+id/one_half"
+        />
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/half_text"
+        android:layout_below="@+id/instructions"
+        android:textAlignment="center"
+        android:padding="5dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="100sp"
+        android:textColor="@color/white"
+        android:elevation="10dp"
+        />
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/one_text"
+        android:textAlignment="center"
+        android:padding="5dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="100sp"
+        android:layout_below="@+id/half_text"
+        android:textColor="@color/white"
+        android:elevation="10dp"
+        />
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/one_half_text"
+        android:textAlignment="center"
+        android:padding="5dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="100sp"
+        android:layout_below="@+id/one_text"
+        android:textColor="@color/white"
+        android:elevation="10dp"
+        />
+
+    <com.datrueonejay.canyouescape.MyCustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/two_text"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="100sp"
+        android:layout_below="@+id/one_half_text"
+        android:textColor="@color/white"
+        android:elevation="10dp"
         />
 
 </RelativeLayout>

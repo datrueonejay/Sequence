@@ -16,8 +16,7 @@
         android:layout_alignParentTop="true"
         android:id="@+id/title"
         android:textColor="@color/blue"
-        android:textSize="30sp"
-        android:layout_marginBottom="10dp"
+        android:textSize="100sp"
         android:textAlignment="center"/>
 
     <com.datrueonejay.canyouescape.MyCustomTextView
@@ -27,7 +26,7 @@
         android:id="@+id/counter"
         android:layout_centerHorizontal="true"
         android:textColor="@color/blue"
-        android:textSize="70sp"
+        android:textSize="100sp"
         android:textAlignment="center"/>
 
 </RelativeLayout>

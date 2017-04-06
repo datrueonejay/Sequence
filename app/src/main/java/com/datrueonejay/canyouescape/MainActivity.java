@@ -1,6 +1,5 @@
 package com.datrueonejay.canyouescape;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static ImageView rightOrWrong;
     public static Button nextLevel;
+    public static TextView nextLevelText;
 
     public static ImageView fill;
 
@@ -69,19 +69,30 @@ public class MainActivity extends AppCompatActivity {
 
     public static Skin skin;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         cont = this;
         // timer for up counter
         currTime = 0;
         time = (TextView) findViewById(R.id.timer);
         time.getLayoutParams().height = MainMenu.screenHeight/21;
+        time.setPadding(MainMenu.screenWidth/81, 0, MainMenu.screenWidth/81, MainMenu.screenWidth/81);
         // create the next level button
         nextLevel = (Button) findViewById(R.id.nextLevel);
-        nextLevel.setText(getString(R.string.next_level));
+        nextLevel.getLayoutParams().height = MainMenu.screenHeight/15;
+        nextLevel.getLayoutParams().width = MainMenu.screenWidth/2;
+        RelativeLayout.LayoutParams nextLevelParams = (RelativeLayout.LayoutParams) nextLevel.getLayoutParams();
+        nextLevelParams.setMargins(0, 0, 0, MainMenu.screenHeight/27);
+        nextLevelText = (TextView) findViewById(R.id.nextLevelText);
+        nextLevelText.getLayoutParams().height = MainMenu.screenHeight/15;
+        nextLevelText.getLayoutParams().width = MainMenu.screenWidth/2;
+        nextLevelText.setPadding(MainMenu.screenWidth/36, MainMenu.screenHeight/60, MainMenu.screenWidth/36, MainMenu.screenHeight/60);
+        RelativeLayout.LayoutParams nextLevelTextParams = (RelativeLayout.LayoutParams) nextLevelText.getLayoutParams();
+        nextLevelTextParams.setMargins(0, 0, 0, MainMenu.screenHeight/27);
+        nextLevelText.setText(getString(R.string.next_level));
         // disables the next level button at first
         nextLevel.setEnabled(false);
         // checks if it is timeAttackMode mode
@@ -97,58 +108,19 @@ public class MainActivity extends AppCompatActivity {
                         Buttons.DisableButtons();
                         time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
                         nextLevel.setVisibility(View.VISIBLE);
+                        nextLevel.getLayoutParams().width = 2*MainMenu.screenWidth/3;
+                        RelativeLayout.LayoutParams nextLevelParams = (RelativeLayout.LayoutParams) nextLevel.getLayoutParams();
+                        nextLevelParams.setMargins(MainMenu.screenHeight/27, 0, MainMenu.screenHeight/27, MainMenu.screenHeight/27);
+                        nextLevelText.setVisibility(View.VISIBLE);
+                        nextLevelText.getLayoutParams().width = 2*MainMenu.screenWidth/3;
+                        nextLevelText.setPadding(MainMenu.screenWidth/36, MainMenu.screenHeight/60, MainMenu.screenWidth/36, MainMenu.screenHeight/60);
                         nextLevel.setEnabled(true);
-                        nextLevel.setText(R.string.return_menu);
+                        nextLevelText.setText(R.string.return_menu);
                         nextLevel.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
                             @Override
                             public boolean onTouch(View view, MotionEvent event){
                                 if (event.getAction() == MotionEvent.ACTION_UP){
-                                    final Dialog dialog = new Dialog(MainActivity.cont);
-                                    dialog.setContentView(R.layout.back_window);
-                                    dialog.show();
-                                    TextView title = (TextView) dialog.findViewById(R.id.title);
-                                    title.setText(R.string.back_title);
-                                    TextView confirm = (TextView) dialog.findViewById(R.id.confirmation);
-                                    confirm.setText(MainMenu.context.getString(R.string.confirm));
-                                    // create the yes button
-                                    Button yes;
-                                    yes = (Button) dialog.findViewById(R.id.yes);
-                                    yes.setText(MainActivity.cont.getString(R.string.yes));
-                                    yes.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
-                                        @Override
-                                        public boolean onTouch(View v, MotionEvent event) {
-                                            if (event.getAction() == MotionEvent.ACTION_UP) {
-                                                dialog.dismiss();
-                                                Activity act = (Activity) MainActivity.cont;
-                                                act.finish();
-                                                MainActivity.levelNumber = 1;
-                                                if (MainMenu.timeAttackMode) {
-                                                    MainActivity.downTimer.cancel();
-                                                }
-                                                if (MainMenu.beatTheClockMode) {
-                                                    MainActivity.upTimer.cancel();
-                                                    MainActivity.upTimer = null;
-                                                }
-                                            }
-                                            super.onTouch(v, event);
-                                            return false;
-                                        }
-
-                                    });
-                                    // create the no button
-                                    Button no;
-                                    no = (Button) dialog.findViewById(R.id.no);
-                                    no.setText(MainActivity.cont.getString(R.string.no));
-                                    no.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
-                                        @Override
-                                        public boolean onTouch(View v, MotionEvent event) {
-                                            if (event.getAction() == MotionEvent.ACTION_UP){
-                                                dialog.dismiss();
-                                            }
-                                            super.onTouch(v,event);
-                                            return false;
-                                        }
-                                    });
+                                    onBackPressed();
                                 }
                                 super.onTouch(view, event);
                                 return false;
@@ -213,10 +185,15 @@ public class MainActivity extends AppCompatActivity {
         layout = (RelativeLayout) findViewById(R.id.activity_main);
         // create the text for the move counter
         moveCounter = (TextView) findViewById(R.id.moveCounter);
+        moveCounter.setPadding(0, 0, MainMenu.screenWidth/27, 0);
+        RelativeLayout.LayoutParams moveCounterParams = (RelativeLayout.LayoutParams) moveCounter.getLayoutParams();
+        moveCounterParams.setMargins(0, MainMenu.screenWidth/54, 0, MainMenu.screenWidth/54);
         // create the buttons upon opening the app
         moveUp = (ImageButton) findViewById(R.id.upButton);
         moveLeft = (ImageButton) findViewById(R.id.leftButton);
         moveDown = (ImageButton) findViewById(R.id.downButton);
+        RelativeLayout.LayoutParams moveDownParams = (RelativeLayout.LayoutParams) moveDown.getLayoutParams();
+        moveDownParams.setMargins(MainMenu.screenHeight/27, 0, MainMenu.screenHeight/27, MainMenu.screenHeight/27);
         moveRight = (ImageButton) findViewById(R.id.rightButton);
         // create an array holding the buttons
         moves[0] = moveUp;
@@ -266,7 +243,10 @@ public class MainActivity extends AppCompatActivity {
         moveCounter.getLayoutParams().height = MainMenu.screenHeight/25;
         // create the text for the highscore
         highscore = (TextView) findViewById(R.id.highscore);
+        highscore.setPadding(0, MainMenu.screenWidth/81, 0, MainMenu.screenWidth/81);
         highscore.getLayoutParams().height = MainMenu.screenHeight/18;
+        RelativeLayout.LayoutParams highscoreParams = (RelativeLayout.LayoutParams) highscore.getLayoutParams();
+        highscoreParams.setMargins(0, 0, 0, MainMenu.screenWidth/54);
         // finds the current high score if beat the clock mode
         if (MainMenu.beatTheClockMode) {
             long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 9999);
@@ -292,10 +272,15 @@ public class MainActivity extends AppCompatActivity {
         fill.setBackgroundColor(getResources().getColor(R.color.blue));
         // create the right or wrong image (green or red rectangle)
         rightOrWrong = (ImageView) findViewById(R.id.rightOrWrong);
+        RelativeLayout.LayoutParams rightOrWrongParams = (RelativeLayout.LayoutParams) rightOrWrong.getLayoutParams();
+        rightOrWrongParams.setMargins(0, 0, 0, MainMenu.screenHeight/30);
         // create level text
         level = (TextView) findViewById(R.id.level);
         level.getLayoutParams().width = MainMenu.screenWidth/2 - 75;
         level.getLayoutParams().height = MainMenu.screenHeight/25;
+        level.setPadding(MainMenu.screenWidth/27, 0, 0, 0);
+        RelativeLayout.LayoutParams levelParams = (RelativeLayout.LayoutParams) level.getLayoutParams();
+        levelParams.setMargins(0, MainMenu.screenWidth/54, 0, MainMenu.screenWidth/54);
         level.setText(("Level " + Integer.toString(levelNumber)));
         // create the next level button
         nextLevel.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
@@ -305,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
                 if (e.getAction() == MotionEvent.ACTION_UP){
                     // set the nextLevel button as not visible
                     nextLevel.setVisibility(View.INVISIBLE);
+                    nextLevelText.setVisibility(View.INVISIBLE);
                     // set the new level text
                     level.setText(("Level " + Integer.toString(levelNumber)));
                     // create a new level sequence
@@ -362,15 +348,28 @@ public class MainActivity extends AppCompatActivity {
         // dialog to return to main menu
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.back_window);
-        dialog.show();
         TextView title = (TextView) dialog.findViewById(R.id.title);
+        title.getLayoutParams().height = MainMenu.screenHeight/25;
+        title.setPadding(0, MainMenu.screenWidth/81, 0, MainMenu.screenWidth/81);
+        RelativeLayout.LayoutParams titleParams = (RelativeLayout.LayoutParams) title.getLayoutParams();
+        titleParams.setMargins(0, 0, 0, MainMenu.screenWidth/27);
         title.setText(R.string.back_title);
         TextView confirm = (TextView) dialog.findViewById(R.id.confirmation);
+        confirm.getLayoutParams().height = MainMenu.screenHeight/20;
+        RelativeLayout.LayoutParams confirmParams = (RelativeLayout.LayoutParams) confirm.getLayoutParams();
+        confirmParams.setMargins(0, 0, 0, MainMenu.screenWidth/27);
         confirm.setText(getString(R.string.confirm));
         // create the yes button
-        Button yes;
-        yes = (Button) dialog.findViewById(R.id.yes);
-        yes.setText(getString(R.string.yes));
+        Button yes = (Button) dialog.findViewById(R.id.yes);
+        yes.getLayoutParams().height = MainMenu.screenHeight/15;
+        RelativeLayout.LayoutParams yesParams = (RelativeLayout.LayoutParams) yes.getLayoutParams();
+        yesParams.setMargins(MainMenu.screenWidth/22, 0, MainMenu.screenWidth/22, MainMenu.screenWidth/27);
+        TextView yesText = (TextView) dialog.findViewById(R.id.yes_text);
+        yesText.getLayoutParams().height = MainMenu.screenHeight/15;
+        yesText.setPadding(0, MainMenu.screenHeight/45, 0, MainMenu.screenHeight/45);
+        RelativeLayout.LayoutParams yesTextParams = (RelativeLayout.LayoutParams) yesText.getLayoutParams();
+        yesTextParams.setMargins(MainMenu.screenWidth/22, 0, MainMenu.screenWidth/22, MainMenu.screenWidth/27);
+        yesText.setText(getString(R.string.yes));
         yes.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -392,9 +391,16 @@ public class MainActivity extends AppCompatActivity {
 
         });
         // create the no button
-        Button no;
-        no = (Button) dialog.findViewById(R.id.no);
-        no.setText(getString(R.string.no));
+        Button no = (Button) dialog.findViewById(R.id.no);
+        no.getLayoutParams().height = MainMenu.screenHeight/15;
+        RelativeLayout.LayoutParams noParams = (RelativeLayout.LayoutParams) no.getLayoutParams();
+        noParams.setMargins(MainMenu.screenWidth/22, 0, MainMenu.screenWidth/22, MainMenu.screenWidth/27);
+        TextView noText = (TextView) dialog.findViewById(R.id.no_text);
+        noText.getLayoutParams().height = MainMenu.screenHeight/15;
+        noText.setPadding(0, MainMenu.screenHeight/45, 0, MainMenu.screenHeight/45);
+        RelativeLayout.LayoutParams noTextParams = (RelativeLayout.LayoutParams) noText.getLayoutParams();
+        noTextParams.setMargins(MainMenu.screenWidth/22, 0, MainMenu.screenWidth/22, MainMenu.screenWidth/27);
+        noText.setText(getString(R.string.no));
         no.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -405,5 +411,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        dialog.show();
     }
 }

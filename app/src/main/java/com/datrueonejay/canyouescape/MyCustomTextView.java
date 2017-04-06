@@ -32,6 +32,7 @@ public class MyCustomTextView extends AutoResizeTextView {
                 // set font
                 Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Cornerstone.ttf");
                 setTypeface(tf);
+                setGravity(TEXT_ALIGNMENT_CENTER);
             }
         }catch (Exception e){
             e.printStackTrace();

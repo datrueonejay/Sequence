@@ -8,27 +8,21 @@
         android:layout_alignParentTop="true"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
         android:id="@+id/title"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
+        android:textSize="100sp"
         android:background="@color/blue"
         android:textColor="@color/white"
-        android:textAlignment="center"
-        android:layout_marginBottom="15dp"/>
+        android:textAlignment="center" />
 
     <com.datrueonejay.canyouescape.MyCustomTextView
         android:id="@+id/me"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/blue"
-        android:textSize="50sp"
+        android:textSize="100sp"
         android:textAlignment="center"
         android:layout_below="@+id/title"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingBottom="15dp"
         />
 
     <Button

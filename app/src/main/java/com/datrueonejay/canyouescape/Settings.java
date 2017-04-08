@@ -19,6 +19,8 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.activity_settings);
+        layout.setPadding(MainMenu.screenWidth/27, MainMenu.screenWidth/27, MainMenu.screenWidth/27, MainMenu.screenWidth/27);
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // resumes music
@@ -72,7 +74,8 @@ public class Settings extends AppCompatActivity {
                     TextView info = (TextView) dialog.findViewById(R.id.info);
                     RelativeLayout.LayoutParams infoParams = (RelativeLayout.LayoutParams) info.getLayoutParams();
                     infoParams.setMargins(0, 0, 0, MainMenu.screenWidth/54);
-                    info.getLayoutParams().height = MainMenu.screenHeight/4;
+                    info.getLayoutParams().height = MainMenu.screenHeight/5;
+                    info.setPadding(MainMenu.screenWidth/27, 0, MainMenu.screenWidth/27, 0);
                     info.setText(R.string.info);
                     ImageView pic = (ImageView) dialog.findViewById(R.id.pic);
                     pic.getLayoutParams().width = MainMenu.screenWidth/2;
@@ -80,7 +83,8 @@ public class Settings extends AppCompatActivity {
                     RelativeLayout.LayoutParams picParams = (RelativeLayout.LayoutParams) pic.getLayoutParams();
                     picParams.setMargins(0, 0, 0, MainMenu.screenWidth/54);
                     TextView closing = (TextView) dialog.findViewById(R.id.closing);
-                    closing.getLayoutParams().height = MainMenu.screenHeight/10;
+                    closing.getLayoutParams().height = MainMenu.screenHeight/15;
+                    closing.setPadding(MainMenu.screenWidth/27, 0, MainMenu.screenWidth/27, 0);
                     RelativeLayout.LayoutParams closingParams = (RelativeLayout.LayoutParams) closing.getLayoutParams();
                     closingParams.setMargins(0, 0, 0, MainMenu.screenWidth/27);
                     closing.setText(R.string.next);
@@ -118,9 +122,10 @@ public class Settings extends AppCompatActivity {
                     // set the text
                     final TextView me = (TextView) dialog.findViewById(R.id.me);
                     me.getLayoutParams().height = MainMenu.screenHeight/3;
-                    me.setPadding(MainMenu.screenWidth/27, 0, MainMenu.screenWidth/27, MainMenu.screenWidth/27);
-                    me.setText(getResources().getString(R.string.jayden));
+                    me.setPadding(MainMenu.screenWidth/27, 0, MainMenu.screenWidth/27, 0);
                     RelativeLayout.LayoutParams meParams = (RelativeLayout.LayoutParams) me.getLayoutParams();
+                    meParams.setMargins(0, 0, 0, MainMenu.screenWidth/27);
+                    me.setText(getResources().getString(R.string.jayden));
                     // sets the counter for the secret button
                     secretCounter = 1;
                     // sets the button
@@ -174,8 +179,9 @@ public class Settings extends AppCompatActivity {
                     // set the text
                     TextView ownership = (TextView) dialog.findViewById(R.id.ownership);
                     ownership.getLayoutParams().height = MainMenu.screenHeight/3;
-                    ownership.setPadding(MainMenu.screenWidth/27, 0, MainMenu.screenWidth/27, MainMenu.screenWidth/27);
-                    RelativeLayout.LayoutParams ownnershipParams = (RelativeLayout.LayoutParams) ownership.getLayoutParams();
+                    ownership.setPadding(MainMenu.screenWidth/27, 0, MainMenu.screenWidth/27, 0);
+                    RelativeLayout.LayoutParams ownershipParmas = (RelativeLayout.LayoutParams) ownership.getLayoutParams();
+                    ownershipParmas.setMargins(0, 0, 0, MainMenu.screenWidth/27);
                     ownership.setText(R.string.ownership);
                     dialog.show();
                 }

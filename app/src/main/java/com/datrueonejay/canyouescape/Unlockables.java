@@ -37,10 +37,10 @@ public class Unlockables extends AppCompatActivity {
         int d = MainMenu.sp.getInt("one_half", 0);
         int e = MainMenu.sp.getInt("two_minutes", 0);
         int f = MainMenu.sp.getInt("three_minutes", 0);
-        int g = MainMenu.sp.getInt("five", 9999);
-        int h = MainMenu.sp.getInt("seven", 9999);
-        int i = MainMenu.sp.getInt("ten", 9999);
-        int k = MainMenu.sp.getInt("fifteen", 9999);
+        int g = MainMenu.sp.getInt("five", 999);
+        int h = MainMenu.sp.getInt("seven", 999);
+        int i = MainMenu.sp.getInt("ten", 999);
+        int k = MainMenu.sp.getInt("fifteen", 999);
         if (MainMenu.sp.getBoolean("dev", false)){
             for (int count = 0; count < Skin.numSkins(); count++){
                 conditions[count] = true;
@@ -167,7 +167,7 @@ public class Unlockables extends AppCompatActivity {
                     use.setBackgroundColor(getResources().getColor(R.color.darkblue));
                 }
                 else {
-                    useText.setPadding(MainMenu.screenWidth/30, MainMenu.screenHeight/33, MainMenu.screenWidth/30, MainMenu.screenHeight/33);
+                    useText.setPadding(MainMenu.screenWidth/30, MainMenu.screenHeight/32, MainMenu.screenWidth/30, MainMenu.screenHeight/32);
                     useText.setText(Unlockables.cont.getString(R.string.use));
                     use.setEnabled(true);
                     use.setBackgroundColor(getResources().getColor(R.color.blue));

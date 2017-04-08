@@ -26,7 +26,7 @@ public class LevelSequence{
         for (int moveCounter = 0; moveCounter < level_sequence.length; moveCounter ++) {
             // create a random number between 1-4
             Random random_number = new Random();
-            int move = random_number.nextInt(100) % 4;
+            int move = random_number.nextInt(1000) % 4;
             //int move = (int) (Math.random()*(3) + 1);
             // assigns the move number to the sequence of moves
             level_sequence[moveCounter] = move + 1;

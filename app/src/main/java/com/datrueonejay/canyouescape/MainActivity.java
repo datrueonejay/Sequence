@@ -243,13 +243,13 @@ public class MainActivity extends AppCompatActivity {
         moveCounter.getLayoutParams().height = MainMenu.screenHeight/25;
         // create the text for the highscore
         highscore = (TextView) findViewById(R.id.highscore);
-        highscore.setPadding(0, MainMenu.screenWidth/81, 0, MainMenu.screenWidth/81);
+        highscore.setPadding(MainMenu.screenWidth/81, MainMenu.screenWidth/81, MainMenu.screenWidth/81, MainMenu.screenWidth/81);
         highscore.getLayoutParams().height = MainMenu.screenHeight/18;
         RelativeLayout.LayoutParams highscoreParams = (RelativeLayout.LayoutParams) highscore.getLayoutParams();
         highscoreParams.setMargins(0, 0, 0, MainMenu.screenWidth/54);
         // finds the current high score if beat the clock mode
         if (MainMenu.beatTheClockMode) {
-            long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 9999);
+        long highScore = MainMenu.sp.getInt(MainMenu.gameMode, 999);
             highscore.setText("Best Time: " + Long.toString(highScore) + " seconds");
         }
         // for classic and time attack mode

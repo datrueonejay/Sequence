@@ -44,6 +44,15 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        // find the dimensions of the screen
+        this.getWindowManager().getDefaultDisplay().getMetrics(dimensions);
+        // find the width of the screen
+        screenWidth = dimensions.widthPixels;
+        // find the length of the screen
+        screenHeight = dimensions.heightPixels;
+        // sets padding
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.activity_main_menu);
+        layout.setPadding(screenWidth/27, screenWidth/27, screenWidth/27, screenWidth/27);
         // base dialog for any button pressed
         final Dialog dialog = new Dialog(MainMenu.this);
         context = this;
@@ -51,12 +60,6 @@ public class MainMenu extends AppCompatActivity {
         final Intent game = new Intent(MainMenu.this, MainActivity.class);
         final Intent settingActivity = new Intent(MainMenu.this, Settings.class);
         final Intent unlockablesActivity = new Intent(MainMenu.this, Unlockables.class);
-        // find the dimensions of the screen
-        this.getWindowManager().getDefaultDisplay().getMetrics(dimensions);
-        // find the width of the screen
-        screenWidth = dimensions.widthPixels;
-        // find the length of the screen
-        screenHeight = dimensions.heightPixels;
         // keeps the app in portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // create a shared preferences to save data
@@ -96,7 +99,8 @@ public class MainMenu extends AppCompatActivity {
             TextView info = (TextView) dialog.findViewById(R.id.info);
             RelativeLayout.LayoutParams infoParams = (RelativeLayout.LayoutParams) info.getLayoutParams();
             infoParams.setMargins(0, 0, 0, MainMenu.screenWidth/54);
-            info.getLayoutParams().height = MainMenu.screenHeight/4;
+            info.getLayoutParams().height = MainMenu.screenHeight/5;
+            info.setPadding(MainMenu.screenWidth/27, 0, MainMenu.screenWidth/27, 0);
             info.setText(R.string.info);
             ImageView pic = (ImageView) dialog.findViewById(R.id.pic);
             pic.getLayoutParams().width = MainMenu.screenWidth/2;
@@ -104,7 +108,8 @@ public class MainMenu extends AppCompatActivity {
             RelativeLayout.LayoutParams picParams = (RelativeLayout.LayoutParams) pic.getLayoutParams();
             picParams.setMargins(0, 0, 0, MainMenu.screenWidth/54);
             TextView closing = (TextView) dialog.findViewById(R.id.closing);
-            closing.getLayoutParams().height = MainMenu.screenHeight/10;
+            closing.getLayoutParams().height = MainMenu.screenHeight/15;
+            closing.setPadding(MainMenu.screenWidth/27, 0, MainMenu.screenWidth/27, 0);
             RelativeLayout.LayoutParams closingParams = (RelativeLayout.LayoutParams) closing.getLayoutParams();
             closingParams.setMargins(0, 0, 0, MainMenu.screenWidth/27);
             closing.setText(R.string.next);
@@ -465,10 +470,10 @@ public class MainMenu extends AppCompatActivity {
                 timedOneHalfScore.setText(getString(R.string.one_half) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("oneHalf", 0))));
                 timedTwoScore.setText(getString(R.string.two) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("two_minutes", 0))));
                 beatTheClock.setText(getString(R.string.levels));
-                fiveScore.setText(getString(R.string.five) + ": " + Integer.toString(MainMenu.sp.getInt("five", 9999)) + " seconds");
-                sevenScore.setText(getString(R.string.seven) + ": " + Integer.toString(MainMenu.sp.getInt("seven", 9999)) + " seconds");
-                tenScore.setText(getString(R.string.ten) + ": " + Integer.toString(MainMenu.sp.getInt("ten", 9999)) + " seconds");
-                fifteenScore.setText(getString(R.string.fifteen) + ": " + Integer.toString(MainMenu.sp.getInt("fifteen", 9999)) + " seconds");
+                fiveScore.setText(getString(R.string.five) + ": " + Integer.toString(MainMenu.sp.getInt("five", 999)) + " seconds");
+                sevenScore.setText(getString(R.string.seven) + ": " + Integer.toString(MainMenu.sp.getInt("seven", 999)) + " seconds");
+                tenScore.setText(getString(R.string.ten) + ": " + Integer.toString(MainMenu.sp.getInt("ten", 999)) + " seconds");
+                fifteenScore.setText(getString(R.string.fifteen) + ": " + Integer.toString(MainMenu.sp.getInt("fifteen", 999)) + " seconds");
                 if (event.getAction() == MotionEvent.ACTION_UP){
                     dialog.show();
                 }
@@ -524,6 +529,8 @@ public class MainMenu extends AppCompatActivity {
     private void createDialog() {
         final Dialog countdownDialog = new Dialog(MainMenu.this);
         countdownDialog.setContentView(R.layout.activity_count_down);
+        RelativeLayout layout = (RelativeLayout) countdownDialog.findViewById(R.id.activity_count_down);
+        layout.setPadding(MainMenu.screenWidth/27, MainMenu.screenWidth/27, MainMenu.screenWidth/27, MainMenu.screenWidth/27);
         final CountDownTimer countdown;
         TextView begins;
         final TextView time;

@@ -241,7 +241,7 @@ public class Buttons {
             MainActivity.moveCounter.setText("FINISHED");
             MainActivity.time.setText("You took " + Integer.toString(MainActivity.currTime) + " seconds");
             // if shorted time was achieved
-            if (MainActivity.currTime < MainMenu.sp.getInt(MainMenu.gameMode, 9999)){
+            if (MainActivity.currTime < MainMenu.sp.getInt(MainMenu.gameMode, 999)){
                 MainMenu.editor.putInt(MainMenu.gameMode, MainActivity.currTime);
                 MainMenu.editor.commit();
                 // set the new highscore

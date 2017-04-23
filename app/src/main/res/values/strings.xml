@@ -67,13 +67,14 @@
 
     <string name="classic">\"The classic. If you\'re using this you\'ve probably unlocked
         nothing.\"</string>
-    <string name="invert">\"The inverted set. Keys are the wrong way yknow. Green is bad, and red
-    is good. Simple.\"</string>
+    <string name="invert">\"The inverted set. Directions are reversed. Green is bad, and red is
+        good. Simple.\"</string>
     <string name="invisible">\"The invisible set. Yeah. I\'m sure you\'ll find a way to use this.\"
     </string>
     <string name="simon">\"Simon says press yellow. Or red. Or blue. Or green. Just pick the right
         one.\"</string>
-    <string name="pc">\"The PC gamer. WASD you know.\"</string>
+    <string name="pc">\"The PC user. Windows XP, Vista, 7, 8, 10. Get it right, don\'t cause an
+        error.\"</string>
     <string name="xbox">\"The Y-Box gamer. Like Y-Box 360, Y-Box One, the game Hay Low, all that.\"
     </string>
     <string name="ps3">\"The Paystation gamer. PS1, PS2, PS3, PS4, Big Little Planet.\"</string>

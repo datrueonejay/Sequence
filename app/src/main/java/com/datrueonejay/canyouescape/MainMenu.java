@@ -202,96 +202,96 @@ public class MainMenu extends AppCompatActivity {
         timeAttack.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                // create a pop up box to choose how long they would like to play
-                dialog.setContentView(R.layout.pick_time);
-                TextView instruction = (TextView) dialog.findViewById(R.id.instructions);
-                instruction.getLayoutParams().height = screenHeight / 10;
-                instruction.setText(getString(R.string.time_instructions));
-                Button half = (Button) dialog.findViewById(R.id.half);
-                half.getLayoutParams().height = screenHeight / 12;
-                TextView halfText = (TextView) dialog.findViewById(R.id.half_text);
-                halfText.getLayoutParams().height = screenHeight / 12;
-                halfText.setPadding(0, screenHeight/36, 0, screenHeight/36);
-                halfText.setText(getString(R.string.half));
-                Button one = (Button) dialog.findViewById(R.id.one);
-                one.getLayoutParams().height = screenHeight / 12;
-                TextView oneText = (TextView) dialog.findViewById(R.id.one_text);
-                oneText.getLayoutParams().height = screenHeight / 12;
-                oneText.setPadding(0, screenHeight/36, 0, screenHeight/36);
-                oneText.setText(getString(R.string.one));
-                Button oneHalf = (Button) dialog.findViewById(R.id.one_half);
-                oneHalf.getLayoutParams().height = screenHeight / 12;
-                TextView oneHalfText = (TextView) dialog.findViewById(R.id.one_half_text);
-                oneHalfText.getLayoutParams().height = screenHeight / 12;
-                oneHalfText.setPadding(0, screenHeight/36, 0, screenHeight/36);
-                oneHalfText.setText(getString(R.string.one_half));
-                Button two = (Button) dialog.findViewById(R.id.two);
-                two.getLayoutParams().height = screenHeight / 12;
-                TextView twoText = (TextView) dialog.findViewById(R.id.two_text);
-                twoText.getLayoutParams().height = screenHeight / 12;
-                twoText.setPadding(0, screenHeight/36, 0, screenHeight/36);
-                twoText.setText(getString(R.string.two));
-                // makes the game a time attack mode
-                timeAttackMode = true;
-                beatTheClockMode = false;
-                // set time chosen
-                half.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        time = 0.5;
-                        gameMode = "half";
-                        // create the timed game
-                        if (event.getAction() == MotionEvent.ACTION_UP){
-                            dialog.dismiss();
-                            createDialog();
-                        }
-                        super.onTouch(v, event);
-                        return false;
-                    }
-                });
-                one.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        time = 1;
-                        gameMode = "one_minute";
-                        // create the timed game
-                        if (event.getAction() == MotionEvent.ACTION_UP){
-                            dialog.dismiss();
-                            createDialog();
-                        }
-                        super.onTouch(v, event);
-                        return false;
-                    }
-                });
-                oneHalf.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        time = 1.5;
-                        gameMode = "oneHalf";
-                        // create the timed game
-                        if (event.getAction() == MotionEvent.ACTION_UP){
-                            dialog.dismiss();
-                            createDialog();
-                        }
-                        super.onTouch(v, event);
-                        return false;
-                    }
-                });
-                two.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        time = 2;
-                        gameMode = "two_minutes";
-                        // create the timed game
-                        if (event.getAction() == MotionEvent.ACTION_UP){
-                            dialog.dismiss();
-                            createDialog();
-                        }
-                        super.onTouch(v, event);
-                        return false;
-                    }
-                });
                 if (event.getAction() == MotionEvent.ACTION_UP){
+                    // create a pop up box to choose how long they would like to play
+                    dialog.setContentView(R.layout.pick_time);
+                    TextView instruction = (TextView) dialog.findViewById(R.id.instructions);
+                    instruction.getLayoutParams().height = screenHeight / 10;
+                    instruction.setText(getString(R.string.time_instructions));
+                    Button half = (Button) dialog.findViewById(R.id.half);
+                    half.getLayoutParams().height = screenHeight / 12;
+                    TextView halfText = (TextView) dialog.findViewById(R.id.half_text);
+                    halfText.getLayoutParams().height = screenHeight / 12;
+                    halfText.setPadding(0, screenHeight/36, 0, screenHeight/36);
+                    halfText.setText(getString(R.string.half));
+                    Button one = (Button) dialog.findViewById(R.id.one);
+                    one.getLayoutParams().height = screenHeight / 12;
+                    TextView oneText = (TextView) dialog.findViewById(R.id.one_text);
+                    oneText.getLayoutParams().height = screenHeight / 12;
+                    oneText.setPadding(0, screenHeight/36, 0, screenHeight/36);
+                    oneText.setText(getString(R.string.one));
+                    Button oneHalf = (Button) dialog.findViewById(R.id.one_half);
+                    oneHalf.getLayoutParams().height = screenHeight / 12;
+                    TextView oneHalfText = (TextView) dialog.findViewById(R.id.one_half_text);
+                    oneHalfText.getLayoutParams().height = screenHeight / 12;
+                    oneHalfText.setPadding(0, screenHeight/36, 0, screenHeight/36);
+                    oneHalfText.setText(getString(R.string.one_half));
+                    Button two = (Button) dialog.findViewById(R.id.two);
+                    two.getLayoutParams().height = screenHeight / 12;
+                    TextView twoText = (TextView) dialog.findViewById(R.id.two_text);
+                    twoText.getLayoutParams().height = screenHeight / 12;
+                    twoText.setPadding(0, screenHeight/36, 0, screenHeight/36);
+                    twoText.setText(getString(R.string.two));
+                    // makes the game a time attack mode
+                    timeAttackMode = true;
+                    beatTheClockMode = false;
+                    // set time chosen
+                    half.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            time = 0.5;
+                            gameMode = "half";
+                            // create the timed game
+                            if (event.getAction() == MotionEvent.ACTION_UP){
+                                dialog.dismiss();
+                                createDialog();
+                            }
+                            super.onTouch(v, event);
+                            return false;
+                        }
+                    });
+                    one.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            time = 1;
+                            gameMode = "one_minute";
+                            // create the timed game
+                            if (event.getAction() == MotionEvent.ACTION_UP){
+                                dialog.dismiss();
+                                createDialog();
+                            }
+                            super.onTouch(v, event);
+                            return false;
+                        }
+                    });
+                    oneHalf.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            time = 1.5;
+                            gameMode = "oneHalf";
+                            // create the timed game
+                            if (event.getAction() == MotionEvent.ACTION_UP){
+                                dialog.dismiss();
+                                createDialog();
+                            }
+                            super.onTouch(v, event);
+                            return false;
+                        }
+                    });
+                    two.setOnTouchListener(new MyCustomButton.ButtonTouchEvent() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            time = 2;
+                            gameMode = "two_minutes";
+                            // create the timed game
+                            if (event.getAction() == MotionEvent.ACTION_UP){
+                                dialog.dismiss();
+                                createDialog();
+                            }
+                            super.onTouch(v, event);
+                            return false;
+                        }
+                    });
                     dialog.show();
                 }
                 super.onTouch(v, event);
@@ -408,73 +408,73 @@ public class MainMenu extends AppCompatActivity {
         highscores.setOnTouchListener(new MyCustomButton.ButtonTouchEvent(){
             @Override
             public boolean onTouch(View v, MotionEvent event){
-                // create the highscore screen
-                Dialog dialog = new Dialog(MainMenu.this);
-                dialog.setContentView(R.layout.activity_highscores);
-                TextView title = (TextView) dialog.findViewById(R.id.title);
-                title.getLayoutParams().height = MainMenu.screenHeight/27;
-                title.setPadding(0, MainMenu.screenWidth/135, 0, MainMenu.screenWidth/135);
-                RelativeLayout.LayoutParams titleParams = (RelativeLayout.LayoutParams) title.getLayoutParams();
-                titleParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView mainScore = (TextView) dialog.findViewById(R.id.main_score);
-                mainScore.getLayoutParams().height = MainMenu.screenHeight/40;
-                RelativeLayout.LayoutParams mainScoreParams = (RelativeLayout.LayoutParams) mainScore.getLayoutParams();
-                mainScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView timed = (TextView) dialog.findViewById(R.id.timed);
-                timed.getLayoutParams().height = MainMenu.screenHeight/27;
-                timed.setPadding(0, MainMenu.screenWidth/135, 0, MainMenu.screenWidth/135);
-                RelativeLayout.LayoutParams timedParams = (RelativeLayout.LayoutParams) timed.getLayoutParams();
-                timedParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView timedHalfScore = (TextView) dialog.findViewById(R.id.timed_half_score);
-                timedHalfScore.getLayoutParams().height = MainMenu.screenHeight/40;
-                RelativeLayout.LayoutParams timedHalfScoreParams = (RelativeLayout.LayoutParams) timedHalfScore.getLayoutParams();
-                timedHalfScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView timedOneScore = (TextView) dialog.findViewById(R.id.timed_one_score);
-                timedOneScore.getLayoutParams().height = MainMenu.screenHeight/40;
-                RelativeLayout.LayoutParams timedOneScoreParams = (RelativeLayout.LayoutParams) timedOneScore.getLayoutParams();
-                timedOneScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView timedOneHalfScore = (TextView) dialog.findViewById(R.id.timed_one_half_score);
-                timedOneHalfScore.getLayoutParams().height = MainMenu.screenHeight/40;
-                RelativeLayout.LayoutParams timedOneHalfScoreParams = (RelativeLayout.LayoutParams) timedOneHalfScore.getLayoutParams();
-                timedOneHalfScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView timedTwoScore = (TextView) dialog.findViewById(R.id.timed_two_score);
-                timedTwoScore.getLayoutParams().height = MainMenu.screenHeight/40;
-                RelativeLayout.LayoutParams timedTwoScoreParams = (RelativeLayout.LayoutParams) timedTwoScore.getLayoutParams();
-                timedTwoScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView beatTheClock = (TextView) dialog.findViewById(R.id.levels);
-                beatTheClock.getLayoutParams().height = MainMenu.screenHeight/27;
-                beatTheClock.setPadding(0, MainMenu.screenWidth/135, 0, MainMenu.screenWidth/135);
-                RelativeLayout.LayoutParams beatTheClockParams = (RelativeLayout.LayoutParams) beatTheClock.getLayoutParams();
-                beatTheClockParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView fiveScore = (TextView) dialog.findViewById(R.id.five_score);
-                fiveScore.getLayoutParams().height = MainMenu.screenHeight/40;
-                RelativeLayout.LayoutParams fiveScoreParams = (RelativeLayout.LayoutParams) fiveScore.getLayoutParams();
-                fiveScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView sevenScore = (TextView) dialog.findViewById(R.id.seven_score);
-                sevenScore.getLayoutParams().height = MainMenu.screenHeight/40;
-                RelativeLayout.LayoutParams sevenScoreParams = (RelativeLayout.LayoutParams) sevenScore.getLayoutParams();
-                sevenScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView tenScore = (TextView) dialog.findViewById(R.id.ten_score);
-                tenScore.getLayoutParams().height = MainMenu.screenHeight/40;
-                RelativeLayout.LayoutParams tenScoreParams = (RelativeLayout.LayoutParams) tenScore.getLayoutParams();
-                tenScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                TextView fifteenScore = (TextView) dialog.findViewById(R.id.fifteen_score);
-                fifteenScore.getLayoutParams().height = MainMenu.screenHeight/40;
-                RelativeLayout.LayoutParams fifteenScoreParams = (RelativeLayout.LayoutParams) fifteenScore.getLayoutParams();
-                fifteenScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
-                title.setText(getString(R.string.main));
-                mainScore.setText(getString(R.string.highest_level) + " " + getString (R.string.level) + " " + Integer.toString(MainMenu.sp.getInt("main", 0)));
-                timed.setText(getString(R.string.timed));
-                timedHalfScore.setText(getString(R.string.half) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("half", 0))));
-                timedOneScore.setText(getString(R.string.one) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("one_minute", 0))));
-                timedOneHalfScore.setText(getString(R.string.one_half) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("oneHalf", 0))));
-                timedTwoScore.setText(getString(R.string.two) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("two_minutes", 0))));
-                beatTheClock.setText(getString(R.string.levels));
-                fiveScore.setText(getString(R.string.five) + ": " + Integer.toString(MainMenu.sp.getInt("five", 999)) + " seconds");
-                sevenScore.setText(getString(R.string.seven) + ": " + Integer.toString(MainMenu.sp.getInt("seven", 999)) + " seconds");
-                tenScore.setText(getString(R.string.ten) + ": " + Integer.toString(MainMenu.sp.getInt("ten", 999)) + " seconds");
-                fifteenScore.setText(getString(R.string.fifteen) + ": " + Integer.toString(MainMenu.sp.getInt("fifteen", 999)) + " seconds");
                 if (event.getAction() == MotionEvent.ACTION_UP){
+                    // create the highscore screen
+                    Dialog dialog = new Dialog(MainMenu.this);
+                    dialog.setContentView(R.layout.activity_highscores);
+                    TextView title = (TextView) dialog.findViewById(R.id.title);
+                    title.getLayoutParams().height = MainMenu.screenHeight/27;
+                    title.setPadding(0, MainMenu.screenWidth/135, 0, MainMenu.screenWidth/135);
+                    RelativeLayout.LayoutParams titleParams = (RelativeLayout.LayoutParams) title.getLayoutParams();
+                    titleParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView mainScore = (TextView) dialog.findViewById(R.id.main_score);
+                    mainScore.getLayoutParams().height = MainMenu.screenHeight/40;
+                    RelativeLayout.LayoutParams mainScoreParams = (RelativeLayout.LayoutParams) mainScore.getLayoutParams();
+                    mainScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView timed = (TextView) dialog.findViewById(R.id.timed);
+                    timed.getLayoutParams().height = MainMenu.screenHeight/27;
+                    timed.setPadding(0, MainMenu.screenWidth/135, 0, MainMenu.screenWidth/135);
+                    RelativeLayout.LayoutParams timedParams = (RelativeLayout.LayoutParams) timed.getLayoutParams();
+                    timedParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView timedHalfScore = (TextView) dialog.findViewById(R.id.timed_half_score);
+                    timedHalfScore.getLayoutParams().height = MainMenu.screenHeight/40;
+                    RelativeLayout.LayoutParams timedHalfScoreParams = (RelativeLayout.LayoutParams) timedHalfScore.getLayoutParams();
+                    timedHalfScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView timedOneScore = (TextView) dialog.findViewById(R.id.timed_one_score);
+                    timedOneScore.getLayoutParams().height = MainMenu.screenHeight/40;
+                    RelativeLayout.LayoutParams timedOneScoreParams = (RelativeLayout.LayoutParams) timedOneScore.getLayoutParams();
+                    timedOneScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView timedOneHalfScore = (TextView) dialog.findViewById(R.id.timed_one_half_score);
+                    timedOneHalfScore.getLayoutParams().height = MainMenu.screenHeight/40;
+                    RelativeLayout.LayoutParams timedOneHalfScoreParams = (RelativeLayout.LayoutParams) timedOneHalfScore.getLayoutParams();
+                    timedOneHalfScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView timedTwoScore = (TextView) dialog.findViewById(R.id.timed_two_score);
+                    timedTwoScore.getLayoutParams().height = MainMenu.screenHeight/40;
+                    RelativeLayout.LayoutParams timedTwoScoreParams = (RelativeLayout.LayoutParams) timedTwoScore.getLayoutParams();
+                    timedTwoScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView beatTheClock = (TextView) dialog.findViewById(R.id.levels);
+                    beatTheClock.getLayoutParams().height = MainMenu.screenHeight/27;
+                    beatTheClock.setPadding(0, MainMenu.screenWidth/135, 0, MainMenu.screenWidth/135);
+                    RelativeLayout.LayoutParams beatTheClockParams = (RelativeLayout.LayoutParams) beatTheClock.getLayoutParams();
+                    beatTheClockParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView fiveScore = (TextView) dialog.findViewById(R.id.five_score);
+                    fiveScore.getLayoutParams().height = MainMenu.screenHeight/40;
+                    RelativeLayout.LayoutParams fiveScoreParams = (RelativeLayout.LayoutParams) fiveScore.getLayoutParams();
+                    fiveScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView sevenScore = (TextView) dialog.findViewById(R.id.seven_score);
+                    sevenScore.getLayoutParams().height = MainMenu.screenHeight/40;
+                    RelativeLayout.LayoutParams sevenScoreParams = (RelativeLayout.LayoutParams) sevenScore.getLayoutParams();
+                    sevenScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView tenScore = (TextView) dialog.findViewById(R.id.ten_score);
+                    tenScore.getLayoutParams().height = MainMenu.screenHeight/40;
+                    RelativeLayout.LayoutParams tenScoreParams = (RelativeLayout.LayoutParams) tenScore.getLayoutParams();
+                    tenScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    TextView fifteenScore = (TextView) dialog.findViewById(R.id.fifteen_score);
+                    fifteenScore.getLayoutParams().height = MainMenu.screenHeight/40;
+                    RelativeLayout.LayoutParams fifteenScoreParams = (RelativeLayout.LayoutParams) fifteenScore.getLayoutParams();
+                    fifteenScoreParams.setMargins(0, 0, 0, MainMenu.screenHeight/50);
+                    title.setText(getString(R.string.main));
+                    mainScore.setText(getString(R.string.highest_level) + " " + getString (R.string.level) + " " + Integer.toString(MainMenu.sp.getInt("main", 0)));
+                    timed.setText(getString(R.string.timed));
+                    timedHalfScore.setText(getString(R.string.half) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("half", 0))));
+                    timedOneScore.setText(getString(R.string.one) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("one_minute", 0))));
+                    timedOneHalfScore.setText(getString(R.string.one_half) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("oneHalf", 0))));
+                    timedTwoScore.setText(getString(R.string.two) +  ": " + getString (R.string.level) + " " +(Integer.toString(MainMenu.sp.getInt("two_minutes", 0))));
+                    beatTheClock.setText(getString(R.string.levels));
+                    fiveScore.setText(getString(R.string.five) + ": " + Integer.toString(MainMenu.sp.getInt("five", 999)) + " seconds");
+                    sevenScore.setText(getString(R.string.seven) + ": " + Integer.toString(MainMenu.sp.getInt("seven", 999)) + " seconds");
+                    tenScore.setText(getString(R.string.ten) + ": " + Integer.toString(MainMenu.sp.getInt("ten", 999)) + " seconds");
+                    fifteenScore.setText(getString(R.string.fifteen) + ": " + Integer.toString(MainMenu.sp.getInt("fifteen", 999)) + " seconds");
                     dialog.show();
                 }
                 super.onTouch(v, event);
